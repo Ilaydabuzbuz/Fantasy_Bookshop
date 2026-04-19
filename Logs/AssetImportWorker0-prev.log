@@ -1,0 +1,428 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.4/staging' branch; Version is '6000.4.2f1 (7a4c1aeef971) revision 8014874'; Using compiler version '194234433'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26200) Professional' Language: 'en' Physical Memory: 15754 MB
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-İLAYDA" at "2026-04-19T13:20:20.9839944Z"
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-04-19T13:20:20Z
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.4.2f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Users/ILAYDA/Desktop/fantasy_bookshop/Fantasy_Bookshop
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+46732
+-licensingIpc
+LicenseClient-İLAYDA
+-force-d3d12
+-job-worker-count
+7
+-background-job-worker-count
+8
+-gc-helper-count
+1
+-name
+AssetImport
+Successfully changed project path to: C:/Users/ILAYDA/Desktop/fantasy_bookshop/Fantasy_Bookshop
+C:/Users/ILAYDA/Desktop/fantasy_bookshop/Fantasy_Bookshop
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Player connection [10772]  Target information:
+
+Player connection [10772]  * "[IP] 192.168.137.134 [Port] 0 [Flags] 2 [Guid] 2908253993 [EditorId] 2908253993 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-DFCOMK5) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [10772] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [10772] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 7
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.4.2f1 (7a4c1aeef971)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.4.2f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/ILAYDA/Desktop/fantasy_bookshop/Fantasy_Bookshop/Assets
+Forcing GfxDevice: Direct3D 12
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+d3d12: failed to query info queue interface (0x80004002).
+Direct3D:
+    Version:         Direct3D 12 [level 12.1]
+    Renderer:        AMD Radeon(TM) Graphics (ID=0x1638)
+    Vendor:          ATI
+    VRAM:            7877 MB
+    App VRAM Budget: 7698 MB
+    Driver:          31.0.14003.6002
+    Unified Memory Architecture
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.4.2f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.4.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.4.2f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56356
+CodeReloadManager initialized
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.4.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002522 seconds.
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.18.1'.
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-İLAYDA"
+[Licensing::IpcConnector] LicenseClient-İLAYDA channel disconnected successfully.
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-İLAYDA-6000.4.2" at "2026-04-19T13:20:22.3637006Z"
+Native extension for WindowsStandalone target not found
+Package Manager log level set to [2]
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.492 seconds
+Domain Reload Profiling: 1070ms
+	BeginReloadAssembly (171ms)
+	RebuildCommonClasses (48ms)
+	RebuildNativeTypeToScriptingClass (15ms)
+	initialDomainReloadingComplete (92ms)
+	LoadAllAssembliesAndSetupDomain (249ms)
+		LoadAssemblies (164ms)
+		AnalyzeDomain (239ms)
+			TypeCache.Refresh (237ms)
+				TypeCache.ScanAssembly (221ms)
+	FinalizeReload (494ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (59ms)
+			BeforeProcessingInitializeOnLoad (110ms)
+			ProcessInitializeOnLoadAttributes (142ms)
+			ProcessInitializeOnLoadMethodAttributes (103ms)
+========================================================================
+Worker process is ready to serve import requests
+Import Worker Mode flag is 0x00
+Begin MonoManager ReloadAssembly
+[Licensing::Module] Licensing is not yet initialized.
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.1+9fbee8e
+  Session Id:              dc2c76468072437c8cd6906bc7238a15
+  Correlation Id:          7c553645dbcf042780d91e76990ff9ae
+  External correlation Id: 9085679719793595859
+  Machine Id:              OOQeNrJ1zVFBnYlGWehyVyEiFqI=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-İLAYDA-6000.4.2" (connect: 0.00s, validation: 0.00s, handshake: 1.14s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-İLAYDA-6000.4.2-notifications" at "2026-04-19T13:20:23.5016312Z"
+[Licensing::Module] Licensing Background thread has ended after 2.52s
+[Licensing::Module] Licensing is initialized (took 0.34s).
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: F4-DS3J-G6YV-7JMH-WUDY-XXXX
+  Product: Unity Personal
+  Type: ULF
+  Expiration: Unlimited
+[Licensing::Module] License group:
+  Id: 18967717797564-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+Assembly Assembly-CSharp-Editor-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-Editor-firstpass.dll not valid. Loading of assembly skipped.
+Assembly Assembly-CSharp-Editor.dll at Library/ScriptAssemblies/Assembly-CSharp-Editor.dll not valid. Loading of assembly skipped.
+Assembly Assembly-CSharp-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Sprite.Package.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Sprite.Package.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Editor.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Editor.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.Common.Tests.dll at Library/ScriptAssemblies/UnityEditor.UI.Common.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.EditorTests.dll at Library/ScriptAssemblies/UnityEditor.UI.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.UI.Tests.dll at Library/ScriptAssemblies/UnityEngine.UI.Tests.dll not valid. Loading of assembly skipped.
+Native extension for WindowsStandalone target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.459 seconds
+Domain Reload Profiling: 1176ms
+	BeginReloadAssembly (566ms)
+		DisableScriptedObjects (7ms)
+		CreateAndSetChildDomain (34ms)
+	RebuildCommonClasses (47ms)
+	RebuildNativeTypeToScriptingClass (15ms)
+	initialDomainReloadingComplete (51ms)
+	LoadAllAssembliesAndSetupDomain (37ms)
+		LoadAssemblies (139ms)
+		AnalyzeDomain (24ms)
+			TypeCache.Refresh (14ms)
+				TypeCache.ScanAssembly (9ms)
+			BuildScriptInfoCaches (6ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (460ms)
+		SetupLoadedEditorAssemblies (0ms)
+			BeforeProcessingInitializeOnLoad (130ms)
+			ProcessInitializeOnLoadAttributes (112ms)
+			ProcessInitializeOnLoadMethodAttributes (60ms)
+			AfterProcessingInitializeOnLoad (9ms)
+		AwakeInstancesAfterBackupRestoration (8ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 479 unused Assets / (82.9 KB). Loaded Objects now: 1094.
+Memory consumption went from 70.8 MB to 70.7 MB.
+Total: 5.122200 ms (FindLiveObjects: 0.097500 ms CreateObjectMapping: 0.029700 ms MarkObjects: 4.756100 ms  DeleteObjects: 0.236700 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 368379.331283 seconds.
+  path: Assets/Scenes/OpenDay.unity
+  importAddress: Guid(03d78e0bc4bd8194f8439e99e107b034) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/OpenDay.unity using Guid(03d78e0bc4bd8194f8439e99e107b034) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '23f22216e9256145504ac1306a14969a') in 0.119791 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=79ca1d58067c9e2a6ada89b73d450d57 DependenciesID=b7ed66bec4e33a3027a3dcacb7190fde StaticDependenciesID=a1b16129e5593726795d66e6b475d511 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Scripts/CharacterTraitsManager.cs
+  importAddress: Guid(f089bea2c9d1e304bbe2eedd80d120af) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scripts/CharacterTraitsManager.cs using Guid(f089bea2c9d1e304bbe2eedd80d120af) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '52100a154e51abcbcdb21ac930001aaa') in 0.0341437 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8333cb13be1025fc349f8fb0a704f724 DependenciesID=213a4e84bf2d52eff330f74af8d3057a StaticDependenciesID=c88a1198b69c97d391706b907510ae6d 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 27.894465 seconds.
+  path: Assets/Scenes/CharacterTraits.unity
+  importAddress: Guid(14937316955b9d7498349faa4d42950b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CharacterTraits.unity using Guid(14937316955b9d7498349faa4d42950b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '64e3b7231c0d712ef1015d5a5cfab205') in 0.0007506 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2bac99f2158f948bf73e90f617c6123d DependenciesID=7e41165e8722bc4c75b1cd2b3d83a9c7 StaticDependenciesID=43772db3c6ee81b65137f4c285fd3602 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 132.621809 seconds.
+  path: Assets/Sprites/UI/OpenDay/ChatGPT Image 19 Nis 2026 16_21_50.png
+  importAddress: Guid(e43cdcb049816a6479fa9146dfc98168) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/OpenDay/ChatGPT Image 19 Nis 2026 16_21_50.png using Guid(e43cdcb049816a6479fa9146dfc98168) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '3da809fd8fe7931097e786cfd636a3fa') in 0.0883311 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=110b74e9ad26e82710330622dc02afe3 DependenciesID=679fb57b7c140421bf1dcbe26b82ee3e StaticDependenciesID=a7fc7bdf9212b61fd5582898323e058b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.960915 seconds.
+  path: Assets/Sprites/UI/OpenDay/ChatGPT Image 19 Nis 2026 16_21_50.png
+  importAddress: Guid(e43cdcb049816a6479fa9146dfc98168) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Sprites/UI/OpenDay/ChatGPT Image 19 Nis 2026 16_21_50.png using Guid(e43cdcb049816a6479fa9146dfc98168) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '0053120eaecb7023a6af454802711bf0') in 0.0613513 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=debb92e7a9833ba62c1f92072e5f797b DependenciesID=c83d990fef05b76ccf5cbc3c7243fcee StaticDependenciesID=96ad9d6e2b346036e5db8eeedb4ab7c3 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.196558 seconds.
+  path: Assets/Sprites/UI/OpenDay/ChatGPT Image 19 Nis 2026 16_21_50.png
+  importAddress: Guid(e43cdcb049816a6479fa9146dfc98168) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/OpenDay/ChatGPT Image 19 Nis 2026 16_21_50.png using Guid(e43cdcb049816a6479fa9146dfc98168) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '97efa4ba263647ae31ade4296def8129') in 0.0173142 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ea4e26be6601499d4cab57aaf5e65105 DependenciesID=730167b5ab3b3f41c49f596b667e9e55 StaticDependenciesID=e9c225146288ac042806e5b2a5c35d1f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.051536 seconds.
+  path: Assets/Sprites/UI/OpenDay/ChatGPT Image 19 Nis 2026 16_21_50.png
+  importAddress: Guid(e43cdcb049816a6479fa9146dfc98168) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Sprites/UI/OpenDay/ChatGPT Image 19 Nis 2026 16_21_50.png using Guid(e43cdcb049816a6479fa9146dfc98168) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '8c9d229f25773585019606b8d460ceea') in 0.0156707 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=72c8e9a8cec3186c600e923f5a7d31fe DependenciesID=660da71c2b74d146239e0b9b206d6153 StaticDependenciesID=cb72d1803dd319e2338a812e2cf61474 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 42.617819 seconds.
+  path: Assets/Sprites/UI/OpenDay/ChatGPT Image 19 Nis 2026 16_21_50.png
+  importAddress: Guid(e43cdcb049816a6479fa9146dfc98168) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/OpenDay/ChatGPT Image 19 Nis 2026 16_21_50.png using Guid(e43cdcb049816a6479fa9146dfc98168) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '93c1a2dbaf79b16b788aea4749f74430') in 0.0651298 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a941888fc340c002ac9447e2ffed0968 DependenciesID=93dd4b57ef952547f58a208f96cb8022 StaticDependenciesID=d1e4369d0610bff37d5850777ef3f90f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.897159 seconds.
+  path: Assets/Sprites/UI/OpenDay/ChatGPT Image 19 Nis 2026 16_21_50.png
+  importAddress: Guid(e43cdcb049816a6479fa9146dfc98168) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Sprites/UI/OpenDay/ChatGPT Image 19 Nis 2026 16_21_50.png using Guid(e43cdcb049816a6479fa9146dfc98168) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'f41091b7be4c8600dfc55af80214d2a6') in 0.0263232 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=65f685b0c4e4cfbdecc2255a60907f32 DependenciesID=25db869828c651180d34385608c34c40 StaticDependenciesID=ed4a2426cb470d323c7172b8ce04b7c4 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 56.628846 seconds.
+  path: Assets/Sprites/UI/OpenDay/erasebg-transformed (6).png
+  importAddress: Guid(2153e9cd2996dac499d46fbc077f06f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/OpenDay/erasebg-transformed (6).png using Guid(2153e9cd2996dac499d46fbc077f06f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'c392f703bdb3d53292b68e4494947160') in 0.0182058 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1802c7cd1ff55d977811a168b0ec92c8 DependenciesID=53fe8b20ff7482b40e0819dea90fe632 StaticDependenciesID=8be4af18b92f321e64933862980a1dcf 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.962798 seconds.
+  path: Assets/Sprites/UI/OpenDay/erasebg-transformed (6).png
+  importAddress: Guid(2153e9cd2996dac499d46fbc077f06f4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Sprites/UI/OpenDay/erasebg-transformed (6).png using Guid(2153e9cd2996dac499d46fbc077f06f4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '0a379de10b8ab044eead9b0b56a21326') in 0.0179535 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=df04cf5fb8c16534adec76a59521ee9c DependenciesID=adc4dd4cadca8008405517a935af117e StaticDependenciesID=1c2c9147f6cd9f09e1a2021100486aa0 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.758551 seconds.
+  path: Assets/Sprites/UI/OpenDay/Women_Customers.png
+  importAddress: Guid(2153e9cd2996dac499d46fbc077f06f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/OpenDay/Women_Customers.png using Guid(2153e9cd2996dac499d46fbc077f06f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '02b01d826b125ed835c01890f141855f') in 0.0185712 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1802c7cd1ff55d977811a168b0ec92c8 DependenciesID=b10c13963cc7362e99dcc54e92b22d43 StaticDependenciesID=cd51a59d98c0c0d390186632dfa44977 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.943805 seconds.
+  path: Assets/Sprites/UI/OpenDay/Women_Customers.png
+  importAddress: Guid(2153e9cd2996dac499d46fbc077f06f4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Sprites/UI/OpenDay/Women_Customers.png using Guid(2153e9cd2996dac499d46fbc077f06f4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '21f793025a64f0c2945a4b5bf28cb960') in 0.0169671 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9c926cbfa5e03a62eef1b292a61c8ed6 DependenciesID=ee1aa6d9d5ae0611d548180cb8066608 StaticDependenciesID=3330fc684a73c4b83e4a3f609ca1275a 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.916206 seconds.
+  path: Assets/Sprites/UI/OpenDay/Women_Customers.png
+  importAddress: Guid(2153e9cd2996dac499d46fbc077f06f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/OpenDay/Women_Customers.png using Guid(2153e9cd2996dac499d46fbc077f06f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'bb3b4f81239c570732c71baa04ee7160') in 0.0162045 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=849517cd9b7db31f835e8c8f73e7080d DependenciesID=092068fbc1733bfb76d4df34f1938120 StaticDependenciesID=40383a714967ae87b25f5e26c8f58fa3 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.971334 seconds.
+  path: Assets/Sprites/UI/OpenDay/Women_Customers.png
+  importAddress: Guid(2153e9cd2996dac499d46fbc077f06f4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Sprites/UI/OpenDay/Women_Customers.png using Guid(2153e9cd2996dac499d46fbc077f06f4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '8aaf792ae4456735e4ce312b1bdec7d9') in 0.0199809 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=25fa5d232c0b8f4e38a1b08ab2250e3e DependenciesID=1b877e8eb0420423614fa5e599ba9c77 StaticDependenciesID=69dad7d3ddcb96086027aa0c03bd0417 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 22.881425 seconds.
+  path: Assets/Sprites/UI/OpenDay/Women_Customers.png
+  importAddress: Guid(2153e9cd2996dac499d46fbc077f06f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/OpenDay/Women_Customers.png using Guid(2153e9cd2996dac499d46fbc077f06f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '44097d6660edb562fee4e3ceff96af3c') in 0.0287886 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3003aefc0a51bf32f4be55a160bdfcbc DependenciesID=c406b534551f324c0a609ffb31091102 StaticDependenciesID=724ec23860a5ed7ac53734d304492856 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.944159 seconds.
+  path: Assets/Sprites/UI/OpenDay/Women_Customers.png
+  importAddress: Guid(2153e9cd2996dac499d46fbc077f06f4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Sprites/UI/OpenDay/Women_Customers.png using Guid(2153e9cd2996dac499d46fbc077f06f4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '8c013c0112e380a0cdb31e11d3f79c1e') in 0.0205262 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f0a2ca04b837136e4df3d09c26cc7f9b DependenciesID=bc30599c1ab0b6df3d217a9cad8cc410 StaticDependenciesID=fe5cc79ae02bcc307fb373b9ef2e1ce0 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 47.992069 seconds.
+  path: Assets/Sprites/UI/OpenDay/erasebg-transformed (6).png
+  importAddress: Guid(5441fc5b1ab68ac4c806eff08dfd86df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/OpenDay/erasebg-transformed (6).png using Guid(5441fc5b1ab68ac4c806eff08dfd86df) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'b2440032fb777ac3d804a91f689e4ce1') in 0.017991 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8627576a43eb9dd2d5bfc81e04e7d15a DependenciesID=2d9ea585ed20fcdb563b512a09d2701b StaticDependenciesID=9c5227ab6b905be072b9cfacc54dd610 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.973333 seconds.
+  path: Assets/Sprites/UI/OpenDay/erasebg-transformed (6).png
+  importAddress: Guid(5441fc5b1ab68ac4c806eff08dfd86df) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Sprites/UI/OpenDay/erasebg-transformed (6).png using Guid(5441fc5b1ab68ac4c806eff08dfd86df) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '4d1d771c08f4e688771e904c1a172871') in 0.0193899 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2799862efcc316c20c1324154fb68a9e DependenciesID=a6e2a4edd331479b698599112344706c StaticDependenciesID=0bac55e2aebf59a3efa0bbfe75152b29 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.559656 seconds.
+  path: Assets/Sprites/UI/OpenDay/Women.png
+  importAddress: Guid(5441fc5b1ab68ac4c806eff08dfd86df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/OpenDay/Women.png using Guid(5441fc5b1ab68ac4c806eff08dfd86df) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'e11cc6537267c84870f3c8eba38f9dff') in 0.0162122 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8627576a43eb9dd2d5bfc81e04e7d15a DependenciesID=6ea49c058662e4085f4110f53b8d32bb StaticDependenciesID=dc40e28c63ecc021c283bae435375994 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.959643 seconds.
+  path: Assets/Sprites/UI/OpenDay/Women.png
+  importAddress: Guid(5441fc5b1ab68ac4c806eff08dfd86df) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Sprites/UI/OpenDay/Women.png using Guid(5441fc5b1ab68ac4c806eff08dfd86df) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '3ef083853d9480555c86a1f6f6f1c2f0') in 0.0176821 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4538b4fad28be2036925a045858a8f06 DependenciesID=2ce8a1f0286bebed4cb4c8c1d084fc7f StaticDependenciesID=6e3eb9bd0359971e928432c8938fa33c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.748314 seconds.
+  path: Assets/Sprites/UI/OpenDay/Women.png
+  importAddress: Guid(5441fc5b1ab68ac4c806eff08dfd86df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/OpenDay/Women.png using Guid(5441fc5b1ab68ac4c806eff08dfd86df) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'd9f246383990b2e4d66190560abc333b') in 0.0186075 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9e81d23af7aab2b212b7728e7ee40670 DependenciesID=866248f651535c5b63c9d8cb5a62a62c StaticDependenciesID=7d3a82a4aec6b6a731794fa28000343c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.973963 seconds.
+  path: Assets/Sprites/UI/OpenDay/Women.png
+  importAddress: Guid(5441fc5b1ab68ac4c806eff08dfd86df) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Sprites/UI/OpenDay/Women.png using Guid(5441fc5b1ab68ac4c806eff08dfd86df) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '1e52b32b804e11b0e608cf3e0cb1c365') in 0.0173474 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=df365d3b42d2d099602c260cddb499e1 DependenciesID=32974f38865507f2ed046a5aa9d88fb6 StaticDependenciesID=1c3fbd2f72c3756a3bfc2c58e5c6c917 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 83.715495 seconds.
+  path: Assets/Sprites/UI/OpenDay/Women.png
+  importAddress: Guid(5441fc5b1ab68ac4c806eff08dfd86df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/OpenDay/Women.png using Guid(5441fc5b1ab68ac4c806eff08dfd86df) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '0e74dec6149011bff00b9ed36d3eaa09') in 0.0212819 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2b195323158e00de55048d06ad991b3c DependenciesID=70d61f008a9766ebfcfe721de86e22db StaticDependenciesID=f7b8a547e99684528bcf861628c85781 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.937983 seconds.
+  path: Assets/Sprites/UI/OpenDay/Women.png
+  importAddress: Guid(5441fc5b1ab68ac4c806eff08dfd86df) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Sprites/UI/OpenDay/Women.png using Guid(5441fc5b1ab68ac4c806eff08dfd86df) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'e32f8b94d88426b013aef78b69ecee15') in 0.0175862 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=eb88d2b9d5d7bd6192f8e84d63761fbc DependenciesID=cef54828d419c4d9596ab56192902140 StaticDependenciesID=d7e32bf79b8701af3e0d7561ab293263 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 16.967628 seconds.
+  path: Assets/Sprites/UI/OpenDay/Women.png
+  importAddress: Guid(5441fc5b1ab68ac4c806eff08dfd86df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/OpenDay/Women.png using Guid(5441fc5b1ab68ac4c806eff08dfd86df) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '0a404ba3b9bf6d6878b0551af0129197') in 0.0301275 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a88a3dce7efcdeb1464c39da3fcc5688 DependenciesID=5dc791b77bcff82cc19746f06270b364 StaticDependenciesID=c8e521b476220537df604b22cbbdae50 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 5
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.942420 seconds.
+  path: Assets/Sprites/UI/OpenDay/Women.png
+  importAddress: Guid(5441fc5b1ab68ac4c806eff08dfd86df) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Sprites/UI/OpenDay/Women.png using Guid(5441fc5b1ab68ac4c806eff08dfd86df) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '2e08688ffc7a6718dabda14c054066b5') in 0.0243148 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=08da623eccaee5cd50cc40dd895693a5 DependenciesID=8377f7d250638436962eba57ac66bd51 StaticDependenciesID=72cf0a7f42712b09348f005cce833697 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 5
+
