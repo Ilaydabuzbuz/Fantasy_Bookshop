@@ -6,15 +6,33 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Scenes/Eski/MainMenu.unity
     guid: 5ec93614e66a51d4691c053de07adef9
   - enabled: 1
-    path: Assets/Scenes/StartGame.unity
+    path: Assets/Scenes/Eski/StartGame.unity
     guid: 43790d12b3a4f6044af9fdc975df0f9e
   - enabled: 1
-    path: Assets/Scenes/OpenDay.unity
+    path: Assets/Scenes/Eski/OpenDay.unity
     guid: 03d78e0bc4bd8194f8439e99e107b034
   - enabled: 1
-    path: Assets/Scenes/CharacterTraits.unity
+    path: Assets/Scenes/Eski/CharacterTraits.unity
     guid: 14937316955b9d7498349faa4d42950b
+  - enabled: 1
+    path: Assets/Scenes/MainScreen.unity
+    guid: 4e7382495e32aab4fa8652192b300560
+  - enabled: 1
+    path: Assets/Scenes/StartGameScreen.unity
+    guid: 40684660c7cea7d498f83f2821ebdc48
+  - enabled: 1
+    path: Assets/Scenes/DayScreen.unity
+    guid: 32281ad3a90c74c478b5ad8b216cc287
+  - enabled: 1
+    path: Assets/Scenes/ProfileScreen.unity
+    guid: efb7706d157aae54388a10a0207fa97b
+  - enabled: 1
+    path: Assets/Scenes/InventoryScreen.unity
+    guid: 7143f687f3e0fcc499f2ad4d3032a565
+  - enabled: 1
+    path: Assets/Scenes/CustomerTraitsScreen.unity
+    guid: 056a9beb293c842409d19c616e60f390
   m_configObjects: {}
