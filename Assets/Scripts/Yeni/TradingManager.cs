@@ -5,15 +5,23 @@ using System.Collections.Generic;
 
 public class TradingManager : MonoBehaviour
 {
-    [Header("UI References")]
+    [Header("UI References - Core")]
     public AnimatedCounter goldCounter;
     public TextMeshProUGUI bookTitleText;
     public TextMeshProUGUI bookStatsText;
     public Image bookIconImage;
 
+    [Header("UI References - Book Details")]
+    public TextMeshProUGUI editionText;
+    public TextMeshProUGUI conditionText;
+    public TextMeshProUGUI rarityText;
+    public TextMeshProUGUI magicLevelText;
+    public TextMeshProUGUI ageText;
+    public TextMeshProUGUI curseText;
+
+    [Header("UI References - Dialogue")]
     public GameObject dialogueGroup;
     public TextMeshProUGUI dialogueText;
-
     public TMP_InputField offerInputField;
 
     [Header("Buttons")]
@@ -67,14 +75,12 @@ public class TradingManager : MonoBehaviour
 
         ItemData item = newCustomer.itemToSell;
 
+        // --- SOL TARAF (Temel Deðerler) ---
         if (offerInputField != null)
             offerInputField.text = Mathf.RoundToInt(item.basePrice * 0.6f).ToString();
 
-        if (bookTitleText != null)
-            bookTitleText.text = item.itemName;
-
-        if (bookStatsText != null)
-            bookStatsText.text = $"{item.basePrice:0}";
+        if (bookTitleText != null) bookTitleText.text = item.itemName;
+        if (bookStatsText != null) bookStatsText.text = $"{item.basePrice:0}";
 
         if (bookIconImage != null)
         {
@@ -82,13 +88,23 @@ public class TradingManager : MonoBehaviour
             bookIconImage.gameObject.SetActive(true);
         }
 
-        ShowDialogue("I brought this book. What is your offer?");
+        // --- SAÐ TARAF (Fantastik Kitap Detaylarý) ---
+        if (editionText != null) editionText.text = item.edition;
+        if (conditionText != null) conditionText.text = item.conditionString;
+        if (rarityText != null) rarityText.text = item.rarity.ToString();
+        if (magicLevelText != null) magicLevelText.text = item.magicLevel;
+        if (ageText != null) ageText.text = item.age;
+        if (curseText != null) curseText.text = item.curse;
+
+        // --- YAPAY ZEKA BAÐLANTISI ---
+        currentCustomer.OnDealAccepted += HandleDealAccepted;
+        currentCustomer.OnDealRejected += HandleDealRejected;
+        currentCustomer.OnDialogueGenerated += HandleCustomerDialogue;
     }
 
     public void IncreaseOffer()
     {
         if (offerInputField == null || waitingForNextCustomer) return;
-
         float currentOffer = GetCurrentOffer();
         currentOffer += offerIncrement;
         offerInputField.text = currentOffer.ToString("0");
@@ -97,13 +113,8 @@ public class TradingManager : MonoBehaviour
     public void DecreaseOffer()
     {
         if (offerInputField == null || waitingForNextCustomer) return;
-
-        float currentOffer = GetCurrentOffer();
-        currentOffer -= offerIncrement;
-
-        if (currentOffer < 0)
-            currentOffer = 0;
-
+        float currentOffer = GetCurrentOffer() - offerIncrement;
+        if (currentOffer < 0) currentOffer = 0;
         offerInputField.text = currentOffer.ToString("0");
     }
 
@@ -113,7 +124,6 @@ public class TradingManager : MonoBehaviour
             return;
 
         float offer = GetCurrentOffer();
-        ItemData item = currentCustomer.itemToSell;
 
         if (offer > playerGold)
         {
@@ -121,29 +131,15 @@ public class TradingManager : MonoBehaviour
             return;
         }
 
-        float minimumAcceptPrice = item.basePrice * currentCustomer.greedMultiplier * 0.75f;
-
-        if (offer >= minimumAcceptPrice)
-        {
-            playerGold -= offer;
-            purchasedItems.Add(item);
-
-            if (goldCounter != null)
-                goldCounter.UpdateCounter(playerGold);
-
-            ShowDialogue($"Deal! You bought {item.itemName} for {offer:0} G.");
-            FinishCustomer();
-        }
-        else
-        {
-            ShowDialogue("No way. That offer is too low.");
-        }
+        currentCustomer.ReceivePlayerOffer(offer);
     }
 
     public void RejectCustomer()
     {
-        if (currentCustomer == null || waitingForNextCustomer)
-            return;
+        if (currentCustomer == null || waitingForNextCustomer) return;
+
+        if (ReputationManager.Instance != null)
+            ReputationManager.Instance.ModifyReputation(currentCustomer.customerRace, -3f);
 
         ShowDialogue("Maybe another time.");
         FinishCustomer();
@@ -151,13 +147,35 @@ public class TradingManager : MonoBehaviour
 
     private float GetCurrentOffer()
     {
-        if (offerInputField == null)
-            return 0;
-
-        if (float.TryParse(offerInputField.text, out float value))
-            return value;
-
+        if (offerInputField == null) return 0;
+        if (float.TryParse(offerInputField.text, out float value)) return value;
         return 0;
+    }
+
+    // --- YAPAY ZEKADAN GELEN YANITLAR ---
+    private void HandleCustomerDialogue(string text) => ShowDialogue(text);
+
+    private void HandleDealAccepted(ItemData item, float finalPrice, string dialogue)
+    {
+        playerGold -= finalPrice;
+        purchasedItems.Add(item);
+
+        if (goldCounter != null) goldCounter.UpdateCounter(playerGold);
+
+        if (currentCustomer != null && ReputationManager.Instance != null)
+            ReputationManager.Instance.ModifyReputation(currentCustomer.customerRace, 8f);
+
+        ShowDialogue(dialogue);
+        FinishCustomer();
+    }
+
+    private void HandleDealRejected(string dialogue)
+    {
+        if (currentCustomer != null && ReputationManager.Instance != null)
+            ReputationManager.Instance.ModifyReputation(currentCustomer.customerRace, -5f);
+
+        ShowDialogue(dialogue);
+        FinishCustomer();
     }
 
     private void FinishCustomer()
@@ -165,8 +183,14 @@ public class TradingManager : MonoBehaviour
         waitingForNextCustomer = true;
         SetButtonsInteractable(false);
 
-        currentCustomer = null;
+        if (currentCustomer != null)
+        {
+            currentCustomer.OnDealAccepted -= HandleDealAccepted;
+            currentCustomer.OnDealRejected -= HandleDealRejected;
+            currentCustomer.OnDialogueGenerated -= HandleCustomerDialogue;
+        }
 
+        currentCustomer = null;
         Invoke(nameof(ClearUI), 2.5f);
 
         if (customerSpawner != null)
@@ -175,11 +199,8 @@ public class TradingManager : MonoBehaviour
 
     private void ShowDialogue(string text)
     {
-        if (dialogueGroup != null)
-            dialogueGroup.SetActive(true);
-
-        if (dialogueText != null)
-            dialogueText.text = text;
+        if (dialogueGroup != null) dialogueGroup.SetActive(true);
+        if (dialogueText != null) dialogueText.text = text;
     }
 
     private void SetButtonsInteractable(bool value)
@@ -192,22 +213,19 @@ public class TradingManager : MonoBehaviour
 
     private void ClearUI()
     {
-        if (bookTitleText != null)
-            bookTitleText.text = "Book Title";
+        if (bookTitleText != null) bookTitleText.text = "Book Title";
+        if (bookStatsText != null) bookStatsText.text = "Value:";
+        if (bookIconImage != null) bookIconImage.gameObject.SetActive(false);
 
-        if (bookStatsText != null)
-            bookStatsText.text = "Estimated Value:";
+        if (editionText != null) editionText.text = "Edition";
+        if (conditionText != null) conditionText.text = "Condition";
+        if (rarityText != null) rarityText.text = "Rarity";
+        if (magicLevelText != null) magicLevelText.text = "Magic Level";
+        if (ageText != null) ageText.text = "Age";
+        if (curseText != null) curseText.text = "Curse";
 
-        if (bookIconImage != null)
-            bookIconImage.gameObject.SetActive(false);
-
-        if (dialogueText != null)
-            dialogueText.text = "";
-
-        if (dialogueGroup != null)
-            dialogueGroup.SetActive(false);
-
-        if (offerInputField != null)
-            offerInputField.text = "";
+        if (dialogueText != null) dialogueText.text = "";
+        if (dialogueGroup != null) dialogueGroup.SetActive(false);
+        if (offerInputField != null) offerInputField.text = "";
     }
 }

@@ -78,8 +78,16 @@ public class CustomerSpawner : MonoBehaviour
         ai.customerName = names[UnityEngine.Random.Range(0, names.Length)];
         ai.customerRace = group.race;
         ai.itemToSell = bookVisual.itemData;
-        ai.greedMultiplier = UnityEngine.Random.Range(0.9f, 1.9f);
-        ai.patience = UnityEngine.Random.Range(80f, 120f);
+        ai.greedMultiplier = UnityEngine.Random.Range(0.5f, 1.9f);
+        ai.patience = UnityEngine.Random.Range(10f, 120f);
+
+        if (ReputationManager.Instance != null)
+        {
+            float currentRep = ReputationManager.Instance.GetReputation(group.race);
+
+            float reputationModifier = (50f - currentRep) * 0.01f;
+            ai.greedMultiplier = Mathf.Clamp(UnityEngine.Random.Range(0.9f, 1.9f) + reputationModifier, 0.6f, 2.5f);
+        }
 
         if (tradingManager != null)
             tradingManager.SetupNewCustomer(ai);
