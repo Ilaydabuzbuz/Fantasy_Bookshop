@@ -11,6 +11,10 @@ public class TradingManager : MonoBehaviour
     public TextMeshProUGUI bookStatsText;
     public Image bookIconImage;
 
+    [Header("UI References - Labels")]
+    public TextMeshProUGUI intentLabelText;
+    public TextMeshProUGUI boughtForText;
+
     [Header("UI References - Book Details")]
     public TextMeshProUGUI editionText;
     public TextMeshProUGUI conditionText;
@@ -34,6 +38,7 @@ public class TradingManager : MonoBehaviour
     public float playerGold = 1000f;
     public float offerIncrement = 10f;
     public List<ItemData> purchasedItems = new List<ItemData>();
+    private Dictionary<ItemData, float> purchasePrices = new Dictionary<ItemData, float>();
 
     [Header("System References")]
     public CustomerSpawner customerSpawner;
@@ -43,18 +48,13 @@ public class TradingManager : MonoBehaviour
 
     private void Start()
     {
-        if (goldCounter != null)
-            goldCounter.SetValueInstant(playerGold);
-
+        if (goldCounter != null) goldCounter.SetValueInstant(playerGold);
         ClearUI();
 
         if (offerButton != null) offerButton.onClick.AddListener(SubmitOffer);
         if (increaseButton != null) increaseButton.onClick.AddListener(IncreaseOffer);
         if (decreaseButton != null) decreaseButton.onClick.AddListener(DecreaseOffer);
         if (refuseButton != null) refuseButton.onClick.AddListener(RejectCustomer);
-
-        if (customerSpawner != null)
-            customerSpawner.Invoke("SpawnNextCustomer", 1f);
     }
 
     public void SetupNewCustomer(CustomerAI newCustomer)
@@ -64,8 +64,7 @@ public class TradingManager : MonoBehaviour
 
         SetButtonsInteractable(true);
 
-        if (dialogueGroup != null)
-            dialogueGroup.SetActive(true);
+        if (dialogueGroup != null) dialogueGroup.SetActive(true);
 
         if (newCustomer.itemToSell == null)
         {
@@ -75,9 +74,71 @@ public class TradingManager : MonoBehaviour
 
         ItemData item = newCustomer.itemToSell;
 
-        // --- SOL TARAF (Temel Deðerler) ---
+        string greeting = "";
+        int roundedPrice = Mathf.RoundToInt(newCustomer.customerDesiredPrice);
+
+        if (newCustomer.intent == CustomerIntent.SellToPlayer)
+        {
+            string[] sellerDialogues = {
+                $"I found this old book. I'm willing to part with it for {roundedPrice} gold.",
+                $"Would you be interested in purchasing this? I'm asking {roundedPrice} gold.",
+                $"I need some quick coin. Take this off my hands for {roundedPrice} gold.",
+                $"A rare find! It can be yours for just {roundedPrice} gold."
+            };
+            greeting = sellerDialogues[Random.Range(0, sellerDialogues.Length)];
+
+            if (boughtForText != null) boughtForText.gameObject.SetActive(false);
+        }
+        else
+        {
+            string[] buyerDialogues = {
+                $"I've been looking everywhere for '{item.itemName}'. I can pay {roundedPrice} gold for it!",
+                $"Ah, '{item.itemName}'! I'll give you {roundedPrice} gold for it. Deal?",
+                $"That '{item.itemName}' catches my eye. How about {roundedPrice} gold?",
+                $"I must have '{item.itemName}' for my collection. Here is {roundedPrice} gold."
+            };
+            greeting = buyerDialogues[Random.Range(0, buyerDialogues.Length)];
+
+            if (boughtForText != null)
+            {
+                if (purchasePrices.ContainsKey(item))
+                {
+                    boughtForText.text = $"Bought For: {purchasePrices[item]:0}";
+                    boughtForText.gameObject.SetActive(true);
+                }
+                else
+                {
+                    boughtForText.gameObject.SetActive(false);
+                }
+            }
+        }
+
+        ShowDialogue(greeting);
+
+        if (intentLabelText != null)
+        {
+            string raceName = newCustomer.customerRace.ToString().ToUpper();
+
+            if (newCustomer.intent == CustomerIntent.SellToPlayer)
+            {
+                intentLabelText.text = $"{raceName} SELLER";
+                intentLabelText.color = Color.red;
+            }
+            else
+            {
+                intentLabelText.text = $"{raceName} BUYER";
+                intentLabelText.color = Color.green;
+            }
+            intentLabelText.gameObject.SetActive(true);
+        }
+
         if (offerInputField != null)
-            offerInputField.text = Mathf.RoundToInt(item.basePrice * 0.6f).ToString();
+        {
+            if (newCustomer.intent == CustomerIntent.SellToPlayer)
+                offerInputField.text = Mathf.RoundToInt(item.basePrice * 0.6f).ToString();
+            else
+                offerInputField.text = Mathf.RoundToInt(item.basePrice * 1.2f).ToString();
+        }
 
         if (bookTitleText != null) bookTitleText.text = item.itemName;
         if (bookStatsText != null) bookStatsText.text = $"{item.basePrice:0}";
@@ -88,7 +149,6 @@ public class TradingManager : MonoBehaviour
             bookIconImage.gameObject.SetActive(true);
         }
 
-        // --- SAÐ TARAF (Fantastik Kitap Detaylarý) ---
         if (editionText != null) editionText.text = item.edition;
         if (conditionText != null) conditionText.text = item.conditionString;
         if (rarityText != null) rarityText.text = item.rarity.ToString();
@@ -96,7 +156,6 @@ public class TradingManager : MonoBehaviour
         if (ageText != null) ageText.text = item.age;
         if (curseText != null) curseText.text = item.curse;
 
-        // --- YAPAY ZEKA BAÐLANTISI ---
         currentCustomer.OnDealAccepted += HandleDealAccepted;
         currentCustomer.OnDealRejected += HandleDealRejected;
         currentCustomer.OnDialogueGenerated += HandleCustomerDialogue;
@@ -105,8 +164,7 @@ public class TradingManager : MonoBehaviour
     public void IncreaseOffer()
     {
         if (offerInputField == null || waitingForNextCustomer) return;
-        float currentOffer = GetCurrentOffer();
-        currentOffer += offerIncrement;
+        float currentOffer = GetCurrentOffer() + offerIncrement;
         offerInputField.text = currentOffer.ToString("0");
     }
 
@@ -120,12 +178,11 @@ public class TradingManager : MonoBehaviour
 
     public void SubmitOffer()
     {
-        if (currentCustomer == null || currentCustomer.itemToSell == null || waitingForNextCustomer)
-            return;
+        if (currentCustomer == null || currentCustomer.itemToSell == null || waitingForNextCustomer) return;
 
         float offer = GetCurrentOffer();
 
-        if (offer > playerGold)
+        if (currentCustomer.intent == CustomerIntent.SellToPlayer && offer > playerGold)
         {
             ShowDialogue("You don't have enough gold.");
             return;
@@ -152,13 +209,22 @@ public class TradingManager : MonoBehaviour
         return 0;
     }
 
-    // --- YAPAY ZEKADAN GELEN YANITLAR ---
     private void HandleCustomerDialogue(string text) => ShowDialogue(text);
 
     private void HandleDealAccepted(ItemData item, float finalPrice, string dialogue)
     {
-        playerGold -= finalPrice;
-        purchasedItems.Add(item);
+        if (currentCustomer.intent == CustomerIntent.SellToPlayer)
+        {
+            playerGold -= finalPrice;
+            purchasedItems.Add(item);
+            purchasePrices[item] = finalPrice;
+        }
+        else
+        {
+            playerGold += finalPrice;
+            purchasedItems.Remove(item);
+            purchasePrices.Remove(item);
+        }
 
         if (goldCounter != null) goldCounter.UpdateCounter(playerGold);
 
@@ -193,8 +259,10 @@ public class TradingManager : MonoBehaviour
         currentCustomer = null;
         Invoke(nameof(ClearUI), 2.5f);
 
-        if (customerSpawner != null)
-            customerSpawner.Invoke("SpawnNextCustomer", 3f);
+        if (DayManager.Instance != null)
+        {
+            DayManager.Instance.OnCustomerLeft();
+        }
     }
 
     private void ShowDialogue(string text)
@@ -227,5 +295,8 @@ public class TradingManager : MonoBehaviour
         if (dialogueText != null) dialogueText.text = "";
         if (dialogueGroup != null) dialogueGroup.SetActive(false);
         if (offerInputField != null) offerInputField.text = "";
+
+        if (intentLabelText != null) intentLabelText.gameObject.SetActive(false);
+        if (boughtForText != null) boughtForText.gameObject.SetActive(false);
     }
 }

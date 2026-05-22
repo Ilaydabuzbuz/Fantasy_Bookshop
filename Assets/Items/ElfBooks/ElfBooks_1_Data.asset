@@ -9,13 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 690585e69e3c36f4da0b52f135a9c827, type: 3}
+  m_Script: {fileID: 11500000, guid: a36a045ed871ab549a7f45d27112284e, type: 3}
   m_Name: ElfBooks_1_Data
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: 
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 2083515876, guid: 3991f8700f0e1a9439a817cfcf1a057d, type: 3}
   edition: First Edition
   rarity: 0
   conditionString: Mint
+  magicLevel: None
+  age: Modern
+  curse: None
   basePrice: 100
   condition: 1

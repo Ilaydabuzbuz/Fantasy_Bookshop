@@ -418,6 +418,7 @@
 "Assets/Scripts/Yeni/CustomerAI.cs"
 "Assets/Scripts/Yeni/CustomerSpawner.cs"
 "Assets/Scripts/Yeni/CustomerTraitsManager.cs"
+"Assets/Scripts/Yeni/DayManager.cs"
 "Assets/Scripts/Yeni/ItemData.cs"
 "Assets/Scripts/Yeni/MainScreenManager.cs"
 "Assets/Scripts/Yeni/ReputationBarUI.cs"

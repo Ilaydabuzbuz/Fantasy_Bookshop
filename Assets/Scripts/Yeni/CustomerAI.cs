@@ -1,114 +1,96 @@
 using UnityEngine;
-using System;
+
+public enum CustomerIntent { SellToPlayer, BuyFromPlayer }
 
 public class CustomerAI : MonoBehaviour
 {
-    public enum CustomerState { Entering, WaitingForOffer, Negotiating, Leaving }
-    public CustomerState currentState;
-
-    [Header("Identity")]
-    public string customerName;
     public CustomerRace customerRace;
-
-    [Header("Stats")]
-    public float patience = 100f;
-    [Range(0.5f, 2.5f)] public float greedMultiplier = 1.0f;
-
-    [Header("Item to Sell")]
     public ItemData itemToSell;
+    public float customerDesiredPrice;
+    public CustomerIntent intent;
+    public float patience;
+    public float greedMultiplier;
 
-    private float currentAskingPrice;
-    private float absoluteMinimum;
-    private bool hasGreeted = false;
+    public delegate void DealEvent(ItemData item, float finalPrice, string dialogue);
+    public event DealEvent OnDealAccepted;
 
-    public event Action<CustomerAI> OnCustomerArrived;
-    public event Action<ItemData, float, string> OnDealAccepted;
-    public event Action<string> OnDealRejected;
-    public event Action<string> OnDialogueGenerated;
+    public delegate void RejectEvent(string dialogue);
+    public event RejectEvent OnDealRejected;
 
-    private void Start() => ChangeState(CustomerState.Entering);
-
-    public void ChangeState(CustomerState newState)
-    {
-        currentState = newState;
-        switch (currentState)
-        {
-            case CustomerState.Entering:
-                InitializeNegotiation();
-                ChangeState(CustomerState.WaitingForOffer);
-                break;
-            case CustomerState.WaitingForOffer:
-                OnCustomerArrived?.Invoke(this);
-                if (!hasGreeted)
-                {
-                    OnDialogueGenerated?.Invoke($"Hello! I'm {customerName}. I have this {itemToSell.itemName} for {currentAskingPrice.ToString("0")} gold.");
-                    hasGreeted = true;
-                }
-                break;
-            case CustomerState.Leaving:
-                Destroy(gameObject, 1.5f);
-                break;
-        }
-    }
-
-    private void InitializeNegotiation()
-    {
-        if (itemToSell == null) return;
-        currentAskingPrice = itemToSell.basePrice * greedMultiplier * itemToSell.condition;
-        absoluteMinimum = itemToSell.basePrice * itemToSell.condition * (greedMultiplier * 0.75f);
-    }
+    public delegate void DialogueEvent(string text);
+    public event DialogueEvent OnDialogueGenerated;
 
     public void ReceivePlayerOffer(float playerOffer)
     {
-        if (playerOffer >= currentAskingPrice * 0.95f)
+        float difference = Mathf.Abs(customerDesiredPrice - playerOffer);
+        float percentDifference = difference / customerDesiredPrice;
+
+        float tolerance = Random.Range(0.05f, 0.15f) / greedMultiplier;
+        bool isAcceptable = false;
+
+        if (intent == CustomerIntent.SellToPlayer)
         {
-            AcceptOffer(playerOffer);
-            return;
-        }
-
-        float offerRatio = playerOffer / currentAskingPrice;
-
-        float patienceDrain = (1.0f - offerRatio) * 55f;
-        patience -= patienceDrain;
-
-        if (patience <= 0)
-        {
-            RejectAndLeave();
+            if (playerOffer >= customerDesiredPrice * (1f - tolerance)) isAcceptable = true;
         }
         else
         {
-            float gap = currentAskingPrice - playerOffer;
-
-            float dropPercent = UnityEngine.Random.Range(0.25f, 0.45f);
-            float priceDrop = gap * dropPercent;
-
-            currentAskingPrice -= priceDrop;
-
-            if (currentAskingPrice < absoluteMinimum)
-            {
-                currentAskingPrice = absoluteMinimum;
-            }
-
-            OnDialogueGenerated?.Invoke(GetMoodMsg(offerRatio) + $" How about {currentAskingPrice.ToString("0")} gold?");
+            if (playerOffer <= customerDesiredPrice * (1f + tolerance)) isAcceptable = true;
         }
-    }
 
-    private string GetMoodMsg(float r)
-    {
-        if (r < 0.4f) return "Are you kidding me?";
-        if (r < 0.7f) return "That's not enough.";
-        return "Almost there, make it better.";
-    }
+        if (isAcceptable)
+        {
+            string[] successLines = {
+                "You know what? Close enough. It's a deal.",
+                "Fair enough. We have an agreement.",
+                "I won't argue over a few coins. Done.",
+                "Alright, that works for me."
+            };
+            OnDealAccepted?.Invoke(itemToSell, playerOffer, successLines[Random.Range(0, successLines.Length)]);
+            return;
+        }
 
-    private void AcceptOffer(float p)
-    {
-        OnDealAccepted?.Invoke(itemToSell, p, "We have a deal!");
-        ChangeState(CustomerState.Leaving);
-    }
+        float basePatienceDrop = Random.Range(15f, 25f) * greedMultiplier;
 
-    private void RejectAndLeave()
-    {
-        OnDealRejected?.Invoke("I'm wasting my time here. Goodbye!");
-        ChangeState(CustomerState.Leaving);
+        if (percentDifference < 0.2f)
+        {
+            basePatienceDrop *= 0.4f;
+        }
+        else if (percentDifference > 0.6f)
+        {
+            basePatienceDrop *= 1.2f;
+        }
+
+        patience -= basePatienceDrop;
+
+        if (patience <= 0)
+        {
+            OnDealRejected?.Invoke("We are too far apart on this. I'm leaving!");
+            return;
+        }
+
+        float compromiseFactor = Mathf.Clamp(1.0f / greedMultiplier, 0.2f, 0.7f);
+        float moveAmount = difference * compromiseFactor;
+
+        if (intent == CustomerIntent.SellToPlayer)
+        {
+            customerDesiredPrice -= moveAmount;
+            customerDesiredPrice = Mathf.Max(customerDesiredPrice, playerOffer + 1);
+        }
+        else
+        {
+            customerDesiredPrice += moveAmount;
+            customerDesiredPrice = Mathf.Min(customerDesiredPrice, playerOffer - 1);
+        }
+
+        int roundedAsk = Mathf.RoundToInt(customerDesiredPrice);
+
+        string[] haggleLines = {
+            $"We are getting closer. How about {roundedAsk}?",
+            $"I can't do that, but I can do {roundedAsk}.",
+            $"Let's meet closer to the middle: {roundedAsk}.",
+            $"Make it {roundedAsk} and we have a deal."
+        };
+
+        OnDialogueGenerated?.Invoke(haggleLines[Random.Range(0, haggleLines.Length)]);
     }
 }

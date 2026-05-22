@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: DwarfBooks_4_Data
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: 
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: -979409319, guid: ce2ffbb6c240ef4498003eb3f0204bf4, type: 3}
   edition: First Edition
   rarity: 0
   conditionString: Mint
+  magicLevel: None
+  age: Modern
+  curse: None
   basePrice: 100
   condition: 1
