@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CustomerTraitsScreen.unity
     guid: 056a9beb293c842409d19c616e60f390
+  - enabled: 1
+    path: Assets/Scenes/EndDayReport.unity
+    guid: 64dd161715473204ea7ac53a532b39c9
   m_configObjects: {}

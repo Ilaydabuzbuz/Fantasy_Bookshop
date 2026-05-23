@@ -1,3 +1,4 @@
+// CustomerAI.cs
 using UnityEngine;
 
 public enum CustomerIntent { SellToPlayer, BuyFromPlayer }
@@ -8,7 +9,13 @@ public class CustomerAI : MonoBehaviour
     public ItemData itemToSell;
     public float customerDesiredPrice;
     public CustomerIntent intent;
-    public float patience;
+
+    [Header("Traits")]
+    [Range(0f, 100f)] public float competence;
+    [Range(0f, 100f)] public float greed;
+    [Range(0f, 100f)] public float patience;
+    public bool isCollector;
+
     public float greedMultiplier;
 
     public delegate void DealEvent(ItemData item, float finalPrice, string dialogue);
@@ -24,7 +31,6 @@ public class CustomerAI : MonoBehaviour
     {
         float difference = Mathf.Abs(customerDesiredPrice - playerOffer);
         float percentDifference = difference / customerDesiredPrice;
-
         float tolerance = Random.Range(0.05f, 0.15f) / greedMultiplier;
         bool isAcceptable = false;
 
@@ -50,15 +56,10 @@ public class CustomerAI : MonoBehaviour
         }
 
         float basePatienceDrop = Random.Range(15f, 25f) * greedMultiplier;
-
         if (percentDifference < 0.2f)
-        {
             basePatienceDrop *= 0.4f;
-        }
         else if (percentDifference > 0.6f)
-        {
             basePatienceDrop *= 1.2f;
-        }
 
         patience -= basePatienceDrop;
 
@@ -83,14 +84,12 @@ public class CustomerAI : MonoBehaviour
         }
 
         int roundedAsk = Mathf.RoundToInt(customerDesiredPrice);
-
         string[] haggleLines = {
             $"We are getting closer. How about {roundedAsk}?",
             $"I can't do that, but I can do {roundedAsk}.",
             $"Let's meet closer to the middle: {roundedAsk}.",
             $"Make it {roundedAsk} and we have a deal."
         };
-
         OnDialogueGenerated?.Invoke(haggleLines[Random.Range(0, haggleLines.Length)]);
     }
 }

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 14631615746336493}
   - component: {fileID: 434906988551341666}
   - component: {fileID: -4574194308276525389}
+  - component: {fileID: 3601200445261645740}
+  - component: {fileID: 983498163829982641}
   m_Layer: 0
   m_Name: Dwarf_3
   m_TagString: Untagged
@@ -104,9 +106,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d58440b448be7241949fa36fab54be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerAI
-  currentState: 0
-  customerName: 
   customerRace: 4
+  itemToSell: {fileID: 0}
+  customerDesiredPrice: 0
+  intent: 0
   patience: 100
   greedMultiplier: 1
-  itemToSell: {fileID: 0}
+--- !u!61 &3601200445261645740
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8952918536410348123}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.05, y: 2.97}
+    newSize: {x: 3.05, y: 2.97}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 3.05, y: 2.97}
+  m_EdgeRadius: 0
+--- !u!114 &983498163829982641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8952918536410348123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d8998c28e69924d92696ee964f3426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomerClickHandler

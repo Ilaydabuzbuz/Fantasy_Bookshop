@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 
 public class TradingManager : MonoBehaviour
@@ -73,7 +74,6 @@ public class TradingManager : MonoBehaviour
         }
 
         ItemData item = newCustomer.itemToSell;
-
         string greeting = "";
         int roundedPrice = Mathf.RoundToInt(newCustomer.customerDesiredPrice);
 
@@ -86,7 +86,6 @@ public class TradingManager : MonoBehaviour
                 $"A rare find! It can be yours for just {roundedPrice} gold."
             };
             greeting = sellerDialogues[Random.Range(0, sellerDialogues.Length)];
-
             if (boughtForText != null) boughtForText.gameObject.SetActive(false);
         }
         else
@@ -118,7 +117,6 @@ public class TradingManager : MonoBehaviour
         if (intentLabelText != null)
         {
             string raceName = newCustomer.customerRace.ToString().ToUpper();
-
             if (newCustomer.intent == CustomerIntent.SellToPlayer)
             {
                 intentLabelText.text = $"{raceName} SELLER";
@@ -179,25 +177,20 @@ public class TradingManager : MonoBehaviour
     public void SubmitOffer()
     {
         if (currentCustomer == null || currentCustomer.itemToSell == null || waitingForNextCustomer) return;
-
         float offer = GetCurrentOffer();
-
         if (currentCustomer.intent == CustomerIntent.SellToPlayer && offer > playerGold)
         {
             ShowDialogue("You don't have enough gold.");
             return;
         }
-
         currentCustomer.ReceivePlayerOffer(offer);
     }
 
     public void RejectCustomer()
     {
         if (currentCustomer == null || waitingForNextCustomer) return;
-
         if (ReputationManager.Instance != null)
             ReputationManager.Instance.ModifyReputation(currentCustomer.customerRace, -3f);
-
         ShowDialogue("Maybe another time.");
         FinishCustomer();
     }
@@ -213,34 +206,41 @@ public class TradingManager : MonoBehaviour
 
     private void HandleDealAccepted(ItemData item, float finalPrice, string dialogue)
     {
+        ShowDialogue(dialogue);
+
         if (currentCustomer.intent == CustomerIntent.SellToPlayer)
         {
             playerGold -= finalPrice;
             purchasedItems.Add(item);
             purchasePrices[item] = finalPrice;
+            DayManager.Instance?.RegisterGoldEarned(-finalPrice);
+            DayManager.Instance?.RegisterBookBought();
         }
         else
         {
             playerGold += finalPrice;
             purchasedItems.Remove(item);
-            purchasePrices.Remove(item);
+            DayManager.Instance?.RegisterGoldEarned(finalPrice);
+            DayManager.Instance?.RegisterBookSold();
         }
+
+        DayManager.Instance?.RegisterCustomerServed(currentCustomer.customerRace);
+        float repGain = currentCustomer.intent == CustomerIntent.SellToPlayer ? 2f : 3f;
+        ReputationManager.Instance?.ModifyReputation(currentCustomer.customerRace, repGain);
+        DayManager.Instance?.RegisterReputationEarned(currentCustomer.customerRace, repGain);
 
         if (goldCounter != null) goldCounter.UpdateCounter(playerGold);
 
-        if (currentCustomer != null && ReputationManager.Instance != null)
-            ReputationManager.Instance.ModifyReputation(currentCustomer.customerRace, 8f);
-
-        ShowDialogue(dialogue);
         FinishCustomer();
     }
 
     private void HandleDealRejected(string dialogue)
     {
-        if (currentCustomer != null && ReputationManager.Instance != null)
-            ReputationManager.Instance.ModifyReputation(currentCustomer.customerRace, -5f);
-
         ShowDialogue(dialogue);
+        DayManager.Instance?.RegisterCustomerServed(currentCustomer.customerRace);
+        ReputationManager.Instance?.ModifyReputation(currentCustomer.customerRace, -1f);
+        DayManager.Instance?.RegisterReputationEarned(currentCustomer.customerRace, -1f);
+
         FinishCustomer();
     }
 
@@ -257,12 +257,14 @@ public class TradingManager : MonoBehaviour
         }
 
         currentCustomer = null;
-        Invoke(nameof(ClearUI), 2.5f);
+        StartCoroutine(FinishAfterDelay());
+    }
 
-        if (DayManager.Instance != null)
-        {
-            DayManager.Instance.OnCustomerLeft();
-        }
+    private IEnumerator FinishAfterDelay()
+    {
+        yield return new WaitForSeconds(2.5f);
+        ClearUI();
+        DayManager.Instance?.OnCustomerLeft();
     }
 
     private void ShowDialogue(string text)
