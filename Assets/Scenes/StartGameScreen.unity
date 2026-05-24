@@ -1172,6 +1172,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a2340cf624e3b84f833ba6264dc10c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StartGameManager
+--- !u!1 &1494067769
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1494067771}
+  - component: {fileID: 1494067770}
+  m_Layer: 0
+  m_Name: 'SceneUIUpdater '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1494067770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494067769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 262dbb774c297e64585c44db0eefa071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneUIUpdater
+  dayText: {fileID: 1530810567}
+  goldText: {fileID: 583560492}
+--- !u!4 &1494067771
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494067769}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 486.9388, y: 867.40924, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1530810564
 GameObject:
   m_ObjectHideFlags: 0
@@ -1243,7 +1289,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1000
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8b976e822f5413a43b5506d92ed01d24, type: 2}
   m_sharedMaterial: {fileID: -154206327872920607, guid: 8b976e822f5413a43b5506d92ed01d24, type: 2}
@@ -1402,3 +1448,4 @@ SceneRoots:
   - {fileID: 1096284661}
   - {fileID: 444199618}
   - {fileID: 1119599064}
+  - {fileID: 1494067771}

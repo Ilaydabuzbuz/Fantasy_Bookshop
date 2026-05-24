@@ -22,3 +22,4 @@ MonoBehaviour:
   curse: None
   basePrice: 100
   condition: 1
+  race: 1

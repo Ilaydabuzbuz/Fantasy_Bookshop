@@ -1,3 +1,4 @@
+// DayManager.cs
 using UnityEngine;
 using TMPro;
 using System.Collections;
@@ -19,10 +20,6 @@ public class DayManager : MonoBehaviour
     [HideInInspector] public int totalCustomersToday;
     [HideInInspector] public int customersServedToday;
 
-    [Header("UI References")]
-    public TextMeshProUGUI dayText;
-    public GameObject endOfDayPanel;
-
     [HideInInspector] public float goldEarnedToday = 0f;
     [HideInInspector] public int booksSoldToday = 0;
     [HideInInspector] public int booksBoughtToday = 0;
@@ -31,6 +28,7 @@ public class DayManager : MonoBehaviour
 
     private CustomerSpawner spawner;
     private TradingManager tradingManager;
+    private bool hasStarted = false;
 
     private void Awake()
     {
@@ -40,7 +38,15 @@ public class DayManager : MonoBehaviour
 
     private void Start()
     {
-        StartNewDay();
+        
+        
+        if (!hasStarted)
+        {
+            hasStarted = true;
+            StartNewDay();
+        }
+        
+        
     }
 
     public void StartNewDay()
@@ -62,15 +68,23 @@ public class DayManager : MonoBehaviour
         customersByRace.Clear();
         reputationEarnedToday.Clear();
 
-        if (endOfDayPanel != null) endOfDayPanel.SetActive(false);
-        if (dayText != null) dayText.text = $"{currentDay}";
+        UpdateDayUI();
 
         Debug.Log($"Gün {currentDay} baþladý! Bugün dükkana {totalCustomersToday} müþteri uðrayacak.");
 
         if (spawner != null)
-            StartCoroutine(SpawnAfterDelay(1.5f));
+            StartCoroutine(SpawnAfterDelay(0f));
         else
             Debug.LogError("Spawner bulunamadý!");
+    }
+
+    private void UpdateDayUI()
+    {
+        foreach (TextMeshProUGUI tmp in Resources.FindObjectsOfTypeAll<TextMeshProUGUI>())
+        {
+            if (tmp.name == "Day" && tmp.gameObject.scene.name == "DayScreen")
+                tmp.text = $"{currentDay}";
+        }
     }
 
     public void OnCustomerLeft()
@@ -87,7 +101,7 @@ public class DayManager : MonoBehaviour
             { spawner = s; break; }
 
             if (spawner != null)
-                StartCoroutine(SpawnAfterDelay(2.5f));
+                StartCoroutine(SpawnAfterDelay(0f));
             else
                 Debug.LogError("Spawner bulunamadý!");
         }
@@ -120,6 +134,11 @@ public class DayManager : MonoBehaviour
     private void EndDay()
     {
         Debug.Log("Günün tüm müþterileri bitti!");
+
+        spawner = null;
+        foreach (CustomerSpawner s in Resources.FindObjectsOfTypeAll<CustomerSpawner>())
+        { spawner = s; break; }
+        spawner?.ClearCurrentCustomer();
 
         Scene dayScene = SceneManager.GetSceneByName("DayScreen");
         if (dayScene.IsValid())

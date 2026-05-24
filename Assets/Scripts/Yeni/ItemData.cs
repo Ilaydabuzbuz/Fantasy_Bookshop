@@ -13,11 +13,14 @@ public class ItemData : ScriptableObject
     public string conditionString = "Mint";
 
     [Header("Fantasy Attributes")]
-    public string magicLevel = "None"; // e.g., Minor, Powerful, Forbidden
-    public string age = "Modern";      // e.g., Ancient, Mythical
-    public string curse = "None";      // e.g., None, Blood Curse
+    public string magicLevel = "None";
+    public string age = "Modern";
+    public string curse = "None";
 
     [Header("Economy")]
     public float basePrice = 100f;
     [Range(0f, 1f)] public float condition = 1f;
+
+    [Header("Race")]
+    public CustomerRace race;
 }

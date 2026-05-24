@@ -1,3 +1,4 @@
+// CustomerSpawner.cs
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -15,6 +16,15 @@ public class CustomerSpawner : MonoBehaviour
     public Transform spawnPoint;
     private GameObject currentCustomerObject;
 
+    public void ClearCurrentCustomer()
+    {
+        if (currentCustomerObject != null)
+        {
+            Destroy(currentCustomerObject);
+            currentCustomerObject = null;
+        }
+    }
+
     public void SpawnNextCustomer()
     {
         if (currentCustomerObject != null)
@@ -28,13 +38,9 @@ public class CustomerSpawner : MonoBehaviour
 
         CustomerAI ai = currentCustomerObject.GetComponent<CustomerAI>();
 
-        // Gizli objeler dahil tüm sahnelerde ara
         TradingManager tm = null;
         foreach (TradingManager t in Resources.FindObjectsOfTypeAll<TradingManager>())
-        {
-            tm = t;
-            break;
-        }
+        { tm = t; break; }
 
         if (tm == null)
         {

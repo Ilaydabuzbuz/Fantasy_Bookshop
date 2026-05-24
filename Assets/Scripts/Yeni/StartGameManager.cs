@@ -38,7 +38,18 @@ public class StartGameManager : MonoBehaviour
 
     public void Inventory()
     {
-        SceneManager.LoadScene("InventoryScreen");
+        Scene inventoryScene = SceneManager.GetSceneByName("InventoryScreen");
+        if (!inventoryScene.IsValid())
+            SceneManager.LoadScene("InventoryScreen", LoadSceneMode.Additive);
+
+        Scene startScene = SceneManager.GetSceneByName("StartGameScreen");
+        if (startScene.IsValid())
+            foreach (GameObject root in startScene.GetRootGameObjects())
+            {
+                if (root.name == "DontDestroyOnLoad") continue;
+                if (root.name == "EventSystem") continue;
+                root.SetActive(false);
+            }
     }
 
     public void Profile()
