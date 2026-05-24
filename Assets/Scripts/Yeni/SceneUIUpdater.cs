@@ -18,17 +18,22 @@ public class SceneUIUpdater : MonoBehaviour
 
     private void UpdateUI()
     {
-        if (dayText != null && DayManager.Instance != null)
-            dayText.text = $"{DayManager.Instance.currentDay}";
+        if (dayText != null)
+        {
+            if (DayManager.Instance != null)
+                dayText.text = $"{DayManager.Instance.currentDay}";
+            else
+                dayText.text = $"{PlayerPrefs.GetInt("CurrentDay", 1)}";
+        }
 
         if (goldText != null)
         {
-            TradingManager tm = null;
-            foreach (TradingManager t in Resources.FindObjectsOfTypeAll<TradingManager>())
-            { tm = t; break; }
+            TradingManager tm = FindObjectOfType<TradingManager>();
 
             if (tm != null)
                 goldText.text = $"{tm.playerGold:0}";
+            else
+                goldText.text = $"{TradingManager.GetSavedGold():0}";
         }
     }
 }

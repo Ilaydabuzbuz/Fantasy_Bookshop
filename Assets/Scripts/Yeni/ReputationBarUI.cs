@@ -14,45 +14,61 @@ public class ReputationBarUI : MonoBehaviour
         public Image fillImage;
     }
 
-    [Header("UI Ayarlarý")]
+    [Header("UI Colors")]
     public Color badColor = Color.red;
     public Color neutralColor = Color.yellow;
     public Color goodColor = Color.green;
 
-    [Header("Irk Barlarý")]
-    public List<AffinityBar> affinityBars;
+    [Header("Race Bars")]
+    public List<AffinityBar> affinityBars = new List<AffinityBar>();
+
+    private void OnEnable()
+    {
+        ReputationManager.OnReputationChanged += UpdateAllBars;
+
+        ReputationManager.ForceReloadFromPlayerPrefs();
+        UpdateAllBars();
+    }
 
     private void Start()
     {
         UpdateAllBars();
     }
 
+    private void OnDisable()
+    {
+        ReputationManager.OnReputationChanged -= UpdateAllBars;
+    }
+
     public void UpdateAllBars()
     {
-        if (ReputationManager.Instance == null) return;
-
-        foreach (var item in affinityBars)
+        foreach (AffinityBar item in affinityBars)
         {
-            float rep = ReputationManager.Instance.GetReputation(item.race);
-            Debug.Log($"[Affinities] {item.race} ýrký için okunan deðer: {rep}");
+            if (item == null)
+                continue;
 
-            if (item.raceNameText != null) item.raceNameText.text = $"{item.race}: %{rep:0}";
-            if (item.affinitySlider != null) item.affinitySlider.value = rep;
+            float reputation = ReputationManager.GetReputationValue(item.race);
+
+            Debug.Log($"[Profile Reputation UI] {item.race} için okunan deðer: {reputation}");
+
+            if (item.raceNameText != null)
+                item.raceNameText.text = $"{item.race}: %{reputation:0}";
+
+            if (item.affinitySlider != null)
+            {
+                item.affinitySlider.minValue = 0f;
+                item.affinitySlider.maxValue = 100f;
+                item.affinitySlider.value = reputation;
+            }
 
             if (item.fillImage != null)
             {
-                float t = rep / 100f;
+                float t = reputation / 100f;
 
-                Color barColor;
                 if (t < 0.5f)
-                {
-                    barColor = Color.Lerp(badColor, neutralColor, t * 2f);
-                }
+                    item.fillImage.color = Color.Lerp(badColor, neutralColor, t * 2f);
                 else
-                {
-                    barColor = Color.Lerp(neutralColor, goodColor, (t - 0.5f) * 2f);
-                }
-                item.fillImage.color = barColor;
+                    item.fillImage.color = Color.Lerp(neutralColor, goodColor, (t - 0.5f) * 2f);
             }
         }
     }

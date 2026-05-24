@@ -7,7 +7,7 @@ using System.Linq;
 public class InventoryManager : MonoBehaviour
 {
     [Header("Grid Slots")]
-    public List<InventorySlot> slots; // 10 slot sürükle
+    public List<InventorySlot> slots;
 
     [Header("Category Buttons")]
     public Button allBooksButton;
@@ -20,7 +20,7 @@ public class InventoryManager : MonoBehaviour
     [Header("Pagination")]
     public Button prevButton;
     public Button nextButton;
-    public List<Button> pageButtons; // 1, 2, 3 butonlarý
+    public List<Button> pageButtons;
 
     [Header("Info")]
     public TextMeshProUGUI totalBooksText;
@@ -68,21 +68,16 @@ public class InventoryManager : MonoBehaviour
 
     public void RefreshInventory()
     {
-        TradingManager tm = null;
-        foreach (TradingManager t in Resources.FindObjectsOfTypeAll<TradingManager>())
-        { tm = t; break; }
+        List<ItemData> sourceItems = GetInventoryItems();
 
-        if (tm == null) return;
-
-        // Filtrele
         if (currentFilter == "All")
         {
-            filteredItems = new List<ItemData>(tm.purchasedItems);
+            filteredItems = new List<ItemData>(sourceItems);
         }
         else
         {
-            filteredItems = tm.purchasedItems
-                .Where(item => item.race.ToString() == currentFilter)
+            filteredItems = sourceItems
+                .Where(item => item != null && item.race.ToString() == currentFilter)
                 .ToList();
         }
 
@@ -93,13 +88,27 @@ public class InventoryManager : MonoBehaviour
         ShowPage(currentPage);
     }
 
+    private List<ItemData> GetInventoryItems()
+    {
+        TradingManager tm = FindObjectOfType<TradingManager>();
+
+        if (tm != null)
+            return new List<ItemData>(tm.purchasedItems);
+
+        return TradingManager.GetSavedPurchasedItems();
+    }
+
     private void ShowPage(int page)
     {
+        if (slots == null)
+            return;
+
         int startIndex = page * itemsPerPage;
 
         for (int i = 0; i < slots.Count; i++)
         {
             int itemIndex = startIndex + i;
+
             if (itemIndex < filteredItems.Count)
                 slots[i].SetItem(filteredItems[itemIndex]);
             else
@@ -112,9 +121,12 @@ public class InventoryManager : MonoBehaviour
         int totalPages = Mathf.CeilToInt((float)filteredItems.Count / itemsPerPage);
         totalPages = Mathf.Max(totalPages, 1);
 
-        for (int i = 0; i < pageButtons.Count; i++)
+        if (pageButtons != null)
         {
-            pageButtons[i].gameObject.SetActive(i < totalPages);
+            for (int i = 0; i < pageButtons.Count; i++)
+            {
+                pageButtons[i].gameObject.SetActive(i < totalPages);
+            }
         }
 
         UpdatePageButtonHighlight();
@@ -122,9 +134,11 @@ public class InventoryManager : MonoBehaviour
 
     private void UpdatePageButtonHighlight()
     {
+        if (pageButtons == null)
+            return;
+
         for (int i = 0; i < pageButtons.Count; i++)
         {
-            // Aktif sayfayý vurgula
             ColorBlock cb = pageButtons[i].colors;
             cb.normalColor = (i == currentPage) ? Color.yellow : Color.white;
             pageButtons[i].colors = cb;
@@ -144,6 +158,8 @@ public class InventoryManager : MonoBehaviour
     private void NextPage()
     {
         int totalPages = Mathf.CeilToInt((float)filteredItems.Count / itemsPerPage);
+        totalPages = Mathf.Max(totalPages, 1);
+
         if (currentPage < totalPages - 1)
         {
             currentPage++;
@@ -154,7 +170,11 @@ public class InventoryManager : MonoBehaviour
 
     private void GoToPage(int page)
     {
-        currentPage = page;
+        int totalPages = Mathf.CeilToInt((float)filteredItems.Count / itemsPerPage);
+        totalPages = Mathf.Max(totalPages, 1);
+
+        currentPage = Mathf.Clamp(page, 0, totalPages - 1);
+
         ShowPage(currentPage);
         UpdatePageButtonHighlight();
     }

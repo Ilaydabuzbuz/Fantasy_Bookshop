@@ -1,4 +1,3 @@
-// DayManager.cs
 using UnityEngine;
 using TMPro;
 using System.Collections;
@@ -17,47 +16,57 @@ public class DayManager : MonoBehaviour
     [Header("Daily Traffic Configuration")]
     public int minCustomersPerDay = 3;
     public int maxCustomersPerDay = 6;
+
     [HideInInspector] public int totalCustomersToday;
     [HideInInspector] public int customersServedToday;
 
     [HideInInspector] public float goldEarnedToday = 0f;
     [HideInInspector] public int booksSoldToday = 0;
     [HideInInspector] public int booksBoughtToday = 0;
+
     [HideInInspector] public Dictionary<CustomerRace, int> customersByRace = new Dictionary<CustomerRace, int>();
     [HideInInspector] public Dictionary<CustomerRace, float> reputationEarnedToday = new Dictionary<CustomerRace, float>();
 
     private CustomerSpawner spawner;
     private TradingManager tradingManager;
+
     private bool hasStarted = false;
+    private bool dayEnded = false;
 
     private void Awake()
     {
-        if (Instance == null) { Instance = this; DontDestroyOnLoad(gameObject); }
-        else { Destroy(gameObject); }
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
     }
 
     private void Start()
     {
-        
-        
+        currentDay = PlayerPrefs.GetInt("CurrentDay", 1);
+
         if (!hasStarted)
         {
             hasStarted = true;
             StartNewDay();
         }
-        
-        
     }
 
     public void StartNewDay()
     {
-        spawner = null;
-        foreach (CustomerSpawner s in Resources.FindObjectsOfTypeAll<CustomerSpawner>())
-        { spawner = s; break; }
+        dayEnded = false;
 
-        tradingManager = null;
-        foreach (TradingManager t in Resources.FindObjectsOfTypeAll<TradingManager>())
-        { tradingManager = t; break; }
+        spawner = FindDayScreenObject<CustomerSpawner>();
+        tradingManager = FindDayScreenObject<TradingManager>();
 
         customersServedToday = 0;
         totalCustomersToday = Random.Range(minCustomersPerDay, maxCustomersPerDay + 1);
@@ -65,6 +74,7 @@ public class DayManager : MonoBehaviour
         goldEarnedToday = 0f;
         booksSoldToday = 0;
         booksBoughtToday = 0;
+
         customersByRace.Clear();
         reputationEarnedToday.Clear();
 
@@ -73,86 +83,115 @@ public class DayManager : MonoBehaviour
         Debug.Log($"Gün {currentDay} baþladý! Bugün dükkana {totalCustomersToday} müþteri uðrayacak.");
 
         if (spawner != null)
+        {
             StartCoroutine(SpawnAfterDelay(0f));
+        }
         else
-            Debug.LogError("Spawner bulunamadý!");
+        {
+            Debug.LogError("CustomerSpawner bulunamadý! DayScreen içinde CustomerSpawner olduðundan emin ol.");
+        }
+    }
+
+    private T FindDayScreenObject<T>() where T : MonoBehaviour
+    {
+        T[] objects = FindObjectsOfType<T>(true);
+
+        foreach (T obj in objects)
+        {
+            if (obj != null && obj.gameObject.scene.name == "DayScreen")
+                return obj;
+        }
+
+        return null;
     }
 
     private void UpdateDayUI()
     {
-        foreach (TextMeshProUGUI tmp in Resources.FindObjectsOfTypeAll<TextMeshProUGUI>())
+        TextMeshProUGUI[] texts = FindObjectsOfType<TextMeshProUGUI>(true);
+
+        foreach (TextMeshProUGUI tmp in texts)
         {
-            if (tmp.name == "Day" && tmp.gameObject.scene.name == "DayScreen")
+            if (tmp != null && tmp.name == "Day" && tmp.gameObject.scene.name == "DayScreen")
                 tmp.text = $"{currentDay}";
         }
     }
 
     public void OnCustomerLeft()
     {
+        if (dayEnded)
+            return;
+
         customersServedToday++;
+
         if (customersServedToday >= totalCustomersToday)
         {
             EndDay();
         }
         else
         {
-            spawner = null;
-            foreach (CustomerSpawner s in Resources.FindObjectsOfTypeAll<CustomerSpawner>())
-            { spawner = s; break; }
+            spawner = FindDayScreenObject<CustomerSpawner>();
 
             if (spawner != null)
                 StartCoroutine(SpawnAfterDelay(0f));
             else
-                Debug.LogError("Spawner bulunamadý!");
+                Debug.LogError("CustomerSpawner bulunamadý!");
         }
     }
 
     private IEnumerator SpawnAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        spawner?.SpawnNextCustomer();
+
+        if (!dayEnded && spawner != null)
+            spawner.SpawnNextCustomer();
     }
 
     public void RegisterCustomerServed(CustomerRace race)
     {
         if (!customersByRace.ContainsKey(race))
             customersByRace[race] = 0;
+
         customersByRace[race]++;
     }
 
-    public void RegisterGoldEarned(float amount) => goldEarnedToday += amount;
-    public void RegisterBookSold() => booksSoldToday++;
-    public void RegisterBookBought() => booksBoughtToday++;
+    public void RegisterGoldEarned(float amount)
+    {
+        goldEarnedToday += amount;
+    }
+
+    public void RegisterBookSold()
+    {
+        booksSoldToday++;
+    }
+
+    public void RegisterBookBought()
+    {
+        booksBoughtToday++;
+    }
 
     public void RegisterReputationEarned(CustomerRace race, float amount)
     {
         if (!reputationEarnedToday.ContainsKey(race))
             reputationEarnedToday[race] = 0f;
+
         reputationEarnedToday[race] += amount;
+
+        ReputationManager.ModifyReputationValue(race, amount);
     }
 
     private void EndDay()
     {
+        if (dayEnded)
+            return;
+
+        dayEnded = true;
+
         Debug.Log("Günün tüm müþterileri bitti!");
 
-        spawner = null;
-        foreach (CustomerSpawner s in Resources.FindObjectsOfTypeAll<CustomerSpawner>())
-        { spawner = s; break; }
-        spawner?.ClearCurrentCustomer();
+        spawner = FindDayScreenObject<CustomerSpawner>();
 
-        Scene dayScene = SceneManager.GetSceneByName("DayScreen");
-        if (dayScene.IsValid())
-        {
-            foreach (GameObject root in dayScene.GetRootGameObjects())
-            {
-                if (root.name == "DontDestroyOnLoad") continue;
-                if (root.name == "EventSystem") continue;
-                if (root.name == "CustomerTraitsManager") continue;
-                if (root.name == "CustomerPoint") continue;
-                if (root.name == "BookPoint") continue;
-                root.SetActive(false);
-            }
-        }
+        if (spawner != null)
+            spawner.ClearCurrentCustomer();
 
         SceneManager.LoadScene("EndDayReport", LoadSceneMode.Additive);
     }
@@ -160,24 +199,45 @@ public class DayManager : MonoBehaviour
     public void AdvanceToNextDay()
     {
         currentDay++;
+
+        PlayerPrefs.SetInt("CurrentDay", currentDay);
+        PlayerPrefs.SetInt("HasSave", 1);
+        PlayerPrefs.Save();
+
         if (currentDay % rentPeriodDays == 0)
             PayRent();
-        StartNewDay();
     }
 
     private void PayRent()
     {
-        tradingManager = null;
-        foreach (TradingManager t in Resources.FindObjectsOfTypeAll<TradingManager>())
-        { tradingManager = t; break; }
+        tradingManager = FindDayScreenObject<TradingManager>();
 
         if (tradingManager != null)
         {
             tradingManager.playerGold -= rentAmount;
-            if (tradingManager.goldCounter != null)
+            tradingManager.SaveGameSessionState();
+
+            if (tradingManager.goldCounter != null &&
+                tradingManager.goldCounter.gameObject.activeInHierarchy)
+            {
                 tradingManager.goldCounter.UpdateCounter(tradingManager.playerGold);
+            }
+
             Debug.Log($"Kira ödeme günü! {rentAmount} altýn kesildi.");
+
             if (tradingManager.playerGold < 0)
+                Debug.LogError("Ýflas ettin! GAME OVER.");
+        }
+        else
+        {
+            float savedGold = TradingManager.GetSavedGold();
+            savedGold -= rentAmount;
+
+            TradingManager.SetSavedGold(savedGold);
+
+            Debug.Log($"Kira ödeme günü! {rentAmount} altýn kesildi.");
+
+            if (savedGold < 0)
                 Debug.LogError("Ýflas ettin! GAME OVER.");
         }
     }

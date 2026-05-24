@@ -3100,6 +3100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1800585382}
+  - component: {fileID: 1800585383}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3123,6 +3124,42 @@ Transform:
   - {fileID: 380740545}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1800585383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800585379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a497d2043c7e254bb36f0395dbc2ed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ReputationBarUI
+  badColor: {r: 1, g: 0, b: 0, a: 1}
+  neutralColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  goodColor: {r: 0, g: 1, b: 0, a: 1}
+  affinityBars:
+  - race: 4
+    raceNameText: {fileID: 301740949}
+    affinitySlider: {fileID: 247105436}
+    fillImage: {fileID: 1320910203}
+  - race: 2
+    raceNameText: {fileID: 1401640358}
+    affinitySlider: {fileID: 2126199296}
+    fillImage: {fileID: 307471656}
+  - race: 1
+    raceNameText: {fileID: 1622575414}
+    affinitySlider: {fileID: 1237970670}
+    fillImage: {fileID: 198837106}
+  - race: 0
+    raceNameText: {fileID: 1920147661}
+    affinitySlider: {fileID: 1042008211}
+    fillImage: {fileID: 909142172}
+  - race: 3
+    raceNameText: {fileID: 1674730811}
+    affinitySlider: {fileID: 1433417610}
+    fillImage: {fileID: 1242900172}
 --- !u!1 &1920147658
 GameObject:
   m_ObjectHideFlags: 0

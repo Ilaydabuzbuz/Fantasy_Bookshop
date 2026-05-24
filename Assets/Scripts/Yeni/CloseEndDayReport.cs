@@ -3,20 +3,27 @@ using UnityEngine.SceneManagement;
 
 public class CloseEndDayReport : MonoBehaviour
 {
+    private bool alreadyClosed = false;
+
     public void Close()
     {
-        SceneManager.UnloadSceneAsync("EndDayReport");
+        if (alreadyClosed)
+            return;
 
-        // StartGameScreen yoksa yükle, varsa göster
-        Scene startScene = SceneManager.GetSceneByName("StartGameScreen");
-        if (startScene.IsValid())
+        alreadyClosed = true;
+
+        if (DayManager.Instance != null)
         {
-            foreach (GameObject root in startScene.GetRootGameObjects())
-                root.SetActive(true);
+            DayManager.Instance.AdvanceToNextDay();
         }
         else
         {
-            SceneManager.LoadScene("StartGameScreen", LoadSceneMode.Additive);
+            int currentDay = PlayerPrefs.GetInt("CurrentDay", 1);
+            PlayerPrefs.SetInt("CurrentDay", currentDay + 1);
+            PlayerPrefs.SetInt("HasSave", 1);
+            PlayerPrefs.Save();
         }
+
+        SceneManager.LoadScene("StartGameScreen");
     }
 }
