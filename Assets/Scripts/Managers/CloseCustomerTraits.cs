@@ -1,4 +1,3 @@
-// CloseCustomerTraits.cs
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

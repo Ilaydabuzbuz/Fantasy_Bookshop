@@ -103,7 +103,6 @@ public class TradingManager : MonoBehaviour
 
         _sfxSource.pitch = pitch;
 
-        // Kodla üretilen sesler düþük duyulduðu için volume burada yükseltiliyor.
         float boostedVolume = volume * 2.5f;
 
         _sfxSource.PlayOneShot(clip, boostedVolume);

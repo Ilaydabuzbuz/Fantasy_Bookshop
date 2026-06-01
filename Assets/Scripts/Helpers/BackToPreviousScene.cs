@@ -5,6 +5,6 @@ public class BackToPreviousScene : MonoBehaviour
 {
     public void GoBack()
     {
-        SceneManager.LoadScene("MainScreen");
+        SceneManager.LoadScene("StartGameScreen");
     }
 }

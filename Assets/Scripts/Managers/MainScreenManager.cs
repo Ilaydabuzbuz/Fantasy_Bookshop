@@ -20,7 +20,7 @@ public class MainScreenManager : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("HasSave", 0) == 1)
         {
-            SceneManager.LoadScene("DayScreen");
+            SceneManager.LoadScene("StartGameScreen");
         }
         else
         {

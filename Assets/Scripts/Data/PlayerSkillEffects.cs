@@ -5,8 +5,6 @@ public static class PlayerSkillEffects
     public const int MaxSkillLevel = 5;
 
     // Competence düþükse kitap deðeri daha sýk ??? görünür.
-    // Level 0: %70 gizli
-    // Level 5: %0 gizli
     private static readonly float[] hiddenBookValueChanceByCompetence =
     {
         0.70f, // level 0
@@ -30,8 +28,6 @@ public static class PlayerSkillEffects
     };
 
     // Insight düþükse müþteri özellikleri daha sýk gizlenir.
-    // Level 0: %20 görme ihtimali
-    // Level 5: %100 görme ihtimali
     private static readonly float[] traitRevealChanceByInsight =
     {
         0.20f, // level 0

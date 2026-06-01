@@ -3985,7 +3985,6 @@ MonoBehaviour:
   dialogueGroup: {fileID: 149489413}
   dialogueText: {fileID: 650795449}
   offerInputField: {fileID: 1702988530}
-  dialogueSkipButton: {fileID: 1854939942}
   offerButton: {fileID: 790503610}
   increaseButton: {fileID: 972159786}
   decreaseButton: {fileID: 116213482}
@@ -4008,7 +4007,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DayManager
   currentDay: 1
   rentPeriodDays: 3
-  rentAmount: 300
+  rentAmount: 100
   minCustomersPerDay: 3
   maxCustomersPerDay: 6
   totalCustomersToday: 0

@@ -1,4 +1,3 @@
-// CustomerAI.cs
 using UnityEngine;
 
 public enum CustomerIntent { SellToPlayer, BuyFromPlayer }

@@ -1,11 +1,11 @@
 [Licensing::Module] Trying to connect to existing licensing client channel...
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-alper" at "2026-06-01T16:36:48.4097151Z"
 Built from '6000.4/staging' branch; Version is '6000.4.2f1 (7a4c1aeef971) revision 8014874'; Using compiler version '194234433'; Build Type 'Release'
-OS: 'Windows 11  (10.0.26200) Professional' Language: 'en' Physical Memory: 15754 MB
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-İLAYDA" at "2026-05-29T14:35:29.800517Z"
+OS: 'Windows 11  (10.0.26200) Core' Language: 'tr' Physical Memory: 15710 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
 System  architecture: x64
 Process architecture: x64
-Date: 2026-05-29T14:35:29Z
+Date: 2026-06-01T16:36:48Z
 
 COMMAND LINE ARGUMENTS:
 C:\Program Files\Unity\Hub\Editor\6000.4.2f1\Editor\Unity.exe
@@ -15,24 +15,24 @@ C:\Program Files\Unity\Hub\Editor\6000.4.2f1\Editor\Unity.exe
 -name
 AssetImportWorker1
 -projectPath
-C:/Users/ILAYDA/Desktop/fantasy_bookshop/Fantasy_Bookshop
+C:/Users/alper/OneDrive/Masaüstü/Projects/Unity/Fantasy_Bookshop/Fantasy_Bookshop
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-49400
+54393
 -licensingIpc
-LicenseClient-İLAYDA
+LicenseClient-alper
 -force-d3d12
 -job-worker-count
-7
+5
 -background-job-worker-count
 8
 -gc-helper-count
 1
 -name
 AssetImport
-Successfully changed project path to: C:/Users/ILAYDA/Desktop/fantasy_bookshop/Fantasy_Bookshop
-C:/Users/ILAYDA/Desktop/fantasy_bookshop/Fantasy_Bookshop
+Successfully changed project path to: C:/Users/alper/OneDrive/Masaüstü/Projects/Unity/Fantasy_Bookshop/Fantasy_Bookshop
+C:/Users/alper/OneDrive/Masaüstü/Projects/Unity/Fantasy_Bookshop/Fantasy_Bookshop
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
@@ -68,13 +68,17 @@ C:/Users/ILAYDA/Desktop/fantasy_bookshop/Fantasy_Bookshop
     "memorysetup-job-temp-allocator-block-size=2097152"
     "memorysetup-job-temp-allocator-block-size-background=1048576"
     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
-Player connection [41268]  Target information:
+Player connection [13540]  Target information:
 
-Player connection [41268]  * "[IP] 192.168.1.122 [Port] 0 [Flags] 2 [Guid] 1839948010 [EditorId] 1839948010 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-DFCOMK5) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [13540]  * "[IP] 192.168.224.1 [Port] 0 [Flags] 2 [Guid] 4136964558 [EditorId] 4136964558 [Version] 1048832 [Id] WindowsEditor(7,ALPER) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [41268] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [41268] Host joined alternative multi-casting on [225.0.0.222:34997]...
-JobSystem: Creating JobQueue using job-worker-count value 7
+Player connection [13540]  * "[IP] 26.91.186.137 [Port] 0 [Flags] 2 [Guid] 4136964558 [EditorId] 4136964558 [Version] 1048832 [Id] WindowsEditor(7,ALPER) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [13540]  * "[IP] 192.168.1.150 [Port] 0 [Flags] 2 [Guid] 4136964558 [EditorId] 4136964558 [Version] 1048832 [Id] WindowsEditor(7,ALPER) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [13540] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [13540] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 5
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
 [Physics::Module] Id: 0xdecafbad
@@ -87,33 +91,27 @@ Library Redirect Path: Library/
 [Physics::Module] Threading Mode: Multi-Threaded
 Initialize engine version: 6000.4.2f1 (7a4c1aeef971)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.4.2f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Users/ILAYDA/Desktop/fantasy_bookshop/Fantasy_Bookshop/Assets
+[Subsystems] Discovering subsystems at path C:/Users/alper/OneDrive/Masaüstü/Projects/Unity/Fantasy_Bookshop/Fantasy_Bookshop/Assets
 Forcing GfxDevice: Direct3D 12
 GfxDevice: creating device client; kGfxThreadingModeNonThreaded
 d3d12: failed to query info queue interface (0x80004002).
 Direct3D:
-    Version:         Direct3D 12 [level 12.1]
-    Renderer:        Radeon RX 5500M (ID=0x7340)
-    Vendor:          ATI
-    VRAM:            4055 MB
-    App VRAM Budget: 3446 MB
-    Driver:          32.0.11038.8002
+    Version:         Direct3D 12 [level 12.2]
+    Renderer:        NVIDIA GeForce RTX 3050 Ti Laptop GPU (ID=0x25a0)
+    Vendor:          NVIDIA
+    VRAM:            3962 MB
+    App VRAM Budget: 3367 MB
+    Driver:          32.0.15.8183
 Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.4.2f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.4.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.4.2f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56872
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56768
 CodeReloadManager initialized
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.4.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.003061 seconds.
-[Licensing::Client] Error: HandshakeResponse reported an error:
-	ResponseCode: 505
-	ResponseStatus: Unsupported protocol version '1.18.1'.
-[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-İLAYDA"
-[Licensing::IpcConnector] LicenseClient-İLAYDA channel disconnected successfully.
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-İLAYDA-6000.4.2" at "2026-05-29T14:35:31.0101988Z"
+Registered in 0.006100 seconds.
 Native extension for WindowsStandalone target not found
 Package Manager log level set to [2]
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
@@ -121,46 +119,52 @@ Package Manager log level set to [2]
 [Package Manager] Cannot connect to Unity Package Manager local server
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.519 seconds
-Domain Reload Profiling: 1073ms
-	BeginReloadAssembly (163ms)
-	RebuildCommonClasses (51ms)
-	RebuildNativeTypeToScriptingClass (16ms)
-	initialDomainReloadingComplete (84ms)
-	LoadAllAssembliesAndSetupDomain (238ms)
-		LoadAssemblies (158ms)
-		AnalyzeDomain (227ms)
-			TypeCache.Refresh (226ms)
-				TypeCache.ScanAssembly (211ms)
-	FinalizeReload (521ms)
+- Finished resetting the current domain, in  1.193 seconds
+Domain Reload Profiling: 2514ms
+	BeginReloadAssembly (427ms)
+	RebuildCommonClasses (97ms)
+	RebuildNativeTypeToScriptingClass (40ms)
+	initialDomainReloadingComplete (191ms)
+	LoadAllAssembliesAndSetupDomain (562ms)
+		LoadAssemblies (410ms)
+		AnalyzeDomain (537ms)
+			TypeCache.Refresh (533ms)
+				TypeCache.ScanAssembly (502ms)
+	FinalizeReload (1198ms)
 		SetupLoadedEditorAssemblies (0ms)
-			InitializePlatformSupportModulesInManaged (60ms)
-			BeforeProcessingInitializeOnLoad (120ms)
-			ProcessInitializeOnLoadAttributes (150ms)
-			ProcessInitializeOnLoadMethodAttributes (109ms)
+			InitializePlatformSupportModulesInManaged (140ms)
+			BeforeProcessingInitializeOnLoad (290ms)
+			ProcessInitializeOnLoadAttributes (334ms)
+			ProcessInitializeOnLoadMethodAttributes (258ms)
 ========================================================================
 Worker process is ready to serve import requests
 Import Worker Mode flag is 0x00
 Begin MonoManager ReloadAssembly
 [Licensing::Module] Licensing is not yet initialized.
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.18.1'.
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-alper"
+[Licensing::IpcConnector] LicenseClient-alper channel disconnected successfully.
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-alper-6000.4.2" at "2026-06-01T16:36:54.2635339Z"
 [Licensing::Client] Handshaking with LicensingClient:
   Version:                 1.18.1+9fbee8e
-  Session Id:              8feccdefdecc4d1485eff2a549ea09df
-  Correlation Id:          c912d3288a9d5cc565bf81662858b9b1
-  External correlation Id: 6879473522351185066
-  Machine Id:              OOQeNrJ1zVFBnYlGWehyVyEiFqI=
-[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-İLAYDA-6000.4.2" (connect: 0.00s, validation: 0.00s, handshake: 1.16s)
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-İLAYDA-6000.4.2-notifications" at "2026-05-29T14:35:32.1675939Z"
-[Licensing::Module] Licensing Background thread has ended after 2.37s
-[Licensing::Module] Licensing is initialized (took 0.57s).
+  Session Id:              6cb51700d2734e2d982784b39a0f441e
+  Correlation Id:          a85e22615ff8ae3b9b8714216591f947
+  External correlation Id: 775360452814648588
+  Machine Id:              aPOowwCoNmlmzRmhT7+iaNc/opM=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-alper-6000.4.2" (connect: 0.00s, validation: 0.00s, handshake: 5.06s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-alper-6000.4.2-notifications" at "2026-06-01T16:36:59.32551Z"
+[Licensing::Module] Licensing Background thread has ended after 10.92s
+[Licensing::Module] Licensing is initialized (took 5.90s).
 [Licensing::Client] Successfully resolved entitlement details
 [Licensing::Module] License group:
-  Id: F4-DS3J-G6YV-7JMH-WUDY-XXXX
+  Id: F4-EDDV-NH36-DFSG-KPVM-XXXX
   Product: Unity Personal
   Type: ULF
   Expiration: Unlimited
 [Licensing::Module] License group:
-  Id: 18967717797564-UnityPersXXXX
+  Id: 18967685329695-UnityPersXXXX
   Product: Unity Personal
   Type: Assigned
   Expiration: Unlimited
@@ -181,67 +185,360 @@ Native extension for WindowsStandalone target not found
 [Package Manager] Cannot connect to Unity Package Manager local server
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.464 seconds
-Domain Reload Profiling: 1408ms
-	BeginReloadAssembly (795ms)
-		DisableScriptedObjects (8ms)
-		CreateAndSetChildDomain (34ms)
-	RebuildCommonClasses (45ms)
-	RebuildNativeTypeToScriptingClass (15ms)
-	initialDomainReloadingComplete (50ms)
-	LoadAllAssembliesAndSetupDomain (37ms)
-		LoadAssemblies (130ms)
-		AnalyzeDomain (25ms)
-			TypeCache.Refresh (14ms)
-				TypeCache.ScanAssembly (9ms)
-			BuildScriptInfoCaches (6ms)
-			ResolveRequiredComponents (3ms)
-	FinalizeReload (466ms)
+- Finished resetting the current domain, in  1.052 seconds
+Domain Reload Profiling: 7814ms
+	BeginReloadAssembly (6403ms)
+		DisableScriptedObjects (19ms)
+		CreateAndSetChildDomain (73ms)
+	RebuildCommonClasses (117ms)
+	RebuildNativeTypeToScriptingClass (32ms)
+	initialDomainReloadingComplete (118ms)
+	LoadAllAssembliesAndSetupDomain (89ms)
+		LoadAssemblies (299ms)
+		AnalyzeDomain (57ms)
+			TypeCache.Refresh (32ms)
+				TypeCache.ScanAssembly (20ms)
+			BuildScriptInfoCaches (14ms)
+			ResolveRequiredComponents (8ms)
+	FinalizeReload (1056ms)
 		SetupLoadedEditorAssemblies (0ms)
-			BeforeProcessingInitializeOnLoad (132ms)
-			ProcessInitializeOnLoadAttributes (113ms)
-			ProcessInitializeOnLoadMethodAttributes (57ms)
-			AfterProcessingInitializeOnLoad (9ms)
-		AwakeInstancesAfterBackupRestoration (8ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
+			InitializePlatformSupportModulesInManaged (4ms)
+			BeforeProcessingInitializeOnLoad (291ms)
+			ProcessInitializeOnLoadAttributes (258ms)
+			ProcessInitializeOnLoadMethodAttributes (125ms)
+			AfterProcessingInitializeOnLoad (18ms)
+		AwakeInstancesAfterBackupRestoration (22ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
 Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 505 unused Assets / (83.7 KB). Loaded Objects now: 1123.
-Memory consumption went from 70.2 MB to 70.2 MB.
-Total: 5.135000 ms (FindLiveObjects: 0.097400 ms CreateObjectMapping: 0.030100 ms MarkObjects: 4.786500 ms  DeleteObjects: 0.218100 ms)
+Unloading 504 unused Assets / (80.9 KB). Loaded Objects now: 1124.
+Memory consumption went from 69.9 MB to 69.9 MB.
+Total: 8.200100 ms (FindLiveObjects: 0.208500 ms CreateObjectMapping: 0.069500 ms MarkObjects: 7.468300 ms  DeleteObjects: 0.448900 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 190834.121156 seconds.
-  path: Assets/Items/DwarfBooks/DwarfBooks_1_Data.asset
-  importAddress: Guid(98f412c2b71425143b29f4657e7d0da4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Items/DwarfBooks/DwarfBooks_1_Data.asset using Guid(98f412c2b71425143b29f4657e7d0da4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '47b68f76474cd2b627a2336c9e8fd423') in 0.0311062 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b3ce681bae79db184d74bba7335a463b DependenciesID=c2e0f63874f492a6f0d560ca370f5d53 StaticDependenciesID=20f4f5ac7e7745579071f1e262e3920d 
+  Time since last request: 64628.678441 seconds.
+  path: Assets/Items/VampireBooks/VampireBooks_4_Data.asset
+  importAddress: Guid(b55167562af30b94796b04d193b85075) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Items/VampireBooks/VampireBooks_4_Data.asset using Guid(b55167562af30b94796b04d193b85075) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '7c46dfbfe96be96200fdaca3aabc822f') in 0.3225855 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=31b8e0795868bcce2c235b23f897841b DependenciesID=b78fc5e3b3b2429038a893162cab5fb5 StaticDependenciesID=1fb29fee6f618a15ab13d59942d02535 
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
 
 ========================================================================
 Received Import Request.
-  Time since last request: 14.703571 seconds.
-  path: Assets/Items/ElfBooks/ElfBooks_2_Data.asset
-  importAddress: Guid(97e995c50fc7bcf468000bf17b8254c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Items/ElfBooks/ElfBooks_2_Data.asset using Guid(97e995c50fc7bcf468000bf17b8254c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '82c86bcf58ce29af555bd708015b697b') in 0.0016572 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9bddf2927647727b10ca9c8f5a13d832 DependenciesID=50eb047a151b3517e5bf9e3d97805691 StaticDependenciesID=11baec66dd66674b4513ef9b7b951630 
+  Time since last request: 0.000051 seconds.
+  path: Assets/Sprites/UI/Eski/OpenDay/Book_Info.png
+  importAddress: Guid(a4d39fa1691ef1f4a90425abbf1facb6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Sprites/UI/Eski/OpenDay/Book_Info.png using Guid(a4d39fa1691ef1f4a90425abbf1facb6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b7df369a58effabc69107ff20a44ea52') in 0.2583989 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=32c83ae4cd4db47af631b9481b2de5f3 DependenciesID=01dc4c63482223a29c86a7bb7187efca StaticDependenciesID=2be3c25c3446b0c5af29db7526588be4 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000142 seconds.
+  path: Assets/Scripts/Eski/AnimatedCounter.cs
+  importAddress: Guid(23d957fd12a71fd428a4bad340d49dac) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scripts/Eski/AnimatedCounter.cs using Guid(23d957fd12a71fd428a4bad340d49dac) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '14bff42719303a3851ec58a39063cde0') in 0.0328747 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1e23a9e31d9d9163621d745e98b612fe DependenciesID=01bf86d3badb971f5a77987e3861fd3c StaticDependenciesID=edddd6d0f96b05e9f0d844a3ee5a99ef 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Items/RareBooks/RareBooks_0_Data.asset
+  importAddress: Guid(f547249c5d1048f4e991cf29246a7154) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Items/RareBooks/RareBooks_0_Data.asset using Guid(f547249c5d1048f4e991cf29246a7154) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a3e7458aec76bd1ca3e93bcf1199bfa8') in 0.0356593 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6beef8bf51c29f5f6e8ec7183c54ab12 DependenciesID=8d292efaa960412c3f0d0bd0a5943ead StaticDependenciesID=79301c48ebc591a8718bc222ab2986cd 
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Items/ElfBooks/ElfBooks_4_Data.asset
-  importAddress: Guid(7ddbd86f0c2d5d643b5c1e909a869b7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Items/ElfBooks/ElfBooks_4_Data.asset using Guid(7ddbd86f0c2d5d643b5c1e909a869b7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '4d1ac94f8a42663ee340f470edcd1cfa') in 0.0013539 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=acb77f2667f6bc152069a9a4f620e916 DependenciesID=cf36f702886d2cabefb73d6b599082b8 StaticDependenciesID=8952b690685374078bc35d5757820587 
+  Time since last request: 0.000036 seconds.
+  path: Assets/Fonts/Cinzel-Medium SDF.asset
+  importAddress: Guid(fbceeb63ce6cb58468cf9bf7cefdfb11) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Fonts/Cinzel-Medium SDF.asset using Guid(fbceeb63ce6cb58468cf9bf7cefdfb11) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '8242566d5c0678d8e8fb0bf51c974042') in 0.2048623 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=25571ef98a61a5ca74ffff14a3d712b7 DependenciesID=f25af80263cf60f82c35b294f3ce405c StaticDependenciesID=dad5f1d0155f0f58cd6f68a10dc42675 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 5
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000056 seconds.
+  path: Assets/Scripts/Managers/StartGameManager.cs
+  importAddress: Guid(5a2340cf624e3b84f833ba6264dc10c3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scripts/Managers/StartGameManager.cs using Guid(5a2340cf624e3b84f833ba6264dc10c3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '9df733aff5d05095ffe38eacde4f36d7') in 0.0264922 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=061c6ac8b20356bda15d76f84c8cce66 DependenciesID=2b53a39ffdd53ad226f86568cca3113a StaticDependenciesID=750b4237d648b1679888e7e5e861904f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000064 seconds.
+  path: Assets/Sprites/UI/Yeni/BackGrounds/InventoryScreen.png
+  importAddress: Guid(86be8bc4f6bc50c429837cf9f2a5063d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Sprites/UI/Yeni/BackGrounds/InventoryScreen.png using Guid(86be8bc4f6bc50c429837cf9f2a5063d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a7ab3907ce4b5fdc117631bc1da685d6') in 0.0535056 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c2536b405cb1d4774019c3800545d784 DependenciesID=3fd2d451da2251b8d07622322ccbf4be StaticDependenciesID=1b39dc337c4d823cb08925b59ca128af 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Scenes/StartGameScreen.unity
+  importAddress: Guid(40684660c7cea7d498f83f2821ebdc48) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/StartGameScreen.unity using Guid(40684660c7cea7d498f83f2821ebdc48) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'c6f09918d0766817eb396c2e381621ee') in 0.0297306 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a3418eb0cb5d7e7459e69cc58a0617a4 DependenciesID=0e7a7cfca23fa18389f0547c424515df StaticDependenciesID=3481e221736ff64d5ac24808fd254f56 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000108 seconds.
+  path: Assets/Fonts/Cinzel-Regular SDF.asset
+  importAddress: Guid(8b976e822f5413a43b5506d92ed01d24) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Fonts/Cinzel-Regular SDF.asset using Guid(8b976e822f5413a43b5506d92ed01d24) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'ade139fcd37a3fc720a828b3de476c45') in 0.1511796 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ce7142c2041e6de75d14764c1aef51f9 DependenciesID=3ae8701e99984b0497c60827b6a03b5d StaticDependenciesID=819e250b2c33977c4aab59ed6f050e42 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 5
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000055 seconds.
+  path: Assets/Scripts/Data
+  importAddress: Guid(ab3d67669e4d14b479950378f5752ada) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scripts/Data using Guid(ab3d67669e4d14b479950378f5752ada) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '484a70a24b70d92c121bc5585541f437') in 0.0283861 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ff7e0ad6e727928b7cb88c0d497d1efa DependenciesID=0e71ad70d8b35a3345e84672b987da05 StaticDependenciesID=48425a2e0d2296c6a1983e6c8e0502af 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000082 seconds.
+  path: Assets/Scripts/Helpers/BackToPreviousScene.cs
+  importAddress: Guid(dd47172b45b5fbd4cb623417c96d4d07) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scripts/Helpers/BackToPreviousScene.cs using Guid(dd47172b45b5fbd4cb623417c96d4d07) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '2ef0b5ede7fab530dfabd908fe5c503c') in 0.0258262 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d7efc75b5dadf13a736e93f73ecc9dc3 DependenciesID=f3487816ee8c984f29b736c14b1296ba StaticDependenciesID=e8f7a848d302fee56b8400b924b8f54f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000125 seconds.
+  path: Assets/Prefabs/Customers/DwarfCustomers/Dwarf_2.prefab
+  importAddress: Guid(7639f3d821523474a8ac8ad971ae8269) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Prefabs/Customers/DwarfCustomers/Dwarf_2.prefab using Guid(7639f3d821523474a8ac8ad971ae8269) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'bd5b08ee2a1a1ce18258074c2909c326') in 0.1312282 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=820dcc0f9bfc077d6c6efd0a32278e6f DependenciesID=041b80230d75902dbbabde99bf1555aa StaticDependenciesID=1049321ed47e2c821ef866dea68c0022 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Sprites/UI/Yeni/Çarpı.png
+  importAddress: Guid(cd0fbb3f5c1cde141be6254e7b1c7ab1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Sprites/UI/Yeni/Çarpı.png using Guid(cd0fbb3f5c1cde141be6254e7b1c7ab1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '502d4760dad128223ed057231ed614a9') in 0.0466996 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=31ea1879cf4dfbebdaa7127b7241377b DependenciesID=2b9adb83f55b54de0dc873012967f92f StaticDependenciesID=b9633d6a60e1b5506b5e9458e1ee4e3a 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Prefabs/Customers/DwarfCustomers/Dwarf_1.prefab
+  importAddress: Guid(8705cad88c53b1b4eb20d468e0306736) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Prefabs/Customers/DwarfCustomers/Dwarf_1.prefab using Guid(8705cad88c53b1b4eb20d468e0306736) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'f6f73f9e88e2e1e9e5fad33da197c11b') in 0.0631804 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=bf4743bb1ec9cf49bbece7a548c6e51e DependenciesID=bb6e058466623929f818f77eebd3c262 StaticDependenciesID=4079c70164109cfd079a23506103f2de 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/Items/RareBooks/RareBooks_4_Data.asset
+  importAddress: Guid(1a96d0b5ce5a46f4fb7a889001665e4c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Items/RareBooks/RareBooks_4_Data.asset using Guid(1a96d0b5ce5a46f4fb7a889001665e4c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '64293a12510c11abe7ce9871405c40c1') in 0.032504 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e98a429d60f6fa566740de16df6cd845 DependenciesID=7112f27f7dd6090ad2c198d5c8103236 StaticDependenciesID=5d969e7205d76cbfadaad7a1be294241 
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000020 seconds.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Scripts/Managers/MainScreenManager.cs
+  importAddress: Guid(5a0c20a22281bda47a1fb5f2f2d7ac71) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scripts/Managers/MainScreenManager.cs using Guid(5a0c20a22281bda47a1fb5f2f2d7ac71) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '55f721a1d88736058b2e60719827c26d') in 0.0251865 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0e72658ca98bce1036959f725c96e616 DependenciesID=57e7948cbe895920f9e5c176e966cafb StaticDependenciesID=87d1994c2d649cc50bb52dab9ae21f65 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000155 seconds.
+  path: Assets/Items/HumanBooks/HumanBooks_3_Data.asset
+  importAddress: Guid(f0fdc997dd02c144d816698ec0c3ca58) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Items/HumanBooks/HumanBooks_3_Data.asset using Guid(f0fdc997dd02c144d816698ec0c3ca58) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '9bdec46f7a7908e5dae79ff787838c50') in 0.0296802 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8d3834922a8085d7096bf301a891a001 DependenciesID=ed4dfd2143163cfe383b9dfdcc0a0079 StaticDependenciesID=62f041677132fb6834037787edeca4eb 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
   path: Assets/Items/ElfBooks/ElfBooks_6_Data.asset
-  importAddress: Guid(88a4e47dc2fc5804388872a24e4c81ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Items/ElfBooks/ElfBooks_6_Data.asset using Guid(88a4e47dc2fc5804388872a24e4c81ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '88c075c0db6e31446d8a7297841e4722') in 0.0014296 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7d6d758fa89b863254244912f931e229 DependenciesID=030556b56af1761bc42b72ce4004e98c StaticDependenciesID=eee0ffc131ff49c5ec5afdd1ed94d2e0 
+  importAddress: Guid(88a4e47dc2fc5804388872a24e4c81ea) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Items/ElfBooks/ElfBooks_6_Data.asset using Guid(88a4e47dc2fc5804388872a24e4c81ea) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '775048b3240c4ae79e07f720a7094cff') in 0.033131 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=793641a3de458ecb1f619488bfad0665 DependenciesID=f22566c8eaea78842043eeb8172b1c15 StaticDependenciesID=04870d5418faede2c7322fdd54ddf4ef 
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
 
-Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
-AssetImportWorker is now disconnected from the server
-Process exiting
-Exiting without the bug reporter. Application will terminate with return code 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Prefabs/Customers/VampireCustomers/Vampire_3.prefab
+  importAddress: Guid(10baa97f7d6208e4796bb4c31a6abd99) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Prefabs/Customers/VampireCustomers/Vampire_3.prefab using Guid(10baa97f7d6208e4796bb4c31a6abd99) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'd596120f6db7b68b1c7c40e8a0d94999') in 0.0634634 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=cb8cef4f19dc3b3b2340168a4f668da7 DependenciesID=8716d683c243d8c4f790d1a75fc8250f StaticDependenciesID=2bed5bf1a364d4ad3eb42234722130f8 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Scripts/UI/SpriteButtonHover.cs
+  importAddress: Guid(f96c6495fc05a974f9e89364eb9f0d25) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scripts/UI/SpriteButtonHover.cs using Guid(f96c6495fc05a974f9e89364eb9f0d25) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'c280787da878be3f8bf3f348f79ac949') in 0.0255363 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6aea573f16d2a421278681894be58271 DependenciesID=43ba9b20aed613120086bb24e4fbbb3d StaticDependenciesID=ba1f8722ba727b588b5236de1d28e171 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Fonts/Cinzel-VariableFont_wght SDF.asset
+  importAddress: Guid(f0c697bfa60bee44892dcab0aa742a7f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Fonts/Cinzel-VariableFont_wght SDF.asset using Guid(f0c697bfa60bee44892dcab0aa742a7f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '4e639b6956d035fe8462a6c4b8ce1ccd') in 0.063875 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c8652a7affe9b52e456cd1bd87683e87 DependenciesID=93cefe64f95f7e63724969ca9aee43ed StaticDependenciesID=9c11e69e3248956135001f8c733e27f3 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 5
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000050 seconds.
+  path: Assets/Items/HumanBooks/HumanBooks_7_Data.asset
+  importAddress: Guid(a75d3091711cc3f478ce83f5a6e58a6e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Items/HumanBooks/HumanBooks_7_Data.asset using Guid(a75d3091711cc3f478ce83f5a6e58a6e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'e9f14422e357c401a329b7f4ccf0c1a4') in 0.0326277 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d3ebc87854acf02d5087fb369cb90bc5 DependenciesID=10f10b9e2c818ee29bbf3a97687c7ab4 StaticDependenciesID=d0c3cd6f6a7f41c11f5ca7c05ce63be0 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Prefabs/Customers/WizardCustomers/Wizard_3.prefab
+  importAddress: Guid(08c2bbc55d11f5540b8a1036638fbe9f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Prefabs/Customers/WizardCustomers/Wizard_3.prefab using Guid(08c2bbc55d11f5540b8a1036638fbe9f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '4dbc4adc2d2bba8bad15d1097cc0f2a4') in 0.05995 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1d4af62e5cc985f48bd3bbee9c1daa04 DependenciesID=8a9107213fdc35c7c654035b79db8330 StaticDependenciesID=2b0188117b3c4c4b9d0c6a2d8c4108d4 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Items/ElfBooks/ElfBooks_3_Data.asset
+  importAddress: Guid(4b613369553f36842b88cb7a2e48afd5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Items/ElfBooks/ElfBooks_3_Data.asset using Guid(4b613369553f36842b88cb7a2e48afd5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b108c12691212f6779f8cf0f35bed10c') in 0.0343105 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c905c9a3966185713751760fe8272448 DependenciesID=efc45effd1ecb86d0115768adaec1e6a StaticDependenciesID=212190e294a95fd4864ea291aaca4c09 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Items/WizardBooks/WizardBooks_6_Data.asset
+  importAddress: Guid(f355aae6afd5a7a4b8317d8bb9352f3c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Items/WizardBooks/WizardBooks_6_Data.asset using Guid(f355aae6afd5a7a4b8317d8bb9352f3c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a45c5808c8e5c19541cd589d44a4b303') in 0.0409716 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3d346f0b6342425a5f2a1ddc5555a323 DependenciesID=0e3d9027cbaa3eb9586c8f056790fbe4 StaticDependenciesID=706df3af43dcb634923eeb28e7136aa3 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Sprites/UI/Yeni/Profile_box.png
+  importAddress: Guid(a77a5cc45f8450a4487564c78d0fb24c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Sprites/UI/Yeni/Profile_box.png using Guid(a77a5cc45f8450a4487564c78d0fb24c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'd58314321e085bea2bdf39f3bdba4cf9') in 0.0577689 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=562e5d1903e7d4cfaa79024b35f1f980 DependenciesID=219b5730929965b1c11e282e76312ae2 StaticDependenciesID=0cad1bd79e2e264c5806aafbbd08176b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Scripts/UI/ReputationBarUI.cs
+  importAddress: Guid(6a497d2043c7e254bb36f0395dbc2ed6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scripts/UI/ReputationBarUI.cs using Guid(6a497d2043c7e254bb36f0395dbc2ed6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b573124453831bca8a4b06531bd243b3') in 0.0283611 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9426d16ebe172b13f58102b0982f3c69 DependenciesID=9cb43282136b5b450efa01360ca0459f StaticDependenciesID=4361aa36c00b64a6c6a1b588b08bbe5b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000182 seconds.
+  path: Assets/Prefabs/Customers/HumanCustomers/Human_1.prefab
+  importAddress: Guid(8d342563e9b6d3b458805f47fae9ec7f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Prefabs/Customers/HumanCustomers/Human_1.prefab using Guid(8d342563e9b6d3b458805f47fae9ec7f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'd259135f0c8bd8fc2c17e01202416d88') in 0.0608561 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9e8dcf2e73a59c8a1a7c9c94d7bdc285 DependenciesID=aeb67ac82e13bdc2b0626dc40aabc2f7 StaticDependenciesID=ca8b09b91abf8b192cffd25800c46296 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Items/RareBooks/RareBooks_2_Data.asset
+  importAddress: Guid(5f78efd1059292841a225245206dbe7a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Items/RareBooks/RareBooks_2_Data.asset using Guid(5f78efd1059292841a225245206dbe7a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'f437c0f8a8b2d8796f2032e4176201ad') in 0.0344843 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f71b8f389f7d1734eb37883b5995693b DependenciesID=e341d1fcd7e2e981464299866b5f27dd StaticDependenciesID=ba5263520de3b66b1a3677bb0a01b041 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Prefabs/Customers/ElfCustomers/Elf_1.prefab
+  importAddress: Guid(8005a4d7c5ae6ee44b12ed253f19bbfb) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Prefabs/Customers/ElfCustomers/Elf_1.prefab using Guid(8005a4d7c5ae6ee44b12ed253f19bbfb) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '35cd9d44a027114905ec50608d570d66') in 0.0614902 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2593b7f948874c1f0cb3f0c075cf5c12 DependenciesID=ddd24eda9af8ceb214d6557501427394 StaticDependenciesID=6eb5559b696c409ed95adc05b74ce5da 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 12
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Sprites/UI/Yeni/Tik.png
+  importAddress: Guid(9b14fdc37362c604c911d027ed064554) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Sprites/UI/Yeni/Tik.png using Guid(9b14fdc37362c604c911d027ed064554) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '72525ff64d9da3887c0c2e9ff65fd64a') in 0.0582531 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d77cd64279e25deaa5f1102dc3a5402d DependenciesID=a5c5e36bc647abad21f02b311378c014 StaticDependenciesID=e7f3bfdf7f12849d55703763b62c0f24 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Prefabs/Customer_Elf.prefab
+  importAddress: Guid(2ba35bef84412bd43b8e72b8d09e85d0) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Prefabs/Customer_Elf.prefab using Guid(2ba35bef84412bd43b8e72b8d09e85d0) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '2c290d73de889228987ee1875e09bfa9') in 0.0469074 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8f322ac440f91edc7b503da79e2ee120 DependenciesID=f70d7b1a78a72e5145e3507433136fc0 StaticDependenciesID=d4cd166330f834fa8e239f2a8d5b5034 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 6
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000055 seconds.
+  path: Assets/Items/VampireBooks/VampireBooks_3_Data.asset
+  importAddress: Guid(df05d2e397b15c640b616359c1af518a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Items/VampireBooks/VampireBooks_3_Data.asset using Guid(df05d2e397b15c640b616359c1af518a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '0d9c5a8dedc704eb29c6afd185c24388') in 0.0318654 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=bd8636e99fb2b3aaf031c8c387dde76a DependenciesID=2403a15346c8b1d5153da1c6b4e02ee2 StaticDependenciesID=7ee7d29f6e07dc23a67cf7da18473a23 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000150 seconds.
+  path: Assets/Items/ElfBooks/ElfBooks_7_Data.asset
+  importAddress: Guid(4771e6efd7918434a876bc3ca6e945e8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Items/ElfBooks/ElfBooks_7_Data.asset using Guid(4771e6efd7918434a876bc3ca6e945e8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'd96c9129eb4fe9c26f55875bb38cad2a') in 0.0334901 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=611dacfdff15e271237a8c67ab3c3dde DependenciesID=d45e6c15afd4d13a02b106ad44bf51e6 StaticDependenciesID=d3a8f5af1c0cded17aef87f78f088525 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000087 seconds.
+  path: Assets/Scripts/UI/SceneUIUpdater.cs
+  importAddress: Guid(262dbb774c297e64585c44db0eefa071) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scripts/UI/SceneUIUpdater.cs using Guid(262dbb774c297e64585c44db0eefa071) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '15fec1520397ebc9c098323a248c2a3a') in 0.0215881 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0d7ab5643c8c732c82c98d4a2f2a7808 DependenciesID=aca44538b49dd7ec42c5952d6737c648 StaticDependenciesID=b70a3ba7286ba315eeff90b29e3063d4 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Assembly Assembly-CSharp-Editor-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-Editor-firstpass.dll not valid. Loading of assembly skipped.
+Assembly Assembly-CSharp-Editor.dll at Library/ScriptAssemblies/Assembly-CSharp-Editor.dll not valid. Loading of assembly skipped.
+Assembly Assembly-CSharp-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Sprite.Package.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Sprite.Package.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Editor.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Editor.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.Common.Tests.dll at Library/ScriptAssemblies/UnityEditor.UI.Common.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.EditorTests.dll at Library/ScriptAssemblies/UnityEditor.UI.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.UI.Tests.dll at Library/ScriptAssemblies/UnityEngine.UI.Tests.dll not valid. Loading of assembly skipped.
+Native extension for WindowsStandalone target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.044 seconds
+Domain Reload Profiling: 1763ms
+	BeginReloadAssembly (410ms)
+		DisableScriptedObjects (13ms)
+		CreateAndSetChildDomain (58ms)
+	RebuildCommonClasses (95ms)
+	RebuildNativeTypeToScriptingClass (25ms)
+	initialDomainReloadingComplete (120ms)
+	LoadAllAssembliesAndSetupDomain (65ms)
+		LoadAssemblies (256ms)
+		AnalyzeDomain (37ms)
+			TypeCache.Refresh (7ms)
+			BuildScriptInfoCaches (21ms)
+			ResolveRequiredComponents (7ms)
+	FinalizeReload (1049ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			BeforeProcessingInitializeOnLoad (292ms)
+			ProcessInitializeOnLoadAttributes (264ms)
+			ProcessInitializeOnLoadMethodAttributes (149ms)
+			AfterProcessingInitializeOnLoad (18ms)
+		AwakeInstancesAfterBackupRestoration (23ms)
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 502 unused Assets / (38.4 KB). Loaded Objects now: 1126.
+Memory consumption went from 70.5 MB to 70.5 MB.
+Total: 7.642500 ms (FindLiveObjects: 0.124800 ms CreateObjectMapping: 0.047600 ms MarkObjects: 7.248600 ms  DeleteObjects: 0.219600 ms)
+
+Prepare: number of updated asset objects reloaded= 0

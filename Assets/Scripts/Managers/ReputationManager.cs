@@ -24,11 +24,6 @@ public class ReputationManager : MonoBehaviour
 
         Instance = this;
 
-        // ÖNEMLÝ:
-        // Bu object baþka gameplay scriptleriyle ayný GameObject üzerindeyse
-        // DontDestroyOnLoad kullanmak DayScreen objelerini bozabilir.
-        // O yüzden burada DontDestroyOnLoad kullanmýyoruz.
-
         InitializeIfNeeded();
     }
 
