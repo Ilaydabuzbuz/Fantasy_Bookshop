@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36a045ed871ab549a7f45d27112284e, type: 3}
   m_Name: DwarfBooks_4_Data
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
+  itemName: "Mountain King\u2019s Ledger"
   itemIcon: {fileID: -979409319, guid: ce2ffbb6c240ef4498003eb3f0204bf4, type: 3}
   edition: First Edition
-  rarity: 0
-  conditionString: Mint
-  magicLevel: None
+  rarity: 3
+  conditionString: Good
+  magicLevel: High
   age: Modern
-  curse: None
-  basePrice: 100
-  condition: 1
+  curse: Ancient
+  basePrice: 395
+  condition: 0.85
   race: 4

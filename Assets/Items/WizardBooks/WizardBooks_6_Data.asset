@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36a045ed871ab549a7f45d27112284e, type: 3}
   m_Name: WizardBooks_6_Data
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
+  itemName: Potion Glass Manual
   itemIcon: {fileID: 2062343676, guid: a1a5718241a78ea4488728c2cc9840fc, type: 3}
-  edition: First Edition
+  edition: Third Edition
   rarity: 0
   conditionString: Mint
-  magicLevel: None
+  magicLevel: Low
   age: Modern
   curse: None
-  basePrice: 100
+  basePrice: 90
   condition: 1
   race: 3

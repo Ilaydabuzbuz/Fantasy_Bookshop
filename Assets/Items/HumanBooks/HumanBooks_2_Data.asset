@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36a045ed871ab549a7f45d27112284e, type: 3}
   m_Name: HumanBooks_2_Data
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
+  itemName: "Knight\u2019s Oath Book"
   itemIcon: {fileID: 759001292, guid: 646719cd68bec1d4e939ab53f532fdfd, type: 3}
   edition: First Edition
-  rarity: 0
-  conditionString: Mint
-  magicLevel: None
-  age: Modern
+  rarity: 1
+  conditionString: Good
+  magicLevel: Low
+  age: Old
   curse: None
-  basePrice: 100
-  condition: 1
+  basePrice: 75
+  condition: 0.8
+  race: 0

@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36a045ed871ab549a7f45d27112284e, type: 3}
   m_Name: ElfBooks_6_Data
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
+  itemName: Pawprints of the Wild
   itemIcon: {fileID: -886621366, guid: 3991f8700f0e1a9439a817cfcf1a057d, type: 3}
-  edition: First Edition
+  edition: Modern Print
   rarity: 0
-  conditionString: Mint
-  magicLevel: None
+  conditionString: Good
+  magicLevel: Low
   age: Modern
   curse: None
-  basePrice: 100
-  condition: 1
+  basePrice: 70
+  condition: 0.9
   race: 1

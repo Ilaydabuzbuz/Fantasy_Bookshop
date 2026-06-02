@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36a045ed871ab549a7f45d27112284e, type: 3}
   m_Name: VampireBooks_6_Data
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
+  itemName: Cursed Ruby Letters
   itemIcon: {fileID: -726952858, guid: f4cdfe6bef898a74cad876f592ec7cc4, type: 3}
   edition: First Edition
-  rarity: 0
-  conditionString: Mint
-  magicLevel: None
-  age: Modern
-  curse: None
-  basePrice: 100
-  condition: 1
+  rarity: 4
+  conditionString: Damaged
+  magicLevel: Very High
+  age: Ancient
+  curse: Dangerous Blood Curse
+  basePrice: 580
+  condition: 0.55
   race: 2

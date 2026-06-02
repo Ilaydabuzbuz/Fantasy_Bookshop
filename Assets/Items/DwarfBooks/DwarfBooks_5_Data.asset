@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36a045ed871ab549a7f45d27112284e, type: 3}
   m_Name: DwarfBooks_5_Data
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
+  itemName: Tavern Songs
   itemIcon: {fileID: -507557505, guid: ce2ffbb6c240ef4498003eb3f0204bf4, type: 3}
-  edition: First Edition
+  edition: Modern Print
   rarity: 0
   conditionString: Mint
   magicLevel: None
   age: Modern
   curse: None
-  basePrice: 100
+  basePrice: 70
   condition: 1
   race: 4

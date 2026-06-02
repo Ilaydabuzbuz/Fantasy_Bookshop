@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36a045ed871ab549a7f45d27112284e, type: 3}
   m_Name: DwarfBooks_0_Data
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
+  itemName: Stoneforge Manual
   itemIcon: {fileID: 863979389, guid: ce2ffbb6c240ef4498003eb3f0204bf4, type: 3}
-  edition: First Edition
+  edition: Third Edition
   rarity: 0
-  conditionString: Mint
+  conditionString: Good
   magicLevel: None
   age: Modern
   curse: None
-  basePrice: 100
-  condition: 1
+  basePrice: 60
+  condition: 0.85
   race: 4

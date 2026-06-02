@@ -1,0 +1,38 @@
+Base Price = 45 + Rarity Point + Edition Point + Condition Point + Magic Point + Age Point + Curse Point
+
+1. Rarity Point
+Common    = 0
+Rare      = 40
+Epic      = 100
+Legendary = 210
+Mythical  = 330
+
+2. Edition Point
+Modern Print   = 0
+Third Edition  = 5
+Second Edition = 15
+First Edition  = 30
+
+3. Condition Point
+Damaged = -25
+Worn    = -10
+Good    = +10
+Mint    = +25
+
+4. Magic Level Point
+None      = 0
+Low       = 15
+Medium    = 35
+High      = 60
+Very High = 90
+
+5. Age Point
+Modern  = 0
+Old     = 15
+Ancient = 40
+
+6. Curse Point
+None                                      = 0
+Mild Curse / Blood Curse / Family Curse   = 30
+Ancient Forge Curse                       = 30
+Dangerous Curse / Dangerous Blood Curse   = 70
