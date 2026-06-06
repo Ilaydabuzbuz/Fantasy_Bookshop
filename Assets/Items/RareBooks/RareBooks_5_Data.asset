@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36a045ed871ab549a7f45d27112284e, type: 3}
   m_Name: RareBooks_5_Data
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
+  itemName: "Bonekeeper\u2019s Red Ledger"
   itemIcon: {fileID: -1830310711, guid: 7b8371834cca4f048bc329e8b9f85b52, type: 3}
-  edition: First Edition
-  rarity: 0
-  conditionString: Mint
-  magicLevel: None
-  age: Modern
-  curse: None
-  basePrice: 100
-  condition: 1
+  edition: Second Edition
+  rarity: 2
+  conditionString: Worn
+  magicLevel: High
+  age: Old
+  curse: Mild Curse
+  basePrice: 310
+  condition: 0.65
+  race: 4
+  rareBookEffectType: 6

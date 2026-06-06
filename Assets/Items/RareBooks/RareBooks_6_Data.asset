@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36a045ed871ab549a7f45d27112284e, type: 3}
   m_Name: RareBooks_6_Data
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
+  itemName: Void Portal Manuscript
   itemIcon: {fileID: 1700938558, guid: 7b8371834cca4f048bc329e8b9f85b52, type: 3}
   edition: First Edition
-  rarity: 0
-  conditionString: Mint
-  magicLevel: None
-  age: Modern
-  curse: None
-  basePrice: 100
-  condition: 1
+  rarity: 4
+  conditionString: Good
+  magicLevel: Very High
+  age: Ancient
+  curse: Dangerous Curse
+  basePrice: 720
+  condition: 0.8
+  race: 3
+  rareBookEffectType: 7

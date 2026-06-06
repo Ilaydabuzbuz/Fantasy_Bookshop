@@ -23,4 +23,7 @@ public class ItemData : ScriptableObject
 
     [Header("Race")]
     public CustomerRace race;
+
+    [Header("Rare Book Effect")]
+    public RareBookEffectType rareBookEffectType = RareBookEffectType.None;
 }

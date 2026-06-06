@@ -50,6 +50,9 @@ public class TradingManager : MonoBehaviour
     [Header("System References")]
     public CustomerSpawner customerSpawner;
 
+    [Header("Rare Book Effects")]
+    public RareBookEffectController rareBookEffectController;
+
     private CustomerAI currentCustomer;
     private bool waitingForNextCustomer = false;
     private bool currentBookValueHidden = false;
@@ -352,6 +355,9 @@ public class TradingManager : MonoBehaviour
             bookIconImage.gameObject.SetActive(true);
         }
 
+        if (rareBookEffectController != null)
+            rareBookEffectController.PlayEffect(item);
+
         if (editionText != null) editionText.text = item.edition;
         if (conditionText != null) conditionText.text = item.conditionString;
         if (rarityText != null) rarityText.text = item.rarity.ToString();
@@ -519,6 +525,7 @@ public class TradingManager : MonoBehaviour
         if (bookTitleText != null) bookTitleText.text = "Book Title";
         if (bookStatsText != null) bookStatsText.text = "Value:";
         if (bookIconImage != null) bookIconImage.gameObject.SetActive(false);
+        if (rareBookEffectController != null) rareBookEffectController.StopAllEffects();
         if (editionText != null) editionText.text = "Edition";
         if (conditionText != null) conditionText.text = "Condition";
         if (rarityText != null) rarityText.text = "Rarity";

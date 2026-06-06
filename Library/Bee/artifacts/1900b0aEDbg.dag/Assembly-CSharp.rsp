@@ -419,6 +419,7 @@
 "Assets/Scripts/Data/ItemData.cs"
 "Assets/Scripts/Data/PlayerSkillEffects.cs"
 "Assets/Scripts/Data/PlayerSkillSession.cs"
+"Assets/Scripts/Data/RareBookEffectType.cs"
 "Assets/Scripts/Data/SkillUpgradeCost.cs"
 "Assets/Scripts/Helpers/AnimatedCounter.cs"
 "Assets/Scripts/Helpers/BackToPreviousScene.cs"
@@ -436,9 +437,12 @@
 "Assets/Scripts/Managers/TradingManager.cs"
 "Assets/Scripts/UI/BookVisual.cs"
 "Assets/Scripts/UI/InventorySlot.cs"
+"Assets/Scripts/UI/RareBookEffectController.cs"
 "Assets/Scripts/UI/ReputationBarUI.cs"
 "Assets/Scripts/UI/SceneUIUpdater.cs"
 "Assets/Scripts/UI/SpriteButtonHover.cs"
+"Assets/Scripts/UI/UIFloatingParticleEffect.cs"
+"Assets/Scripts/UI/UINatureLeafEffect.cs"
 -langversion:9.0
 /deterministic
 /optimize-
