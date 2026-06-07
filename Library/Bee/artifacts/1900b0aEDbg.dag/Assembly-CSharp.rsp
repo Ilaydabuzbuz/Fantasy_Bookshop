@@ -436,6 +436,7 @@
 "Assets/Scripts/Managers/StartGameManager.cs"
 "Assets/Scripts/Managers/TradingManager.cs"
 "Assets/Scripts/UI/BookVisual.cs"
+"Assets/Scripts/UI/InventoryBookPopupUI.cs"
 "Assets/Scripts/UI/InventorySlot.cs"
 "Assets/Scripts/UI/RareBookEffectController.cs"
 "Assets/Scripts/UI/ReputationBarUI.cs"

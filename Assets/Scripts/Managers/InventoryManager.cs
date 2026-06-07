@@ -25,6 +25,9 @@ public class InventoryManager : MonoBehaviour
     [Header("Info")]
     public TextMeshProUGUI totalBooksText;
 
+    [Header("Book Popup")]
+    public InventoryBookPopupUI bookPopupUI;
+
     private List<ItemData> filteredItems = new List<ItemData>();
     private int currentPage = 0;
     private int itemsPerPage = 10;
@@ -33,6 +36,9 @@ public class InventoryManager : MonoBehaviour
     private void OnEnable()
     {
         RefreshInventory();
+
+        if (bookPopupUI != null)
+            bookPopupUI.Hide();
     }
 
     private void Start()
@@ -57,6 +63,9 @@ public class InventoryManager : MonoBehaviour
         }
 
         RefreshInventory();
+
+        if (bookPopupUI != null)
+            bookPopupUI.Hide();
     }
 
     public void SetFilter(string filter)
@@ -64,6 +73,9 @@ public class InventoryManager : MonoBehaviour
         currentFilter = filter;
         currentPage = 0;
         RefreshInventory();
+
+        if (bookPopupUI != null)
+            bookPopupUI.Hide();
     }
 
     public void RefreshInventory()
@@ -88,6 +100,17 @@ public class InventoryManager : MonoBehaviour
         ShowPage(currentPage);
     }
 
+    public void OpenBookPopup(ItemData item)
+    {
+        if (bookPopupUI == null)
+        {
+            Debug.LogWarning("Book Popup UI is not assigned in InventoryManager.");
+            return;
+        }
+
+        bookPopupUI.Show(item);
+    }
+
     private List<ItemData> GetInventoryItems()
     {
         TradingManager tm = FindObjectOfType<TradingManager>();
@@ -110,7 +133,7 @@ public class InventoryManager : MonoBehaviour
             int itemIndex = startIndex + i;
 
             if (itemIndex < filteredItems.Count)
-                slots[i].SetItem(filteredItems[itemIndex]);
+                slots[i].SetItem(filteredItems[itemIndex], this);
             else
                 slots[i].ClearSlot();
         }
@@ -152,6 +175,9 @@ public class InventoryManager : MonoBehaviour
             currentPage--;
             ShowPage(currentPage);
             UpdatePageButtonHighlight();
+
+            if (bookPopupUI != null)
+                bookPopupUI.Hide();
         }
     }
 
@@ -165,6 +191,9 @@ public class InventoryManager : MonoBehaviour
             currentPage++;
             ShowPage(currentPage);
             UpdatePageButtonHighlight();
+
+            if (bookPopupUI != null)
+                bookPopupUI.Hide();
         }
     }
 
@@ -177,5 +206,8 @@ public class InventoryManager : MonoBehaviour
 
         ShowPage(currentPage);
         UpdatePageButtonHighlight();
+
+        if (bookPopupUI != null)
+            bookPopupUI.Hide();
     }
 }

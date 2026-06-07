@@ -124,12 +124,14 @@ public class TradingManager : MonoBehaviour
         for (int c = 0; c < freqs.Length; c++)
         {
             int offset = c * Mathf.RoundToInt(sampleRate * 0.15f);
+
             for (int i = 0; i < coinSamp && offset + i < totalSamples; i++)
             {
                 float t = (float)i / coinSamp;
                 float envelope = Mathf.Exp(-t * 12f);
                 float wave = Mathf.Sin(2f * Mathf.PI * freqs[c] * t);
                 wave += 0.3f * Mathf.Sin(2f * Mathf.PI * freqs[c] * 2f * t);
+
                 samples[offset + i] += wave * envelope * 0.8f;
             }
         }
@@ -146,22 +148,26 @@ public class TradingManager : MonoBehaviour
         float[] samples = new float[totalSamples];
 
         int thudSamples = Mathf.RoundToInt(sampleRate * 0.08f);
+
         for (int i = 0; i < thudSamples && i < totalSamples; i++)
         {
             float t = (float)i / thudSamples;
             float envelope = Mathf.Exp(-t * 20f);
             float wave = Mathf.Sin(2f * Mathf.PI * 180f * t);
             wave += 0.5f * Mathf.Sin(2f * Mathf.PI * 90f * t);
+
             samples[i] += wave * envelope * 0.9f;
         }
 
         int pageOffset = Mathf.RoundToInt(sampleRate * 0.10f);
         int pageSamples = Mathf.RoundToInt(sampleRate * 0.18f);
+
         for (int i = 0; i < pageSamples && pageOffset + i < totalSamples; i++)
         {
             float t = (float)i / pageSamples;
             float envelope = Mathf.Exp(-t * 18f);
-            float wave = (Random.value * 2f - 1f);
+            float wave = Random.value * 2f - 1f;
+
             samples[pageOffset + i] += wave * envelope * 0.5f;
         }
 
@@ -183,12 +189,14 @@ public class TradingManager : MonoBehaviour
         for (int n = 0; n < freqs.Length; n++)
         {
             int offset = n * Mathf.RoundToInt(sampleRate * 0.20f);
+
             for (int i = 0; i < noteSamp && offset + i < totalSamples; i++)
             {
                 float t = (float)i / noteSamp;
                 float envelope = Mathf.Exp(-t * 8f);
                 float wave = Mathf.Sin(2f * Mathf.PI * freqs[n] * t);
                 wave += 0.4f * Mathf.Sin(2f * Mathf.PI * freqs[n] * 0.5f * t);
+
                 samples[offset + i] += wave * envelope * 0.85f;
             }
         }
@@ -245,6 +253,30 @@ public class TradingManager : MonoBehaviour
         return new List<ItemData>(savedPurchasedItems);
     }
 
+    public bool TryGetPurchasePrice(ItemData item, out float price)
+    {
+        if (item != null && purchasePrices.ContainsKey(item))
+        {
+            price = purchasePrices[item];
+            return true;
+        }
+
+        price = 0f;
+        return false;
+    }
+
+    public static bool TryGetSavedPurchasePrice(ItemData item, out float price)
+    {
+        if (item != null && savedPurchasePrices.ContainsKey(item))
+        {
+            price = savedPurchasePrices[item];
+            return true;
+        }
+
+        price = 0f;
+        return false;
+    }
+
     public void SetupNewCustomer(CustomerAI newCustomer)
     {
         currentCustomer = newCustomer;
@@ -262,6 +294,10 @@ public class TradingManager : MonoBehaviour
         }
 
         ItemData item = newCustomer.itemToSell;
+
+        if (offerInputField != null)
+            offerInputField.text = "";
+
         string greeting = "";
         int roundedPrice = Mathf.RoundToInt(newCustomer.customerDesiredPrice);
 
@@ -327,12 +363,7 @@ public class TradingManager : MonoBehaviour
         }
 
         if (offerInputField != null)
-        {
-            if (newCustomer.intent == CustomerIntent.SellToPlayer)
-                offerInputField.text = Mathf.RoundToInt(item.basePrice * 0.6f).ToString();
-            else
-                offerInputField.text = Mathf.RoundToInt(item.basePrice * 1.2f).ToString();
-        }
+            offerInputField.text = roundedPrice.ToString();
 
         if (bookTitleText != null)
             bookTitleText.text = item.itemName;
@@ -373,6 +404,7 @@ public class TradingManager : MonoBehaviour
     public void IncreaseOffer()
     {
         if (offerInputField == null || waitingForNextCustomer) return;
+
         float currentOffer = GetCurrentOffer() + offerIncrement;
         offerInputField.text = currentOffer.ToString("0");
     }
@@ -380,8 +412,12 @@ public class TradingManager : MonoBehaviour
     public void DecreaseOffer()
     {
         if (offerInputField == null || waitingForNextCustomer) return;
+
         float currentOffer = GetCurrentOffer() - offerIncrement;
-        if (currentOffer < 0) currentOffer = 0;
+
+        if (currentOffer < 0)
+            currentOffer = 0;
+
         offerInputField.text = currentOffer.ToString("0");
     }
 
@@ -416,7 +452,10 @@ public class TradingManager : MonoBehaviour
     private float GetCurrentOffer()
     {
         if (offerInputField == null) return 0;
-        if (float.TryParse(offerInputField.text, out float value)) return value;
+
+        if (float.TryParse(offerInputField.text, out float value))
+            return value;
+
         return 0;
     }
 
@@ -491,13 +530,16 @@ public class TradingManager : MonoBehaviour
         }
 
         currentCustomer = null;
+
         StartCoroutine(FinishAfterDelay());
     }
 
     private IEnumerator FinishAfterDelay()
     {
         yield return new WaitForSeconds(2.5f);
+
         ClearUI();
+
         DayManager.Instance?.OnCustomerLeft();
     }
 
@@ -506,6 +548,7 @@ public class TradingManager : MonoBehaviour
         if (dialogueText == null) return;
 
         TypeWriterEffect tw = dialogueText.GetComponent<TypeWriterEffect>();
+
         if (tw != null)
             tw.Play(message);
         else
@@ -526,15 +569,19 @@ public class TradingManager : MonoBehaviour
         if (bookStatsText != null) bookStatsText.text = "Value:";
         if (bookIconImage != null) bookIconImage.gameObject.SetActive(false);
         if (rareBookEffectController != null) rareBookEffectController.StopAllEffects();
+
         if (editionText != null) editionText.text = "Edition";
         if (conditionText != null) conditionText.text = "Condition";
         if (rarityText != null) rarityText.text = "Rarity";
         if (magicLevelText != null) magicLevelText.text = "Magic Level";
         if (ageText != null) ageText.text = "Age";
         if (curseText != null) curseText.text = "Curse";
+
         if (dialogueText != null) dialogueText.text = "";
         if (dialogueGroup != null) dialogueGroup.SetActive(false);
+
         if (offerInputField != null) offerInputField.text = "";
+
         if (intentLabelText != null) intentLabelText.gameObject.SetActive(false);
         if (boughtForText != null) boughtForText.gameObject.SetActive(false);
     }

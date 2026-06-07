@@ -5723,8 +5723,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayManager
   currentDay: 1
-  rentPeriodDays: 3
-  rentAmount: 100
+  rentPeriodDays: 4
+  rentAmount: 200
   minCustomersPerDay: 3
   maxCustomersPerDay: 6
   totalCustomersToday: 0

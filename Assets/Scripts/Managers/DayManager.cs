@@ -27,6 +27,10 @@ public class DayManager : MonoBehaviour
     [HideInInspector] public Dictionary<CustomerRace, int> customersByRace = new Dictionary<CustomerRace, int>();
     [HideInInspector] public Dictionary<CustomerRace, float> reputationEarnedToday = new Dictionary<CustomerRace, float>();
 
+    public static bool pendingRentPopup = false;
+    public static float lastRentPaid = 0f;
+    public static int lastRentDay = 0;
+
     private CustomerSpawner spawner;
     private TradingManager tradingManager;
 
@@ -64,6 +68,10 @@ public class DayManager : MonoBehaviour
     public void StartNewDay()
     {
         dayEnded = false;
+
+        pendingRentPopup = false;
+        lastRentPaid = 0f;
+        lastRentDay = 0;
 
         spawner = FindDayScreenObject<CustomerSpawner>();
         tradingManager = FindDayScreenObject<TradingManager>();
@@ -204,6 +212,10 @@ public class DayManager : MonoBehaviour
         PlayerPrefs.SetInt("HasSave", 1);
         PlayerPrefs.Save();
 
+        pendingRentPopup = false;
+        lastRentPaid = 0f;
+        lastRentDay = 0;
+
         if (currentDay % rentPeriodDays == 0)
             PayRent();
     }
@@ -216,6 +228,8 @@ public class DayManager : MonoBehaviour
         {
             tradingManager.playerGold -= rentAmount;
             tradingManager.SaveGameSessionState();
+
+            MarkRentPopupNeeded(rentAmount, currentDay);
 
             if (tradingManager.goldCounter != null &&
                 tradingManager.goldCounter.gameObject.activeInHierarchy)
@@ -235,10 +249,26 @@ public class DayManager : MonoBehaviour
 
             TradingManager.SetSavedGold(savedGold);
 
+            MarkRentPopupNeeded(rentAmount, currentDay);
+
             Debug.Log($"Kira ödeme günü! {rentAmount} altýn kesildi.");
 
             if (savedGold < 0)
                 Debug.LogError("Ýflas ettin! GAME OVER.");
         }
+    }
+
+    private void MarkRentPopupNeeded(float paidAmount, int day)
+    {
+        pendingRentPopup = true;
+        lastRentPaid = paidAmount;
+        lastRentDay = day;
+    }
+
+    public static void ClearRentPopup()
+    {
+        pendingRentPopup = false;
+        lastRentPaid = 0f;
+        lastRentDay = 0;
     }
 }
