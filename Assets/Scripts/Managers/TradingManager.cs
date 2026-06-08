@@ -34,18 +34,24 @@ public class TradingManager : MonoBehaviour
     public Button increaseButton;
     public Button decreaseButton;
     public Button refuseButton;
+    public Button laterButton;
 
     [Header("Economy Settings")]
     public float playerGold = 1000f;
     public float offerIncrement = 10f;
     public List<ItemData> purchasedItems = new List<ItemData>();
 
-    private Dictionary<ItemData, float> purchasePrices = new Dictionary<ItemData, float>();
+    private Dictionary<ItemData, float> purchasePrices =
+        new Dictionary<ItemData, float>();
 
     private static bool sessionInitialized = false;
     private static float savedPlayerGold = 1000f;
-    private static List<ItemData> savedPurchasedItems = new List<ItemData>();
-    private static Dictionary<ItemData, float> savedPurchasePrices = new Dictionary<ItemData, float>();
+
+    private static List<ItemData> savedPurchasedItems =
+        new List<ItemData>();
+
+    private static Dictionary<ItemData, float> savedPurchasePrices =
+        new Dictionary<ItemData, float>();
 
     [Header("System References")]
     public CustomerSpawner customerSpawner;
@@ -54,8 +60,12 @@ public class TradingManager : MonoBehaviour
     public RareBookEffectController rareBookEffectController;
 
     private CustomerAI currentCustomer;
+
     private bool waitingForNextCustomer = false;
     private bool currentBookValueHidden = false;
+
+    // Geri dönen alýcýnýn istediði kitap artýk envanterde yoksa true olur.
+    private bool currentCustomerRequestedBookUnavailable = false;
 
     private AudioSource _sfxSource;
     private AudioClip _sellGoldClip;
@@ -83,6 +93,9 @@ public class TradingManager : MonoBehaviour
         if (refuseButton != null)
             refuseButton.onClick.AddListener(RejectCustomer);
 
+        if (laterButton != null)
+            laterButton.onClick.AddListener(LaterCustomer);
+
         InitAudio();
     }
 
@@ -91,7 +104,6 @@ public class TradingManager : MonoBehaviour
         _sfxSource = gameObject.AddComponent<AudioSource>();
         _sfxSource.playOnAwake = false;
         _sfxSource.spatialBlend = 0f;
-
         _sfxSource.volume = 1f;
         _sfxSource.priority = 0;
 
@@ -100,9 +112,13 @@ public class TradingManager : MonoBehaviour
         _rejectClip = GenerateRejectClip();
     }
 
-    private void PlaySfx(AudioClip clip, float volume = 1f, float pitch = 1f)
+    private void PlaySfx(
+        AudioClip clip,
+        float volume = 1f,
+        float pitch = 1f)
     {
-        if (_sfxSource == null || clip == null) return;
+        if (_sfxSource == null || clip == null)
+            return;
 
         _sfxSource.pitch = pitch;
 
@@ -115,29 +131,55 @@ public class TradingManager : MonoBehaviour
     {
         int sampleRate = AudioSettings.outputSampleRate;
         int totalSamples = sampleRate * 6 / 10;
+
         float[] samples = new float[totalSamples];
 
         float[] freqs = { 880f, 1100f, 1320f };
+
         float coinDur = 0.12f;
         int coinSamp = Mathf.RoundToInt(sampleRate * coinDur);
 
         for (int c = 0; c < freqs.Length; c++)
         {
-            int offset = c * Mathf.RoundToInt(sampleRate * 0.15f);
+            int offset =
+                c * Mathf.RoundToInt(sampleRate * 0.15f);
 
-            for (int i = 0; i < coinSamp && offset + i < totalSamples; i++)
+            for (
+                int i = 0;
+                i < coinSamp && offset + i < totalSamples;
+                i++)
             {
                 float t = (float)i / coinSamp;
                 float envelope = Mathf.Exp(-t * 12f);
-                float wave = Mathf.Sin(2f * Mathf.PI * freqs[c] * t);
-                wave += 0.3f * Mathf.Sin(2f * Mathf.PI * freqs[c] * 2f * t);
 
-                samples[offset + i] += wave * envelope * 0.8f;
+                float wave =
+                    Mathf.Sin(2f * Mathf.PI * freqs[c] * t);
+
+                wave +=
+                    0.3f *
+                    Mathf.Sin(
+                        2f *
+                        Mathf.PI *
+                        freqs[c] *
+                        2f *
+                        t
+                    );
+
+                samples[offset + i] +=
+                    wave * envelope * 0.8f;
             }
         }
 
-        AudioClip clip = AudioClip.Create("SellGold", totalSamples, 1, sampleRate, false);
+        AudioClip clip = AudioClip.Create(
+            "SellGold",
+            totalSamples,
+            1,
+            sampleRate,
+            false
+        );
+
         clip.SetData(samples, 0);
+
         return clip;
     }
 
@@ -145,34 +187,61 @@ public class TradingManager : MonoBehaviour
     {
         int sampleRate = AudioSettings.outputSampleRate;
         int totalSamples = sampleRate * 5 / 10;
+
         float[] samples = new float[totalSamples];
 
-        int thudSamples = Mathf.RoundToInt(sampleRate * 0.08f);
+        int thudSamples =
+            Mathf.RoundToInt(sampleRate * 0.08f);
 
-        for (int i = 0; i < thudSamples && i < totalSamples; i++)
+        for (
+            int i = 0;
+            i < thudSamples && i < totalSamples;
+            i++)
         {
             float t = (float)i / thudSamples;
             float envelope = Mathf.Exp(-t * 20f);
-            float wave = Mathf.Sin(2f * Mathf.PI * 180f * t);
-            wave += 0.5f * Mathf.Sin(2f * Mathf.PI * 90f * t);
+
+            float wave =
+                Mathf.Sin(2f * Mathf.PI * 180f * t);
+
+            wave +=
+                0.5f *
+                Mathf.Sin(2f * Mathf.PI * 90f * t);
 
             samples[i] += wave * envelope * 0.9f;
         }
 
-        int pageOffset = Mathf.RoundToInt(sampleRate * 0.10f);
-        int pageSamples = Mathf.RoundToInt(sampleRate * 0.18f);
+        int pageOffset =
+            Mathf.RoundToInt(sampleRate * 0.10f);
 
-        for (int i = 0; i < pageSamples && pageOffset + i < totalSamples; i++)
+        int pageSamples =
+            Mathf.RoundToInt(sampleRate * 0.18f);
+
+        for (
+            int i = 0;
+            i < pageSamples &&
+            pageOffset + i < totalSamples;
+            i++)
         {
             float t = (float)i / pageSamples;
             float envelope = Mathf.Exp(-t * 18f);
+
             float wave = Random.value * 2f - 1f;
 
-            samples[pageOffset + i] += wave * envelope * 0.5f;
+            samples[pageOffset + i] +=
+                wave * envelope * 0.5f;
         }
 
-        AudioClip clip = AudioClip.Create("BuyBook", totalSamples, 1, sampleRate, false);
+        AudioClip clip = AudioClip.Create(
+            "BuyBook",
+            totalSamples,
+            1,
+            sampleRate,
+            false
+        );
+
         clip.SetData(samples, 0);
+
         return clip;
     }
 
@@ -180,29 +249,61 @@ public class TradingManager : MonoBehaviour
     {
         int sampleRate = AudioSettings.outputSampleRate;
         int totalSamples = sampleRate * 5 / 10;
+
         float[] samples = new float[totalSamples];
 
         float[] freqs = { 350f, 260f };
+
         float noteDur = 0.18f;
         int noteSamp = Mathf.RoundToInt(sampleRate * noteDur);
 
         for (int n = 0; n < freqs.Length; n++)
         {
-            int offset = n * Mathf.RoundToInt(sampleRate * 0.20f);
+            int offset =
+                n * Mathf.RoundToInt(sampleRate * 0.20f);
 
-            for (int i = 0; i < noteSamp && offset + i < totalSamples; i++)
+            for (
+                int i = 0;
+                i < noteSamp &&
+                offset + i < totalSamples;
+                i++)
             {
                 float t = (float)i / noteSamp;
                 float envelope = Mathf.Exp(-t * 8f);
-                float wave = Mathf.Sin(2f * Mathf.PI * freqs[n] * t);
-                wave += 0.4f * Mathf.Sin(2f * Mathf.PI * freqs[n] * 0.5f * t);
 
-                samples[offset + i] += wave * envelope * 0.85f;
+                float wave =
+                    Mathf.Sin(
+                        2f *
+                        Mathf.PI *
+                        freqs[n] *
+                        t
+                    );
+
+                wave +=
+                    0.4f *
+                    Mathf.Sin(
+                        2f *
+                        Mathf.PI *
+                        freqs[n] *
+                        0.5f *
+                        t
+                    );
+
+                samples[offset + i] +=
+                    wave * envelope * 0.85f;
             }
         }
 
-        AudioClip clip = AudioClip.Create("Reject", totalSamples, 1, sampleRate, false);
+        AudioClip clip = AudioClip.Create(
+            "Reject",
+            totalSamples,
+            1,
+            sampleRate,
+            false
+        );
+
         clip.SetData(samples, 0);
+
         return clip;
     }
 
@@ -211,30 +312,54 @@ public class TradingManager : MonoBehaviour
         if (!sessionInitialized)
         {
             sessionInitialized = true;
+
             savedPlayerGold = playerGold;
-            savedPurchasedItems = new List<ItemData>(purchasedItems);
-            savedPurchasePrices = new Dictionary<ItemData, float>(purchasePrices);
+
+            savedPurchasedItems =
+                new List<ItemData>(purchasedItems);
+
+            savedPurchasePrices =
+                new Dictionary<ItemData, float>(
+                    purchasePrices
+                );
         }
 
         playerGold = savedPlayerGold;
-        purchasedItems = new List<ItemData>(savedPurchasedItems);
-        purchasePrices = new Dictionary<ItemData, float>(savedPurchasePrices);
+
+        purchasedItems =
+            new List<ItemData>(savedPurchasedItems);
+
+        purchasePrices =
+            new Dictionary<ItemData, float>(
+                savedPurchasePrices
+            );
     }
 
     public void SaveGameSessionState()
     {
         sessionInitialized = true;
+
         savedPlayerGold = playerGold;
-        savedPurchasedItems = new List<ItemData>(purchasedItems);
-        savedPurchasePrices = new Dictionary<ItemData, float>(purchasePrices);
+
+        savedPurchasedItems =
+            new List<ItemData>(purchasedItems);
+
+        savedPurchasePrices =
+            new Dictionary<ItemData, float>(
+                purchasePrices
+            );
     }
 
     public static void ResetGameSessionState()
     {
         sessionInitialized = true;
         savedPlayerGold = 1000f;
-        savedPurchasedItems = new List<ItemData>();
-        savedPurchasePrices = new Dictionary<ItemData, float>();
+
+        savedPurchasedItems =
+            new List<ItemData>();
+
+        savedPurchasePrices =
+            new Dictionary<ItemData, float>();
     }
 
     public static float GetSavedGold()
@@ -253,9 +378,14 @@ public class TradingManager : MonoBehaviour
         return new List<ItemData>(savedPurchasedItems);
     }
 
-    public bool TryGetPurchasePrice(ItemData item, out float price)
+    public bool TryGetPurchasePrice(
+        ItemData item,
+        out float price)
     {
-        if (item != null && purchasePrices.ContainsKey(item))
+        if (
+            item != null &&
+            purchasePrices.ContainsKey(item)
+        )
         {
             price = purchasePrices[item];
             return true;
@@ -265,9 +395,14 @@ public class TradingManager : MonoBehaviour
         return false;
     }
 
-    public static bool TryGetSavedPurchasePrice(ItemData item, out float price)
+    public static bool TryGetSavedPurchasePrice(
+        ItemData item,
+        out float price)
     {
-        if (item != null && savedPurchasePrices.ContainsKey(item))
+        if (
+            item != null &&
+            savedPurchasePrices.ContainsKey(item)
+        )
         {
             price = savedPurchasePrices[item];
             return true;
@@ -279,17 +414,58 @@ public class TradingManager : MonoBehaviour
 
     public void SetupNewCustomer(CustomerAI newCustomer)
     {
+        SetupNewCustomer(
+            newCustomer,
+            false,
+            true
+        );
+    }
+
+    public void SetupNewCustomer(
+        CustomerAI newCustomer,
+        bool isReturningCustomer)
+    {
+        SetupNewCustomer(
+            newCustomer,
+            isReturningCustomer,
+            true
+        );
+    }
+
+    public void SetupNewCustomer(
+        CustomerAI newCustomer,
+        bool isReturningCustomer,
+        bool requestedBookStillAvailable)
+    {
+        if (newCustomer == null)
+        {
+            Debug.LogWarning(
+                "SetupNewCustomer received a null customer."
+            );
+
+            return;
+        }
+
         currentCustomer = newCustomer;
+
         waitingForNextCustomer = false;
 
+        currentCustomerRequestedBookUnavailable = false;
+
         SetButtonsInteractable(true);
+
+        if (laterButton != null)
+            laterButton.interactable = !isReturningCustomer;
 
         if (dialogueGroup != null)
             dialogueGroup.SetActive(true);
 
         if (newCustomer.itemToSell == null)
         {
-            ShowDialogue("This customer has no book.");
+            ShowDialogue(
+                "This customer has no book."
+            );
+
             return;
         }
 
@@ -299,9 +475,16 @@ public class TradingManager : MonoBehaviour
             offerInputField.text = "";
 
         string greeting = "";
-        int roundedPrice = Mathf.RoundToInt(newCustomer.customerDesiredPrice);
 
-        if (newCustomer.intent == CustomerIntent.SellToPlayer)
+        int roundedPrice =
+            Mathf.RoundToInt(
+                newCustomer.customerDesiredPrice
+            );
+
+        if (
+            newCustomer.intent ==
+            CustomerIntent.SellToPlayer
+        )
         {
             string[] sellerDialogues =
             {
@@ -311,7 +494,13 @@ public class TradingManager : MonoBehaviour
                 $"A rare find! It can be yours for just {roundedPrice} gold."
             };
 
-            greeting = sellerDialogues[Random.Range(0, sellerDialogues.Length)];
+            greeting =
+                sellerDialogues[
+                    Random.Range(
+                        0,
+                        sellerDialogues.Length
+                    )
+                ];
 
             if (boughtForText != null)
                 boughtForText.gameObject.SetActive(false);
@@ -326,13 +515,21 @@ public class TradingManager : MonoBehaviour
                 $"I must have '{item.itemName}' for my collection. Here is {roundedPrice} gold."
             };
 
-            greeting = buyerDialogues[Random.Range(0, buyerDialogues.Length)];
+            greeting =
+                buyerDialogues[
+                    Random.Range(
+                        0,
+                        buyerDialogues.Length
+                    )
+                ];
 
             if (boughtForText != null)
             {
                 if (purchasePrices.ContainsKey(item))
                 {
-                    boughtForText.text = $"Bought For: {purchasePrices[item]:0}";
+                    boughtForText.text =
+                        $"Bought For: {purchasePrices[item]:0}";
+
                     boughtForText.gameObject.SetActive(true);
                 }
                 else
@@ -346,16 +543,27 @@ public class TradingManager : MonoBehaviour
 
         if (intentLabelText != null)
         {
-            string raceName = newCustomer.customerRace.ToString().ToUpper();
+            string raceName =
+                newCustomer
+                    .customerRace
+                    .ToString()
+                    .ToUpper();
 
-            if (newCustomer.intent == CustomerIntent.SellToPlayer)
+            if (
+                newCustomer.intent ==
+                CustomerIntent.SellToPlayer
+            )
             {
-                intentLabelText.text = $"{raceName} SELLER";
+                intentLabelText.text =
+                    $"{raceName} SELLER";
+
                 intentLabelText.color = Color.red;
             }
             else
             {
-                intentLabelText.text = $"{raceName} BUYER";
+                intentLabelText.text =
+                    $"{raceName} BUYER";
+
                 intentLabelText.color = Color.green;
             }
 
@@ -363,22 +571,36 @@ public class TradingManager : MonoBehaviour
         }
 
         if (offerInputField != null)
-            offerInputField.text = roundedPrice.ToString();
+        {
+            offerInputField.text =
+                roundedPrice.ToString();
+        }
 
         if (bookTitleText != null)
             bookTitleText.text = item.itemName;
 
-        currentBookValueHidden = PlayerSkillEffects.ShouldHideBookValue();
+        currentBookValueHidden =
+            PlayerSkillEffects.ShouldHideBookValue();
 
         if (bookStatsText != null)
         {
             if (currentBookValueHidden)
+            {
                 bookStatsText.text = "???";
+            }
             else
-                bookStatsText.text = $"{item.basePrice:0}";
+            {
+                bookStatsText.text =
+                    $"{item.basePrice:0}";
+            }
         }
 
-        Debug.Log($"[Competence] Level: {PlayerSkillSession.CompetenceLevel}, Book value hidden: {currentBookValueHidden}");
+        Debug.Log(
+            $"[Competence] Level: " +
+            $"{PlayerSkillSession.CompetenceLevel}, " +
+            $"Book value hidden: " +
+            $"{currentBookValueHidden}"
+        );
 
         if (bookIconImage != null)
         {
@@ -389,74 +611,281 @@ public class TradingManager : MonoBehaviour
         if (rareBookEffectController != null)
             rareBookEffectController.PlayEffect(item);
 
-        if (editionText != null) editionText.text = item.edition;
-        if (conditionText != null) conditionText.text = item.conditionString;
-        if (rarityText != null) rarityText.text = item.rarity.ToString();
-        if (magicLevelText != null) magicLevelText.text = item.magicLevel;
-        if (ageText != null) ageText.text = item.age;
-        if (curseText != null) curseText.text = item.curse;
+        if (editionText != null)
+            editionText.text = item.edition;
 
-        currentCustomer.OnDealAccepted += HandleDealAccepted;
-        currentCustomer.OnDealRejected += HandleDealRejected;
-        currentCustomer.OnDialogueGenerated += HandleCustomerDialogue;
+        if (conditionText != null)
+            conditionText.text = item.conditionString;
+
+        if (rarityText != null)
+            rarityText.text = item.rarity.ToString();
+
+        if (magicLevelText != null)
+            magicLevelText.text = item.magicLevel;
+
+        if (ageText != null)
+            ageText.text = item.age;
+
+        if (curseText != null)
+            curseText.text = item.curse;
+
+        currentCustomer.OnDealAccepted +=
+            HandleDealAccepted;
+
+        currentCustomer.OnDealRejected +=
+            HandleDealRejected;
+
+        currentCustomer.OnDialogueGenerated +=
+            HandleCustomerDialogue;
+
+        bool returningBuyerBookUnavailable =
+            isReturningCustomer &&
+            newCustomer.intent ==
+            CustomerIntent.BuyFromPlayer &&
+            !requestedBookStillAvailable;
+
+        if (returningBuyerBookUnavailable)
+        {
+            currentCustomerRequestedBookUnavailable = true;
+
+            ShowDialogue(
+                "The book I wanted has already been sold. " +
+                "I have no reason to stay."
+            );
+
+            if (offerInputField != null)
+            {
+                offerInputField.text = "";
+                offerInputField.interactable = false;
+            }
+
+            if (offerButton != null)
+                offerButton.interactable = true;
+
+            if (refuseButton != null)
+                refuseButton.interactable = true;
+
+            if (increaseButton != null)
+                increaseButton.interactable = false;
+
+            if (decreaseButton != null)
+                decreaseButton.interactable = false;
+
+            if (laterButton != null)
+                laterButton.interactable = true;
+        }
+        else
+        {
+            if (offerInputField != null)
+                offerInputField.interactable = true;
+        }
     }
 
     public void IncreaseOffer()
     {
-        if (offerInputField == null || waitingForNextCustomer) return;
+        if (
+            offerInputField == null ||
+            waitingForNextCustomer ||
+            currentCustomerRequestedBookUnavailable
+        )
+        {
+            return;
+        }
 
-        float currentOffer = GetCurrentOffer() + offerIncrement;
-        offerInputField.text = currentOffer.ToString("0");
+        float currentOffer =
+            GetCurrentOffer() + offerIncrement;
+
+        offerInputField.text =
+            currentOffer.ToString("0");
     }
 
     public void DecreaseOffer()
     {
-        if (offerInputField == null || waitingForNextCustomer) return;
+        if (
+            offerInputField == null ||
+            waitingForNextCustomer ||
+            currentCustomerRequestedBookUnavailable
+        )
+        {
+            return;
+        }
 
-        float currentOffer = GetCurrentOffer() - offerIncrement;
+        float currentOffer =
+            GetCurrentOffer() - offerIncrement;
 
         if (currentOffer < 0)
             currentOffer = 0;
 
-        offerInputField.text = currentOffer.ToString("0");
+        offerInputField.text =
+            currentOffer.ToString("0");
     }
 
     public void SubmitOffer()
     {
-        if (currentCustomer == null || currentCustomer.itemToSell == null || waitingForNextCustomer) return;
+        if (
+            currentCustomer == null ||
+            waitingForNextCustomer
+        )
+        {
+            return;
+        }
+
+        if (currentCustomerRequestedBookUnavailable)
+        {
+            DismissUnavailableReturningCustomer();
+            return;
+        }
+
+        if (currentCustomer.itemToSell == null)
+            return;
 
         float offer = GetCurrentOffer();
 
-        if (currentCustomer.intent == CustomerIntent.SellToPlayer && offer > playerGold)
+        if (
+            currentCustomer.intent ==
+            CustomerIntent.SellToPlayer &&
+            offer > playerGold
+        )
         {
-            ShowDialogue("You don't have enough gold.");
+            ShowDialogue(
+                "You don't have enough gold."
+            );
+
             return;
         }
 
         currentCustomer.ReceivePlayerOffer(offer);
     }
 
+    public void LaterCustomer()
+    {
+        if (
+            currentCustomer == null ||
+            waitingForNextCustomer
+        )
+        {
+            return;
+        }
+
+        if (currentCustomerRequestedBookUnavailable)
+            return;
+
+        if (customerSpawner == null)
+        {
+            customerSpawner =
+                Object.FindFirstObjectByType<CustomerSpawner>();
+        }
+
+        if (customerSpawner == null)
+        {
+            Debug.LogError(
+                "CustomerSpawner could not be found, " +
+                "so the customer cannot be deferred."
+            );
+
+            return;
+        }
+
+        if (
+            !customerSpawner.QueueCurrentCustomerForLater(
+                currentCustomer
+            )
+        )
+        {
+            return;
+        }
+
+        waitingForNextCustomer = true;
+
+        SetButtonsInteractable(false);
+
+        ShowDialogue(
+            "Alright, I'll come back later."
+        );
+
+        StartCoroutine(
+            FinishDeferredCustomerAfterDelay()
+        );
+    }
+
     public void RejectCustomer()
     {
-        if (currentCustomer == null || waitingForNextCustomer) return;
+        if (
+            currentCustomer == null ||
+            waitingForNextCustomer
+        )
+        {
+            return;
+        }
+
+        if (currentCustomerRequestedBookUnavailable)
+        {
+            DismissUnavailableReturningCustomer();
+            return;
+        }
 
         ShowDialogue("Maybe another time.");
+
         PlaySfx(_rejectClip, 1.4f);
 
-        DayManager.Instance?.RegisterCustomerServed(currentCustomer.customerRace);
-        DayManager.Instance?.RegisterReputationEarned(currentCustomer.customerRace, -3f);
+        DayManager.Instance?.RegisterCustomerServed(
+            currentCustomer.customerRace
+        );
+
+        DayManager.Instance?.RegisterReputationEarned(
+            currentCustomer.customerRace,
+            -3f
+        );
 
         FinishCustomer();
     }
 
+    private void DismissUnavailableReturningCustomer()
+    {
+        if (
+            currentCustomer == null ||
+            waitingForNextCustomer
+        )
+        {
+            return;
+        }
+
+        waitingForNextCustomer = true;
+
+        currentCustomerRequestedBookUnavailable = false;
+
+        SetButtonsInteractable(false);
+
+        if (offerInputField != null)
+            offerInputField.interactable = false;
+
+        DayManager.Instance?.RegisterCustomerServed(
+            currentCustomer.customerRace
+        );
+
+        UnsubscribeFromCurrentCustomer();
+
+        currentCustomer = null;
+
+        StartCoroutine(FinishAfterDelay());
+    }
+
     private float GetCurrentOffer()
     {
-        if (offerInputField == null) return 0;
+        if (offerInputField == null)
+            return 0f;
 
-        if (float.TryParse(offerInputField.text, out float value))
+        if (
+            float.TryParse(
+                offerInputField.text,
+                out float value
+            )
+        )
+        {
             return value;
+        }
 
-        return 0;
+        return 0f;
     }
 
     private void HandleCustomerDialogue(string text)
@@ -464,19 +893,30 @@ public class TradingManager : MonoBehaviour
         ShowDialogue(text);
     }
 
-    private void HandleDealAccepted(ItemData item, float finalPrice, string dialogue)
+    private void HandleDealAccepted(
+        ItemData item,
+        float finalPrice,
+        string dialogue)
     {
         ShowDialogue(dialogue);
 
-        if (currentCustomer.intent == CustomerIntent.SellToPlayer)
+        if (
+            currentCustomer.intent ==
+            CustomerIntent.SellToPlayer
+        )
         {
             PlaySfx(_buyBookClip, 1.5f);
 
             playerGold -= finalPrice;
+
             purchasedItems.Add(item);
+
             purchasePrices[item] = finalPrice;
 
-            DayManager.Instance?.RegisterGoldEarned(-finalPrice);
+            DayManager.Instance?.RegisterGoldEarned(
+                -finalPrice
+            );
+
             DayManager.Instance?.RegisterBookBought();
         }
         else
@@ -484,24 +924,43 @@ public class TradingManager : MonoBehaviour
             PlaySfx(_sellGoldClip, 1.6f);
 
             playerGold += finalPrice;
+
             purchasedItems.Remove(item);
 
             if (purchasePrices.ContainsKey(item))
                 purchasePrices.Remove(item);
 
-            DayManager.Instance?.RegisterGoldEarned(finalPrice);
+            DayManager.Instance?.RegisterGoldEarned(
+                finalPrice
+            );
+
             DayManager.Instance?.RegisterBookSold();
         }
 
         SaveGameSessionState();
 
-        DayManager.Instance?.RegisterCustomerServed(currentCustomer.customerRace);
+        DayManager.Instance?.RegisterCustomerServed(
+            currentCustomer.customerRace
+        );
 
-        float repGain = currentCustomer.intent == CustomerIntent.SellToPlayer ? 2f : 3f;
-        DayManager.Instance?.RegisterReputationEarned(currentCustomer.customerRace, repGain);
+        float repGain =
+            currentCustomer.intent ==
+            CustomerIntent.SellToPlayer
+                ? 2f
+                : 3f;
 
-        if (goldCounter != null && goldCounter.gameObject.activeInHierarchy)
+        DayManager.Instance?.RegisterReputationEarned(
+            currentCustomer.customerRace,
+            repGain
+        );
+
+        if (
+            goldCounter != null &&
+            goldCounter.gameObject.activeInHierarchy
+        )
+        {
             goldCounter.UpdateCounter(playerGold);
+        }
 
         FinishCustomer();
     }
@@ -509,25 +968,65 @@ public class TradingManager : MonoBehaviour
     private void HandleDealRejected(string dialogue)
     {
         ShowDialogue(dialogue);
-        PlaySfx(_rejectClip, 1.5f, 0.9f);
 
-        DayManager.Instance?.RegisterCustomerServed(currentCustomer.customerRace);
-        DayManager.Instance?.RegisterReputationEarned(currentCustomer.customerRace, -1f);
+        PlaySfx(
+            _rejectClip,
+            1.5f,
+            0.9f
+        );
+
+        DayManager.Instance?.RegisterCustomerServed(
+            currentCustomer.customerRace
+        );
+
+        DayManager.Instance?.RegisterReputationEarned(
+            currentCustomer.customerRace,
+            -1f
+        );
 
         FinishCustomer();
+    }
+
+    private IEnumerator FinishDeferredCustomerAfterDelay()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        UnsubscribeFromCurrentCustomer();
+
+        if (customerSpawner != null)
+            customerSpawner.ClearCurrentCustomer();
+
+        currentCustomer = null;
+
+        ClearUI();
+
+        DayManager.Instance?.OnCustomerDeferred();
+    }
+
+    private void UnsubscribeFromCurrentCustomer()
+    {
+        if (currentCustomer == null)
+            return;
+
+        currentCustomer.OnDealAccepted -=
+            HandleDealAccepted;
+
+        currentCustomer.OnDealRejected -=
+            HandleDealRejected;
+
+        currentCustomer.OnDialogueGenerated -=
+            HandleCustomerDialogue;
     }
 
     private void FinishCustomer()
     {
         waitingForNextCustomer = true;
+
+        currentCustomerRequestedBookUnavailable = false;
+
         SetButtonsInteractable(false);
 
-        if (currentCustomer != null)
-        {
-            currentCustomer.OnDealAccepted -= HandleDealAccepted;
-            currentCustomer.OnDealRejected -= HandleDealRejected;
-            currentCustomer.OnDialogueGenerated -= HandleCustomerDialogue;
-        }
+        UnsubscribeFromCurrentCustomer();
 
         currentCustomer = null;
 
@@ -545,44 +1044,90 @@ public class TradingManager : MonoBehaviour
 
     private void ShowDialogue(string message)
     {
-        if (dialogueText == null) return;
+        if (dialogueText == null)
+            return;
 
-        TypeWriterEffect tw = dialogueText.GetComponent<TypeWriterEffect>();
+        TypeWriterEffect typeWriter =
+            dialogueText.GetComponent<TypeWriterEffect>();
 
-        if (tw != null)
-            tw.Play(message);
+        if (typeWriter != null)
+        {
+            typeWriter.Play(message);
+        }
         else
+        {
             dialogueText.text = message;
+        }
     }
 
     private void SetButtonsInteractable(bool value)
     {
-        if (offerButton != null) offerButton.interactable = value;
-        if (increaseButton != null) increaseButton.interactable = value;
-        if (decreaseButton != null) decreaseButton.interactable = value;
-        if (refuseButton != null) refuseButton.interactable = value;
+        if (offerButton != null)
+            offerButton.interactable = value;
+
+        if (increaseButton != null)
+            increaseButton.interactable = value;
+
+        if (decreaseButton != null)
+            decreaseButton.interactable = value;
+
+        if (refuseButton != null)
+            refuseButton.interactable = value;
+
+        if (laterButton != null)
+            laterButton.interactable = value;
     }
 
     private void ClearUI()
     {
-        if (bookTitleText != null) bookTitleText.text = "Book Title";
-        if (bookStatsText != null) bookStatsText.text = "Value:";
-        if (bookIconImage != null) bookIconImage.gameObject.SetActive(false);
-        if (rareBookEffectController != null) rareBookEffectController.StopAllEffects();
+        currentCustomerRequestedBookUnavailable = false;
 
-        if (editionText != null) editionText.text = "Edition";
-        if (conditionText != null) conditionText.text = "Condition";
-        if (rarityText != null) rarityText.text = "Rarity";
-        if (magicLevelText != null) magicLevelText.text = "Magic Level";
-        if (ageText != null) ageText.text = "Age";
-        if (curseText != null) curseText.text = "Curse";
+        if (bookTitleText != null)
+            bookTitleText.text = "Book Title";
 
-        if (dialogueText != null) dialogueText.text = "";
-        if (dialogueGroup != null) dialogueGroup.SetActive(false);
+        if (bookStatsText != null)
+            bookStatsText.text = "Value:";
 
-        if (offerInputField != null) offerInputField.text = "";
+        if (bookIconImage != null)
+            bookIconImage.gameObject.SetActive(false);
 
-        if (intentLabelText != null) intentLabelText.gameObject.SetActive(false);
-        if (boughtForText != null) boughtForText.gameObject.SetActive(false);
+        if (rareBookEffectController != null)
+            rareBookEffectController.StopAllEffects();
+
+        if (editionText != null)
+            editionText.text = "Edition";
+
+        if (conditionText != null)
+            conditionText.text = "Condition";
+
+        if (rarityText != null)
+            rarityText.text = "Rarity";
+
+        if (magicLevelText != null)
+            magicLevelText.text = "Magic Level";
+
+        if (ageText != null)
+            ageText.text = "Age";
+
+        if (curseText != null)
+            curseText.text = "Curse";
+
+        if (dialogueText != null)
+            dialogueText.text = "";
+
+        if (dialogueGroup != null)
+            dialogueGroup.SetActive(false);
+
+        if (offerInputField != null)
+        {
+            offerInputField.text = "";
+            offerInputField.interactable = true;
+        }
+
+        if (intentLabelText != null)
+            intentLabelText.gameObject.SetActive(false);
+
+        if (boughtForText != null)
+            boughtForText.gameObject.SetActive(false);
     }
 }

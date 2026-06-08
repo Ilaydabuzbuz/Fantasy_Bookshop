@@ -36,6 +36,7 @@ public class DayManager : MonoBehaviour
 
     private bool hasStarted = false;
     private bool dayEnded = false;
+    private int normalCustomersSpawnedToday = 0;
 
     private void Awake()
     {
@@ -77,6 +78,7 @@ public class DayManager : MonoBehaviour
         tradingManager = FindDayScreenObject<TradingManager>();
 
         customersServedToday = 0;
+        normalCustomersSpawnedToday = 0;
         totalCustomersToday = Random.Range(minCustomersPerDay, maxCustomersPerDay + 1);
 
         goldEarnedToday = 0f;
@@ -86,18 +88,14 @@ public class DayManager : MonoBehaviour
         customersByRace.Clear();
         reputationEarnedToday.Clear();
 
+        if (spawner != null)
+            spawner.ClearDeferredCustomers();
+
         UpdateDayUI();
 
-        Debug.Log($"Gün {currentDay} baþladý! Bugün dükkana {totalCustomersToday} müþteri uðrayacak.");
+        Debug.Log($"Day {currentDay} started. {totalCustomersToday} customers will visit today.");
 
-        if (spawner != null)
-        {
-            StartCoroutine(SpawnAfterDelay(0f));
-        }
-        else
-        {
-            Debug.LogError("CustomerSpawner bulunamadý! DayScreen içinde CustomerSpawner olduðundan emin ol.");
-        }
+        SpawnNextScheduledCustomer();
     }
 
     private T FindDayScreenObject<T>() where T : MonoBehaviour
@@ -130,28 +128,61 @@ public class DayManager : MonoBehaviour
             return;
 
         customersServedToday++;
-
-        if (customersServedToday >= totalCustomersToday)
-        {
-            EndDay();
-        }
-        else
-        {
-            spawner = FindDayScreenObject<CustomerSpawner>();
-
-            if (spawner != null)
-                StartCoroutine(SpawnAfterDelay(0f));
-            else
-                Debug.LogError("CustomerSpawner bulunamadý!");
-        }
+        SpawnNextScheduledCustomer();
     }
 
-    private IEnumerator SpawnAfterDelay(float delay)
+    public void OnCustomerDeferred()
+    {
+        if (dayEnded)
+            return;
+
+        SpawnNextScheduledCustomer();
+    }
+
+    private void SpawnNextScheduledCustomer()
+    {
+        if (dayEnded)
+            return;
+
+        spawner = FindDayScreenObject<CustomerSpawner>();
+
+        if (spawner == null)
+        {
+            Debug.LogError("CustomerSpawner could not be found.");
+            return;
+        }
+
+        if (normalCustomersSpawnedToday < totalCustomersToday)
+        {
+            normalCustomersSpawnedToday++;
+            StartCoroutine(SpawnNormalAfterDelay(0f));
+            return;
+        }
+
+        if (spawner.HasDeferredCustomers)
+        {
+            StartCoroutine(SpawnDeferredAfterDelay(0f));
+            return;
+        }
+
+        if (customersServedToday >= totalCustomersToday)
+            EndDay();
+    }
+
+    private IEnumerator SpawnNormalAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
 
         if (!dayEnded && spawner != null)
             spawner.SpawnNextCustomer();
+    }
+
+    private IEnumerator SpawnDeferredAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (!dayEnded && spawner != null)
+            spawner.SpawnDeferredCustomer();
     }
 
     public void RegisterCustomerServed(CustomerRace race)
@@ -183,7 +214,6 @@ public class DayManager : MonoBehaviour
             reputationEarnedToday[race] = 0f;
 
         reputationEarnedToday[race] += amount;
-
         ReputationManager.ModifyReputationValue(race, amount);
     }
 
@@ -193,8 +223,7 @@ public class DayManager : MonoBehaviour
             return;
 
         dayEnded = true;
-
-        Debug.Log("Günün tüm müþterileri bitti!");
+        Debug.Log("All customers for the day have been completed.");
 
         spawner = FindDayScreenObject<CustomerSpawner>();
 
@@ -206,18 +235,19 @@ public class DayManager : MonoBehaviour
 
     public void AdvanceToNextDay()
     {
+        pendingRentPopup = false;
+        lastRentPaid = 0f;
+        lastRentDay = 0;
+
+        // Rent is paid at the end of Day 3, Day 6, Day 9, etc.
+        if (rentPeriodDays > 0 && currentDay % rentPeriodDays == 0)
+            PayRent();
+
         currentDay++;
 
         PlayerPrefs.SetInt("CurrentDay", currentDay);
         PlayerPrefs.SetInt("HasSave", 1);
         PlayerPrefs.Save();
-
-        pendingRentPopup = false;
-        lastRentPaid = 0f;
-        lastRentDay = 0;
-
-        if (currentDay % rentPeriodDays == 0)
-            PayRent();
     }
 
     private void PayRent()
@@ -237,24 +267,21 @@ public class DayManager : MonoBehaviour
                 tradingManager.goldCounter.UpdateCounter(tradingManager.playerGold);
             }
 
-            Debug.Log($"Kira ödeme günü! {rentAmount} altýn kesildi.");
+            Debug.Log($"Rent day: {rentAmount} gold was deducted.");
 
             if (tradingManager.playerGold < 0)
-                Debug.LogError("Ýflas ettin! GAME OVER.");
+                Debug.LogError("You are bankrupt. GAME OVER.");
         }
         else
         {
-            float savedGold = TradingManager.GetSavedGold();
-            savedGold -= rentAmount;
-
+            float savedGold = TradingManager.GetSavedGold() - rentAmount;
             TradingManager.SetSavedGold(savedGold);
 
             MarkRentPopupNeeded(rentAmount, currentDay);
-
-            Debug.Log($"Kira ödeme günü! {rentAmount} altýn kesildi.");
+            Debug.Log($"Rent day: {rentAmount} gold was deducted.");
 
             if (savedGold < 0)
-                Debug.LogError("Ýflas ettin! GAME OVER.");
+                Debug.LogError("You are bankrupt. GAME OVER.");
         }
     }
 

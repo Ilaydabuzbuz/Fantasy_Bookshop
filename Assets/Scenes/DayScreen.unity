@@ -848,6 +848,7 @@ GameObject:
   - component: {fileID: 346594636}
   - component: {fileID: 346594638}
   - component: {fileID: 346594639}
+  - component: {fileID: 346594640}
   m_Layer: 0
   m_Name: Later
   m_TagString: Untagged
@@ -987,6 +988,50 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 6.07, y: 2.82}
   m_EdgeRadius: 0
+--- !u!114 &346594640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346594635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 0.24705884, g: 0.14901961, b: 0.07058824, a: 1}
+    m_HighlightedColor: {r: 0.24705884, g: 0.15294118, b: 0.078431375, a: 0.62352943}
+    m_PressedColor: {r: 0.24705884, g: 0.14901961, b: 0.07058824, a: 0.6313726}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &405086297
 GameObject:
   m_ObjectHideFlags: 0
@@ -5705,6 +5750,7 @@ MonoBehaviour:
   increaseButton: {fileID: 972159786}
   decreaseButton: {fileID: 116213482}
   refuseButton: {fileID: 1116716051}
+  laterButton: {fileID: 346594640}
   playerGold: 1000
   offerIncrement: 10
   purchasedItems: []
@@ -5723,7 +5769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayManager
   currentDay: 1
-  rentPeriodDays: 4
+  rentPeriodDays: 3
   rentAmount: 200
   minCustomersPerDay: 3
   maxCustomersPerDay: 6

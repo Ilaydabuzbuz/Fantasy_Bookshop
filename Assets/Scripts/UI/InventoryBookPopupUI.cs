@@ -22,27 +22,41 @@ public class InventoryBookPopupUI : MonoBehaviour
     public TextMeshProUGUI ageValueText;
     public TextMeshProUGUI curseValueText;
 
-    [Header("Economy Value Texts")]
-    public TextMeshProUGUI boughtForValueText;
+    [Header("Economy Texts")]
+    public TextMeshProUGUI boughtForText;
     public TextMeshProUGUI valueText;
 
-    private void Start()
+    private void Awake()
     {
-        Hide();
-
         if (closeButton != null)
+        {
+            closeButton.onClick.RemoveListener(Hide);
             closeButton.onClick.AddListener(Hide);
+        }
+
+        if (popupPanel != null)
+            popupPanel.SetActive(false);
     }
 
     public void Show(ItemData item)
     {
         if (item == null)
+        {
+            Debug.LogWarning("Book popup could not open because item is null.");
             return;
-
-        if (popupPanel != null)
-            popupPanel.SetActive(true);
+        }
 
         SetBookInfo(item);
+
+        if (popupPanel != null)
+        {
+            popupPanel.SetActive(true);
+            popupPanel.transform.SetAsLastSibling();
+        }
+        else
+        {
+            Debug.LogWarning("Popup Panel is not assigned.");
+        }
     }
 
     public void Hide()
@@ -80,30 +94,34 @@ public class InventoryBookPopupUI : MonoBehaviour
         if (curseValueText != null)
             curseValueText.text = item.curse.ToUpper();
 
-        if (boughtForValueText != null)
-            boughtForValueText.text = $"{GetBoughtForPrice(item):0}";
-
         if (valueText != null)
-        {
-            bool hideValue = PlayerSkillEffects.ShouldHideBookValue();
+            valueText.text = $"{item.basePrice:0}";
 
-            if (hideValue)
-                valueText.text = "???";
+        if (boughtForText != null)
+        {
+            if (TryGetBoughtForPrice(item, out float purchasePrice))
+                boughtForText.text = $"Bought for: {purchasePrice:0}";
             else
-                valueText.text = $"{item.basePrice:0}";
+                boughtForText.text = "Bought for: -";
         }
     }
 
-    private float GetBoughtForPrice(ItemData item)
+    private bool TryGetBoughtForPrice(ItemData item, out float price)
     {
         TradingManager tradingManager = FindObjectOfType<TradingManager>();
 
-        if (tradingManager != null && tradingManager.TryGetPurchasePrice(item, out float priceFromCurrentManager))
-            return priceFromCurrentManager;
+        if (tradingManager != null &&
+            tradingManager.TryGetPurchasePrice(item, out price))
+        {
+            return true;
+        }
 
-        if (TradingManager.TryGetSavedPurchasePrice(item, out float priceFromSave))
-            return priceFromSave;
+        if (TradingManager.TryGetSavedPurchasePrice(item, out price))
+        {
+            return true;
+        }
 
-        return item.basePrice;
+        price = 0f;
+        return false;
     }
 }
