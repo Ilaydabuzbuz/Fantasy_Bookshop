@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections;
@@ -39,6 +39,7 @@ public class TradingManager : MonoBehaviour
     [Header("Economy Settings")]
     public float playerGold = 1000f;
     public float offerIncrement = 10f;
+    public float mouseScrollIncrement = 1f;
     public List<ItemData> purchasedItems = new List<ItemData>();
 
     private Dictionary<ItemData, float> purchasePrices =
@@ -64,7 +65,6 @@ public class TradingManager : MonoBehaviour
     private bool waitingForNextCustomer = false;
     private bool currentBookValueHidden = false;
 
-    // Geri dönen alýcýnýn istediði kitap artýk envanterde yoksa true olur.
     private bool currentCustomerRequestedBookUnavailable = false;
 
     private AudioSource _sfxSource;
@@ -97,6 +97,11 @@ public class TradingManager : MonoBehaviour
             laterButton.onClick.AddListener(LaterCustomer);
 
         InitAudio();
+    }
+
+    private void Update()
+    {
+        HandleOfferMouseScroll();
     }
 
     private void InitAudio()
@@ -679,6 +684,36 @@ public class TradingManager : MonoBehaviour
             if (offerInputField != null)
                 offerInputField.interactable = true;
         }
+    }
+
+    private void HandleOfferMouseScroll()
+    {
+        if (
+            offerInputField == null ||
+            !offerInputField.interactable ||
+            currentCustomer == null ||
+            waitingForNextCustomer ||
+            currentCustomerRequestedBookUnavailable
+        )
+        {
+            return;
+        }
+
+        float scrollAmount = Input.mouseScrollDelta.y;
+
+        if (Mathf.Approximately(scrollAmount, 0f))
+            return;
+
+        float currentOffer = GetCurrentOffer();
+
+        if (scrollAmount > 0f)
+            currentOffer += mouseScrollIncrement;
+        else
+            currentOffer -= mouseScrollIncrement;
+
+        currentOffer = Mathf.Max(0f, currentOffer);
+
+        offerInputField.text = currentOffer.ToString("0");
     }
 
     public void IncreaseOffer()

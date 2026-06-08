@@ -1,11 +1,11 @@
 [Licensing::Module] Trying to connect to existing licensing client channel...
 Built from '6000.4/staging' branch; Version is '6000.4.2f1 (7a4c1aeef971) revision 8014874'; Using compiler version '194234433'; Build Type 'Release'
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-İLAYDA" at "2026-06-08T02:51:34.8515935Z"
 OS: 'Windows 11  (10.0.26200) Professional' Language: 'en' Physical Memory: 15754 MB
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-İLAYDA" at "2026-06-08T22:53:56.494003Z"
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
 System  architecture: x64
 Process architecture: x64
-Date: 2026-06-08T02:51:34Z
+Date: 2026-06-08T22:53:56Z
 
 COMMAND LINE ARGUMENTS:
 C:\Program Files\Unity\Hub\Editor\6000.4.2f1\Editor\Unity.exe
@@ -19,7 +19,7 @@ C:/Users/ILAYDA/Desktop/fantasy_bookshop/Fantasy_Bookshop
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-37148
+3263
 -licensingIpc
 LicenseClient-İLAYDA
 -force-d3d12
@@ -68,12 +68,12 @@ C:/Users/ILAYDA/Desktop/fantasy_bookshop/Fantasy_Bookshop
     "memorysetup-job-temp-allocator-block-size=2097152"
     "memorysetup-job-temp-allocator-block-size-background=1048576"
     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
-Player connection [16180]  Target information:
+Player connection [3748]  Target information:
 
-Player connection [16180]  * "[IP] 192.168.1.122 [Port] 0 [Flags] 2 [Guid] 3927929435 [EditorId] 3927929435 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-DFCOMK5) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [3748]  * "[IP] 192.168.1.122 [Port] 0 [Flags] 2 [Guid] 3540583711 [EditorId] 3540583711 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-DFCOMK5) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [16180] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [16180] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [3748] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [3748] Host joined alternative multi-casting on [225.0.0.222:34997]...
 JobSystem: Creating JobQueue using job-worker-count value 7
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
@@ -102,18 +102,18 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.4.2f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.4.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.4.2f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56196
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56824
 CodeReloadManager initialized
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.4.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.004310 seconds.
+Registered in 0.007332 seconds.
 [Licensing::Client] Error: HandshakeResponse reported an error:
 	ResponseCode: 505
 	ResponseStatus: Unsupported protocol version '1.18.1'.
 [Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-İLAYDA"
 [Licensing::IpcConnector] LicenseClient-İLAYDA channel disconnected successfully.
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-İLAYDA-6000.4.2" at "2026-06-08T02:51:36.7329759Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-İLAYDA-6000.4.2" at "2026-06-08T22:53:59.5479151Z"
 Native extension for WindowsStandalone target not found
 Package Manager log level set to [2]
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
@@ -121,23 +121,23 @@ Package Manager log level set to [2]
 [Package Manager] Cannot connect to Unity Package Manager local server
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.771 seconds
-Domain Reload Profiling: 1609ms
-	BeginReloadAssembly (244ms)
-	RebuildCommonClasses (74ms)
-	RebuildNativeTypeToScriptingClass (24ms)
-	initialDomainReloadingComplete (134ms)
-	LoadAllAssembliesAndSetupDomain (359ms)
-		LoadAssemblies (236ms)
-		AnalyzeDomain (343ms)
-			TypeCache.Refresh (340ms)
-				TypeCache.ScanAssembly (318ms)
-	FinalizeReload (774ms)
+- Finished resetting the current domain, in  1.344 seconds
+Domain Reload Profiling: 2821ms
+	BeginReloadAssembly (369ms)
+	RebuildCommonClasses (132ms)
+	RebuildNativeTypeToScriptingClass (40ms)
+	initialDomainReloadingComplete (202ms)
+	LoadAllAssembliesAndSetupDomain (730ms)
+		LoadAssemblies (358ms)
+		AnalyzeDomain (701ms)
+			TypeCache.Refresh (695ms)
+				TypeCache.ScanAssembly (622ms)
+	FinalizeReload (1348ms)
 		SetupLoadedEditorAssemblies (0ms)
-			InitializePlatformSupportModulesInManaged (95ms)
-			BeforeProcessingInitializeOnLoad (175ms)
-			ProcessInitializeOnLoadAttributes (218ms)
-			ProcessInitializeOnLoadMethodAttributes (158ms)
+			InitializePlatformSupportModulesInManaged (145ms)
+			BeforeProcessingInitializeOnLoad (335ms)
+			ProcessInitializeOnLoadAttributes (404ms)
+			ProcessInitializeOnLoadMethodAttributes (257ms)
 ========================================================================
 Worker process is ready to serve import requests
 Import Worker Mode flag is 0x00
@@ -145,14 +145,14 @@ Begin MonoManager ReloadAssembly
 [Licensing::Module] Licensing is not yet initialized.
 [Licensing::Client] Handshaking with LicensingClient:
   Version:                 1.18.1+9fbee8e
-  Session Id:              e065762ab59d483181f90f4681371272
-  Correlation Id:          ceb7a091d5295d1a4dd5e50a8b1febce
-  External correlation Id: 234323376278663779
+  Session Id:              76aed1b5052c4e6ab2949f07559f7424
+  Correlation Id:          24bc5da3c2686dac0080ae93c6d4e77a
+  External correlation Id: 8188221658760212679
   Machine Id:              OOQeNrJ1zVFBnYlGWehyVyEiFqI=
-[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-İLAYDA-6000.4.2" (connect: 0.00s, validation: 0.00s, handshake: 1.75s)
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-İLAYDA-6000.4.2-notifications" at "2026-06-08T02:51:38.4823903Z"
-[Licensing::Module] Licensing Background thread has ended after 3.63s
-[Licensing::Module] Licensing is initialized (took 0.92s).
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-İLAYDA-6000.4.2" (connect: 0.00s, validation: 0.01s, handshake: 2.96s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-İLAYDA-6000.4.2-notifications" at "2026-06-08T22:54:02.5118057Z"
+[Licensing::Module] Licensing Background thread has ended after 6.02s
+[Licensing::Module] Licensing is initialized (took 0.98s).
 [Licensing::Client] Successfully resolved entitlement details
 [Licensing::Module] License group:
   Id: F4-DS3J-G6YV-7JMH-WUDY-XXXX
@@ -181,138 +181,42 @@ Native extension for WindowsStandalone target not found
 [Package Manager] Cannot connect to Unity Package Manager local server
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.705 seconds
-Domain Reload Profiling: 2199ms
-	BeginReloadAssembly (1259ms)
-		DisableScriptedObjects (13ms)
-		CreateAndSetChildDomain (45ms)
-	RebuildCommonClasses (71ms)
-	RebuildNativeTypeToScriptingClass (23ms)
-	initialDomainReloadingComplete (81ms)
-	LoadAllAssembliesAndSetupDomain (58ms)
-		LoadAssemblies (206ms)
-		AnalyzeDomain (38ms)
-			TypeCache.Refresh (22ms)
-				TypeCache.ScanAssembly (15ms)
-			BuildScriptInfoCaches (9ms)
-			ResolveRequiredComponents (5ms)
-	FinalizeReload (708ms)
+- Finished resetting the current domain, in  1.075 seconds
+Domain Reload Profiling: 2950ms
+	BeginReloadAssembly (1505ms)
+		DisableScriptedObjects (18ms)
+		CreateAndSetChildDomain (58ms)
+	RebuildCommonClasses (124ms)
+	RebuildNativeTypeToScriptingClass (41ms)
+	initialDomainReloadingComplete (121ms)
+	LoadAllAssembliesAndSetupDomain (81ms)
+		LoadAssemblies (317ms)
+		AnalyzeDomain (52ms)
+			TypeCache.Refresh (30ms)
+				TypeCache.ScanAssembly (20ms)
+			BuildScriptInfoCaches (10ms)
+			ResolveRequiredComponents (9ms)
+	FinalizeReload (1079ms)
 		SetupLoadedEditorAssemblies (0ms)
-			InitializePlatformSupportModulesInManaged (4ms)
-			BeforeProcessingInitializeOnLoad (198ms)
-			ProcessInitializeOnLoadAttributes (176ms)
-			ProcessInitializeOnLoadMethodAttributes (83ms)
-			AfterProcessingInitializeOnLoad (14ms)
-		AwakeInstancesAfterBackupRestoration (12ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			BeforeProcessingInitializeOnLoad (294ms)
+			ProcessInitializeOnLoadAttributes (253ms)
+			ProcessInitializeOnLoadMethodAttributes (128ms)
+			AfterProcessingInitializeOnLoad (27ms)
+		AwakeInstancesAfterBackupRestoration (22ms)
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
 Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 509 unused Assets / (200.6 KB). Loaded Objects now: 1126.
-Memory consumption went from 69.2 MB to 69.0 MB.
-Total: 7.250000 ms (FindLiveObjects: 0.129000 ms CreateObjectMapping: 0.046600 ms MarkObjects: 6.661600 ms  DeleteObjects: 0.408700 ms)
+Unloading 509 unused Assets / (140.2 KB). Loaded Objects now: 1126.
+Memory consumption went from 69.2 MB to 69.1 MB.
+Total: 12.037200 ms (FindLiveObjects: 0.154900 ms CreateObjectMapping: 0.051900 ms MarkObjects: 11.463800 ms  DeleteObjects: 0.360400 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 357787.911767 seconds.
-  path: Assets/_Recovery/0 (9).unity
-  importAddress: Guid(a2ab5380304afbd4a844c7d3a254e0db) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/_Recovery/0 (9).unity using Guid(a2ab5380304afbd4a844c7d3a254e0db) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '6da90a4a214547dabf86cdcd9fe59bc2') in 0.1726775 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=33f78b89c5bddfe6e9868b8e5deb0252 DependenciesID=012146fe5e66c71c82007d33065372e0 StaticDependenciesID=dd2e58f2bf6dee9ba332b339c7e3cfe1 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 14.021168 seconds.
-  path: Assets/_Recovery/0 (9).unity
-  importAddress: Guid(a2ab5380304afbd4a844c7d3a254e0db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_Recovery/0 (9).unity using Guid(a2ab5380304afbd4a844c7d3a254e0db) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '074fbc57b0709f27905b3454138d4925') in 0.0013097 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0770cba753a867c9d0e8db5c1fe644dd DependenciesID=6e196fb5f09d20d54997261293771602 StaticDependenciesID=1865a7a53e83bee5037f0366ca2512f9 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 7.611164 seconds.
-  path: Assets/_Recovery/0 (8).unity
-  importAddress: Guid(61ed93a9e6bdbf84da3f3e3dfa53e84c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_Recovery/0 (8).unity using Guid(61ed93a9e6bdbf84da3f3e3dfa53e84c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'e0973497d83f7573d0c965a4776db16e') in 0.0010425 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=cc7fad7833f285a1f45c8f4890b2442c DependenciesID=137798780c0753f1aecf535f2dfaf3b9 StaticDependenciesID=c230b495d16827935e0987d95ec43f25 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.215266 seconds.
-  path: Assets/_Recovery/0 (7).unity
-  importAddress: Guid(d7727929558cad94ca8729ce610e9131) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_Recovery/0 (7).unity using Guid(d7727929558cad94ca8729ce610e9131) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'a1cd247c820f9f7103fac4260aa557ce') in 0.0009108 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1bcd3feb1c2d939277148369b1844197 DependenciesID=f845f65298c1094bdd08b53cfc9e3035 StaticDependenciesID=5b9adcec5e014d2001544b2dd49a1641 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 23.991769 seconds.
-  path: Assets/Scripts/Managers/CloseEndDayReport.cs
-  importAddress: Guid(e8eb70d884e6e2a4f9797dd71cd56449) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Managers/CloseEndDayReport.cs using Guid(e8eb70d884e6e2a4f9797dd71cd56449) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '3ac681c58997988ce255b5f0f7701fcb') in 0.0008859 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1f3fc128c25ac759301c11ea55db7384 DependenciesID=8ae3489ee9017fa8727a128aa13236c9 StaticDependenciesID=7671efa367d4b229c2ef358bc9ef02a8 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 43.868356 seconds.
-  path: Assets/Sprites/UI
-  importAddress: Guid(920b2c29feb0f8a45b53eb514ae72e88) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/UI using Guid(920b2c29feb0f8a45b53eb514ae72e88) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'b07d049a811d0f9807f9c4580c297f24') in 0.0009574 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9f6f1b7f0a8feb27f2e28eb4785d239d DependenciesID=767ccf5455ef4630dcd0d405f2aec33f StaticDependenciesID=d6bb933e6e83c9fa187ad2a665e3281f 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.621662 seconds.
-  path: Assets/Sprites/UI/Yeni
-  importAddress: Guid(75577821d56e81f41b59f912c62d6391) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/UI/Yeni using Guid(75577821d56e81f41b59f912c62d6391) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '0bac877dabfcc5727050161a0acfbd30') in 0.0008271 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=54bd230e0b68fd8df776337eb5377ae9 DependenciesID=3e516b77c0c6b2b6ed36e29bc2bfdf35 StaticDependenciesID=eb0c6fbf0fa760cd87037b31f9cb84df 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.079208 seconds.
-  path: Assets/Sprites/UI/Yeni/Coin.png
-  importAddress: Guid(7b751276e2429f94e9c523b872ae3aca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/UI/Yeni/Coin.png using Guid(7b751276e2429f94e9c523b872ae3aca) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '70a63e222fa26b6f3aa3fd4d367b6e72') in 0.1721833 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a39af3550335e93de3268771ea87a937 DependenciesID=84fc7e3680b14d2828eb4e5af70d48c8 StaticDependenciesID=8e442cf13f4d53640c398001c4939ab8 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000039 seconds.
-  path: Assets/Sprites/UI/Yeni/Unknown.png
-  importAddress: Guid(3100e96f09bfe464486a402e4b35ab97) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/UI/Yeni/Unknown.png using Guid(3100e96f09bfe464486a402e4b35ab97) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '4825c420f23ff4c150780936db084c13') in 0.0416317 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=39c2b809dc5e088c4956e56f232ae7b2 DependenciesID=2ae6b205d8d9aef200d2726adde60ae8 StaticDependenciesID=9616452f68a99f74a6ee413d67faf15c 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000062 seconds.
-  path: Assets/Sprites/UI/Yeni/Settings.png
-  importAddress: Guid(2476dd97b70b0f1439e7f45920d00676) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/UI/Yeni/Settings.png using Guid(2476dd97b70b0f1439e7f45920d00676) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'da621f16a38583e425fe0afa9feadfa3') in 0.0443265 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f7c1c6eaff5187600f759f805f40a2d2 DependenciesID=b97719f323f258587a76a4c486f0c92f StaticDependenciesID=b2bc9aaf85ebdcde44acbd99742b028b 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000034 seconds.
-  path: Assets/Sprites/UI/Yeni/Çarpı.png
-  importAddress: Guid(cd0fbb3f5c1cde141be6254e7b1c7ab1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/UI/Yeni/Çarpı.png using Guid(cd0fbb3f5c1cde141be6254e7b1c7ab1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '09f793125104b84254774cdc4dd9f099') in 0.0399814 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1d50e49a9c77c21f4e3827a44391fd7f DependenciesID=c30bbd492e7874a04a71b8eca5cfd0c4 StaticDependenciesID=b043f860b7897df63154584d4425543b 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000037 seconds.
-  path: Assets/Sprites/UI/Yeni/Profile_box.png
-  importAddress: Guid(a77a5cc45f8450a4487564c78d0fb24c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/UI/Yeni/Profile_box.png using Guid(a77a5cc45f8450a4487564c78d0fb24c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'b315ef65fa9a5c63db2b3de868f753f0') in 0.0368402 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0dfd451f129bf42cb1537c400c197498 DependenciesID=33f00dce5428c63b292f7fe4a2a1e4b7 StaticDependenciesID=14e58c4b1ecd14182883eb09e31a16a2 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.942476 seconds.
-  path: Assets/Sprites/UI/Yeni/BackGrounds
-  importAddress: Guid(feb901a3a9afdc84f8ac9e1d49b3e662) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/UI/Yeni/BackGrounds using Guid(feb901a3a9afdc84f8ac9e1d49b3e662) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'c948ac28eafd96e68a4685995fa582df') in 0.001037 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=43e09ee2d4697887155d040105f3a8e1 DependenciesID=d7e9124ff9aefc40cae63973dea8e652 StaticDependenciesID=6a9436ed937950eb504e3b4a63ef4782 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+  Time since last request: 429932.594515 seconds.
+  path: Assets/Fonts/Cinzel-Black SDF.asset
+  importAddress: Guid(83beb0c5dd52cf44e981a890a1fd3718) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Fonts/Cinzel-Black SDF.asset using Guid(83beb0c5dd52cf44e981a890a1fd3718) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '1b4f23121977f872230283ff07cdea37') in 0.500671 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=88ee190186b521aaea5f6bc13247762d DependenciesID=6a215b8b1cd203a623c6f3ea317be03e StaticDependenciesID=3f4a87fc715807a0ec5ed9acef2c80d6 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 5
 
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
 AssetImportWorker is now disconnected from the server
